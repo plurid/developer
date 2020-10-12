@@ -1,0 +1,29 @@
+{
+    #packages
+    #package
+    #commit
+    yarnWorkspace false
+    runFrom ../
+}
+
+
+packages [
+    ./packages/developer-cli
+    ./packages/developer-server
+]
+
+package {
+    manager yarn
+    publisher npm
+}
+
+yarnWorkspace false
+
+commit {
+    engine git
+    combine true
+    root ''
+    fullFolder false
+    divider ' > '
+    message setup: package
+}
