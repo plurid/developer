@@ -1,3 +1,5 @@
 // #region exports
-export {};
+export interface Configuration {
+    projects: string[];
+};
 // #endregion exports
