@@ -11,6 +11,10 @@
         status,
         start,
         stop,
+        register,
+        deregister,
+        build,
+        watch,
     } from '../commands';
     // #endregion external
 // #endregion imports
@@ -51,6 +55,34 @@ const main = async (
     program
         .command('stop')
         .description('stop the developer server')
+        .action(async () => {
+            await stop();
+        });
+
+    program
+        .command('register')
+        .description('register a project for the developer server')
+        .action(async () => {
+            await stop();
+        });
+
+    program
+        .command('deregister')
+        .description('deregister a project for the developer server')
+        .action(async () => {
+            await stop();
+        });
+
+    program
+        .command('build')
+        .description('build a registered project')
+        .action(async () => {
+            await stop();
+        });
+
+    program
+        .command('watch')
+        .description('watch a registered project for changes')
         .action(async () => {
             await stop();
         });
