@@ -6,8 +6,10 @@
 
 
 // #region module
-const watch = async () => {
-    console.log('developer watch');
+const watch = async (
+    project: string,
+) => {
+    console.log('developer watch', project);
 }
 // #endregion module
 

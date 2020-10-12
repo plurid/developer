@@ -6,8 +6,10 @@
 
 
 // #region module
-const register = async () => {
-    console.log('developer register');
+const register = async (
+    configuration: string,
+) => {
+    console.log('developer register', configuration);
 }
 // #endregion module
 

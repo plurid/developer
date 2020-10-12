@@ -6,8 +6,10 @@
 
 
 // #region module
-const build = async () => {
-    console.log('developer build');
+const build = async (
+    project: string,
+) => {
+    console.log('developer build', project);
 }
 // #endregion module
 

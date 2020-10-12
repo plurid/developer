@@ -60,31 +60,31 @@ const main = async (
         });
 
     program
-        .command('register')
+        .command('register <path>')
         .description('register a project for the developer server')
-        .action(async () => {
-            await stop();
+        .action(async (path: any) => {
+            await register(path);
         });
 
     program
-        .command('deregister')
+        .command('deregister <path>')
         .description('deregister a project for the developer server')
-        .action(async () => {
-            await stop();
+        .action(async (path: any) => {
+            await deregister(path);
         });
 
     program
-        .command('build')
+        .command('build <project>')
         .description('build a registered project')
-        .action(async () => {
-            await stop();
+        .action(async (project: any) => {
+            await build(project);
         });
 
     program
-        .command('watch')
+        .command('watch <project>')
         .description('watch a registered project for changes')
-        .action(async () => {
-            await stop();
+        .action(async (project: any) => {
+            await watch(project);
         });
 
 

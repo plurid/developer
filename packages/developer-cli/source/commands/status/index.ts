@@ -7,7 +7,7 @@
 
 // #region module
 const status = async () => {
-    console.log('Developer');
+    console.log('developer status');
 }
 // #endregion module
 
