@@ -15,7 +15,7 @@
 
 
 <h3 align="center">
-    Centralized Local Transpiler/Bundler/Linter/Tester
+    Centralized Transpiler/Bundler/Linter/Tester
 </h3>
 
 
