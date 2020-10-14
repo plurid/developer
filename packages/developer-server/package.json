@@ -1,7 +1,7 @@
 {
     "name": "@plurid/developer-server",
     "version": "0.0.0",
-    "description": "Cloud-Native Logger Server",
+    "description": "Cloud-Native Developer Server for Centralized Transpilation/Bundling/Linting/Testing",
     "keywords": [
         "developer",
         "server"
