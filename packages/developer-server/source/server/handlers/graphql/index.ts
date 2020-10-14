@@ -32,10 +32,6 @@
     import loadData from '#server/logic/loader';
 
     import defaultLogger from '#server/services/logger';
-
-    import {
-        getPrivateOwner,
-    } from '#server/logic/privateUsage';
     // #endregion external
 // #endregion imports
 
@@ -60,7 +56,8 @@ const setupGraphQLServer = async (
             req,
             res,
         }: any) => {
-            const privateOwnerIdentonym = await getPrivateOwner(req);
+            const privateOwnerIdentonym = '';
+            // const privateOwnerIdentonym = await getPrivateOwner(req);
 
             const {
                 projects,

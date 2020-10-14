@@ -1,6 +1,6 @@
 // #region imports
     // #region external
-    import database from '#server/services/database';
+    // import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -9,7 +9,7 @@
 // #region module
 const setup = async () => {
     try {
-        await database.initialize();
+        // await database.initialize();
     } catch (error) {
         return;
     }

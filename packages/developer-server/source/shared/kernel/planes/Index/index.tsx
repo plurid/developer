@@ -16,9 +16,7 @@
 
 
     // #region internal
-    import InitialView from './components/InitialView';
     import GeneralView from './components/GeneralView';
-    import PrivateView from './components/PrivateView';
 
     import {
         StyledIndex,
@@ -59,19 +57,9 @@ const Index: React.FC<IndexProperties> = (
     let renderView = (<></>);
 
     switch (stateIndexView) {
-        case 'initial':
-            renderView = (
-                <InitialView />
-            );
-            break;
         case 'general':
             renderView = (
                 <GeneralView />
-            );
-            break;
-        case 'private':
-            renderView = (
-                <PrivateView />
             );
             break;
     }

@@ -23,10 +23,10 @@ const getProjects = async (
         projects,
         request,
 
-        privateUsage,
+        // privateUsage,
         privateOwnerIdentonym,
 
-        customLogicUsage,
+        // customLogicUsage,
 
         logger,
         logLevels,
@@ -44,57 +44,36 @@ const getProjects = async (
 
     try {
         // #region private usage
-        if (privateUsage) {
-            logger.log(
-                getProjectsLogs.infoHandlePrivateUsage,
-                logLevels.trace,
-            );
+        // if (privateUsage) {
+        //     logger.log(
+        //         getProjectsLogs.infoHandlePrivateUsage,
+        //         logLevels.trace,
+        //     );
 
-            if (!privateOwnerIdentonym) {
-                logger.log(
-                    getProjectsLogs.infoEndPrivateUsage,
-                    logLevels.info,
-                );
+        //     if (!privateOwnerIdentonym) {
+        //         logger.log(
+        //             getProjectsLogs.infoEndPrivateUsage,
+        //             logLevels.info,
+        //         );
 
-                return {
-                    status: false,
-                };
-            }
+        //         return {
+        //             status: false,
+        //         };
+        //     }
 
-            logger.log(
-                getProjectsLogs.infoSuccessPrivateUsage,
-                logLevels.info,
-            );
+        //     logger.log(
+        //         getProjectsLogs.infoSuccessPrivateUsage,
+        //         logLevels.info,
+        //     );
 
-            return {
-                status: true,
-                data: [
-                    ...projects,
-                ],
-            };
-        }
+        //     return {
+        //         status: true,
+        //         data: [
+        //             ...projects,
+        //         ],
+        //     };
+        // }
         // #endregion private usage
-
-
-        // #region logic usage
-        const logic = request.delogLogic;
-
-        if (customLogicUsage && logic) {
-            logger.log(
-                getProjectsLogs.infoHandleCustomLogicUsage,
-                logLevels.trace,
-            );
-
-            const owner = await logic.getCurrentOwner();
-
-            return {
-                status: true,
-                data: [
-                    ...owner.projects,
-                ],
-            };
-        }
-        // #endregion logic usage
 
 
         // #region public usage

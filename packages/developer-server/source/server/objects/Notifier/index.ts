@@ -13,7 +13,6 @@
     } from '#server/data/constants';
 
     import {
-        LoggedRecord,
         Notifier as INotifier,
         NotifierAPI,
         NotifierEmail,
@@ -21,7 +20,7 @@
         NotificationEvent,
     } from '#server/data/interfaces';
 
-    import database from '#server/services/database';
+    // import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -41,11 +40,12 @@ class Notifier {
         if (this.event.type === 'record') {
             const log = this.event.data;
 
-            const notifiers: INotifier[] = await database.query(
-                'notifiers',
-                'ownedBy',
-                log.ownedBy,
-            );
+            // const notifiers: INotifier[] = await database.query(
+            //     'notifiers',
+            //     'ownedBy',
+            //     log.ownedBy,
+            // );
+            const notifiers: any[] = [];
 
             if (notifiers.length === 0) {
                 return;
@@ -95,7 +95,7 @@ class Notifier {
 
     private handleNotifier(
         notifier: INotifier,
-        log: LoggedRecord,
+        log: any,
     ) {
         switch (notifier.type) {
             case 'api':
@@ -115,7 +115,7 @@ class Notifier {
 
     private async notifyAPI(
         notifier: NotifierAPI,
-        log: LoggedRecord,
+        log: any,
     ) {
         const {
             data,
@@ -147,7 +147,7 @@ class Notifier {
 
     private async notifyEmail(
         notifier: NotifierEmail,
-        log: LoggedRecord,
+        log: any,
     ) {
         try {
             const {

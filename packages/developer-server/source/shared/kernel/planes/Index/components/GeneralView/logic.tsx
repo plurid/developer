@@ -93,7 +93,6 @@ export const renderGeneralView = (
     const stateViewCompactSelectors = selectors.view.getViewCompactSelectors(state);
     const stateViewOwnerID = selectors.view.getViewOwnerID(state);
     const stateViewUsageType = selectors.view.getViewUsageType(state);
-    const stateViewActiveProviderID = selectors.data.getActiveProviderID(state);
 
     const dispatchAddEntity = (
         payload: any,
@@ -236,21 +235,21 @@ export const renderGeneralView = (
                     cancel={() => setGeneralView('general')}
                 />
             );
-        case 'generate-notifier':
-            return (
-                <Notifier
-                    theme={stateInteractionTheme}
-                    action={(notifier) => {
-                        dispatchAddEntity({
-                            type: 'notifier',
-                            data: notifier,
-                        });
+        // case 'generate-notifier':
+        //     return (
+        //         <Notifier
+        //             theme={stateInteractionTheme}
+        //             action={(notifier) => {
+        //                 dispatchAddEntity({
+        //                     type: 'notifier',
+        //                     data: notifier,
+        //                 });
 
-                        setGeneralView('general');
-                    }}
-                    cancel={() => setGeneralView('general')}
-                />
-            );
+        //                 setGeneralView('general');
+        //             }}
+        //             cancel={() => setGeneralView('general')}
+        //         />
+        //     );
         default:
             return (
                 <></>

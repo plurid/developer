@@ -1,11 +1,3 @@
-// #region imports
-    import {
-        LoggedRecord,
-    } from '../general';
-// #endregion imports
-
-
-
 // #region module
 export type Notifier =
     | NotifierAPI
@@ -119,7 +111,7 @@ export interface NotificationEventEntity extends NotificationEventBase {
 
 export interface NotificationEventRecord extends NotificationEventBase {
     type: 'record';
-    data: LoggedRecord;
+    data: any;
 }
 
 export interface NotificationEventTest extends NotificationEventBase {

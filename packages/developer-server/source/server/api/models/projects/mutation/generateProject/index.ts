@@ -29,10 +29,10 @@ const generateProject = async (
     const {
         request,
 
-        privateUsage,
+        // privateUsage,
         privateOwnerIdentonym,
 
-        customLogicUsage,
+        // customLogicUsage,
 
         logger,
         logLevels,
@@ -57,66 +57,39 @@ const generateProject = async (
 
 
         // #region private usage
-        if (privateUsage) {
-            logger.log(
-                generateProjectLogs.infoHandlePrivateUsage,
-                logLevels.trace,
-            );
+        // if (privateUsage) {
+        //     logger.log(
+        //         generateProjectLogs.infoHandlePrivateUsage,
+        //         logLevels.trace,
+        //     );
 
-            if (!privateOwnerIdentonym) {
-                logger.log(
-                    generateProjectLogs.infoEndPrivateUsage,
-                    logLevels.info,
-                );
+        //     if (!privateOwnerIdentonym) {
+        //         logger.log(
+        //             generateProjectLogs.infoEndPrivateUsage,
+        //             logLevels.info,
+        //         );
 
-                return {
-                    status: false,
-                };
-            }
+        //         return {
+        //             status: false,
+        //         };
+        //     }
 
-            const project = await registerProject(
-                name,
-                privateOwnerIdentonym,
-            );
+        //     const project = await registerProject(
+        //         name,
+        //         privateOwnerIdentonym,
+        //     );
 
-            logger.log(
-                generateProjectLogs.infoSuccessPrivateUsage,
-                logLevels.info,
-            );
+        //     logger.log(
+        //         generateProjectLogs.infoSuccessPrivateUsage,
+        //         logLevels.info,
+        //     );
 
-            return {
-                status: true,
-                data: project,
-            };
-        }
+        //     return {
+        //         status: true,
+        //         data: project,
+        //     };
+        // }
         // #endregion private usage
-
-
-        // #region logic usage
-        const logic = request.delogLogic;
-
-        if (customLogicUsage && logic) {
-            logger.log(
-                generateProjectLogs.infoHandleCustomLogicUsage,
-                logLevels.trace,
-            );
-
-            const project = await registerProject(
-                name,
-                '',
-            );
-
-            logger.log(
-                generateProjectLogs.infoEndCustomLogicUsage,
-                logLevels.info,
-            );
-
-            return {
-                status: true,
-                data: project,
-            };
-        }
-        // #endregion logic usage
 
 
         // #region public usage

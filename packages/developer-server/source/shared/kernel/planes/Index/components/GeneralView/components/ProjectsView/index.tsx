@@ -32,10 +32,6 @@
         OBLITERATE_PROJECT,
     } from '#kernel-services/graphql/mutate';
 
-    import {
-        getCurrentOwner,
-    } from '#kernel-services/logic/queries';
-
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     import actions from '#kernel-services/state/actions';
@@ -257,7 +253,6 @@ const ProjectsView: React.FC<ProjectsViewProperties> = (
 
             filterUpdate={filterUpdate}
             refresh={() => {
-                getCurrentOwner(dispatch);
             }}
         />
     );

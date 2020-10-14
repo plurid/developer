@@ -40,7 +40,7 @@ export const types = gql`
         name: String!
     }
 
-    extend type Owner {
+    type Owner {
         projects: [Project!]!
     }
 `;

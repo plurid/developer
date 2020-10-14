@@ -11,11 +11,6 @@
 
     // #region external
     import {
-        DelogLogic,
-        DelogRequest,
-    } from '#server/data/interfaces';
-
-    import {
         HEALTH_CHECK_ENDPOINT,
 
         Headers,
@@ -29,18 +24,11 @@
 // #region module
 const setupMiddleware = async (
     instance: Express,
-    logic?: DelogLogic,
 ) => {
     instance.use(
         cookieParser(),
         /** Attach logic */
         (request, _, next) => {
-            if (logic) {
-                (request as DelogRequest).delogLogic = {
-                    ...logic,
-                };
-            }
-
             next();
         },
         bodyParser.json({

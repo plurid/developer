@@ -32,10 +32,6 @@
         OBLITERATE_NOTIFIER,
     } from '#kernel-services/graphql/mutate';
 
-    import {
-        getCurrentOwner,
-    } from '#kernel-services/logic/queries';
-
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     import actions from '#kernel-services/state/actions';
@@ -265,7 +261,6 @@ const NotifiersView: React.FC<NotifiersViewProperties> = (
 
             filterUpdate={filterUpdate}
             refresh={() => {
-                getCurrentOwner(dispatch);
             }}
         />
     );

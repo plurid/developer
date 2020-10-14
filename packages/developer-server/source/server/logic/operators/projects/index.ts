@@ -11,7 +11,7 @@
         Project,
     } from '#server/data/interfaces';
 
-    import database from '#server/services/database';
+    // import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -30,11 +30,11 @@ const registerProject = async (
         ownedBy,
     };
 
-    await database.store(
-        'projects',
-        id,
-        project,
-    );
+    // await database.store(
+    //     'projects',
+    //     id,
+    //     project,
+    // );
 
     return project;
 }
@@ -44,12 +44,12 @@ const deregisterProject = async (
     id: string,
 ) => {
     try {
-        await database.obliterate(
-            'projects',
-            {
-                id,
-            },
-        );
+        // await database.obliterate(
+        //     'projects',
+        //     {
+        //         id,
+        //     },
+        // );
     } catch (error) {
         return;
     }

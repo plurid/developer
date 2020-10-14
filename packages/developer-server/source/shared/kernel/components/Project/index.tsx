@@ -15,9 +15,9 @@
         Project as IProject,
     } from '#server/data/interfaces';
 
-    import {
-        addEntityMutation,
-    } from '#kernel-services/logic/mutations';
+    // import {
+    //     addEntityMutation,
+    // } from '#kernel-services/logic/mutations';
 
     import {
         GENERATE_PROJECT,
@@ -107,17 +107,17 @@ const Project: React.FC<ProjectProperties> = (
             return;
         }
 
-        const project: IProject | undefined = await addEntityMutation(
-            {
-                value: projectName,
-            },
-            GENERATE_PROJECT,
-            'generateProject',
-        );
+        // const project: IProject | undefined = await addEntityMutation(
+        //     {
+        //         value: projectName,
+        //     },
+        //     GENERATE_PROJECT,
+        //     'generateProject',
+        // );
 
-        if (project) {
-            action(project);
-        }
+        // if (project) {
+        //     action(project);
+        // }
     }
 
     const handleEnter = (

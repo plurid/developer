@@ -5,14 +5,6 @@
         ClientNotifier,
     } from '#server/data/interfaces';
     // #endregion libraries
-
-
-    // #region exports
-    import {
-        AnalyticsRecordsCount,
-        AnalyticsSize,
-    } from '#kernel-data/interfaces';
-    // #endregion exports
 // #endregion imports
 
 

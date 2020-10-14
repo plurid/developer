@@ -2,13 +2,6 @@
     // #region libraries
     import path from 'path';
     // #endregion libraries
-
-
-    // #region external
-    import {
-        CodeProviderData,
-    } from '#server/data/interfaces';
-    // #endregion external
 // #endregion imports
 
 

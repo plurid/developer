@@ -9,7 +9,7 @@ export const generateLog = (
         ? ` · ${usage}`
         : '';
 
-    const log = `[Delog ${type} : ${state}] :: ${method}` + usageString;
+    const log = `[Developer ${type} : ${state}] :: ${method}` + usageString;
 
     return log;
 }

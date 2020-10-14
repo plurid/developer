@@ -77,7 +77,7 @@ const servicesData: PluridServerServicesData = {
 };
 
 const options: PluridServerPartialOptions = {
-    serverName: 'developer Server',
+    serverName: 'Developer Server',
     buildDirectory,
     open: openAtStart,
     debug,

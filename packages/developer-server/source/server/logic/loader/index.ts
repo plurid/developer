@@ -4,12 +4,6 @@
         Project,
         ClientNotifier,
     } from '#server/data/interfaces';
-
-    import {
-        extractClientNotifierData,
-    } from '#server/logic/operators/notifiers';
-
-    import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -19,51 +13,54 @@
 export const loadProjects = async (
     ownerID: string,
 ) => {
-    const projects: Project[] = await database.query(
-        'projects',
-        'ownedBy',
-        ownerID,
-    );
+    // const projects: Project[] = await database.query(
+    //     'projects',
+    //     'ownedBy',
+    //     ownerID,
+    // );
 
-    return projects;
+    // return projects;
+    return [];
 }
 
 
 export const loadNotifiers = async (
     ownerID: string,
 ) => {
-    const notifiers: any[] = await database.query(
-        'notifiers',
-        'ownedBy',
-        ownerID,
-    );
+    // const notifiers: any[] = await database.query(
+    //     'notifiers',
+    //     'ownedBy',
+    //     ownerID,
+    // );
 
-    const clientNotifiers = notifiers.map(notifier => {
-        const {
-            id,
-            name,
-            notifyOn,
-            type,
-            data,
-        } = notifier;
+    // const clientNotifiers = notifiers.map(notifier => {
+    //     const {
+    //         id,
+    //         name,
+    //         notifyOn,
+    //         type,
+    //         data,
+    //     } = notifier;
 
-        const clientData = extractClientNotifierData(
-            type,
-            data,
-        );
+    //     const clientData = extractClientNotifierData(
+    //         type,
+    //         data,
+    //     );
 
-        const clientNotifier = {
-            id,
-            name,
-            notifyOn,
-            type,
-            data: clientData,
-        };
+    //     const clientNotifier = {
+    //         id,
+    //         name,
+    //         notifyOn,
+    //         type,
+    //         data: clientData,
+    //     };
 
-        return clientNotifier;
-    });
+    //     return clientNotifier;
+    // });
 
-    return clientNotifiers;
+    // return clientNotifiers;
+
+    return [];
 }
 
 const loadData = async (

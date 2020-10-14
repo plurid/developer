@@ -18,10 +18,6 @@
     } from '../notifier';
 
     import {
-        DelogLogic,
-    } from '../logic';
-
-    import {
         Logger,
         LogLevels,
     } from '../logger';
@@ -32,7 +28,7 @@
 
 // #region module
 export interface Context {
-    request: DelogRequest;
+    request: DeveloperRequest;
     response: Response;
 
     instance: Application;
@@ -41,9 +37,6 @@ export interface Context {
     // notifiers: ClientNotifier[];
     notifiers: any[];
 
-    customLogicUsage: boolean;
-
-    privateUsage: boolean;
     privateOwnerIdentonym: string | undefined;
 
     logger: Logger;
@@ -52,8 +45,7 @@ export interface Context {
 }
 
 
-export type DelogRequest = Request & {
-    delogLogic: DelogLogic | undefined;
+export type DeveloperRequest = Request & {
     rawBody: string | undefined;
 }
 // #endregion module

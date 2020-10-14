@@ -29,10 +29,10 @@ const obliterateProject = async (
     const {
         request,
 
-        privateUsage,
+        // privateUsage,
         privateOwnerIdentonym,
 
-        customLogicUsage,
+        // customLogicUsage,
 
         logger,
         logLevels,
@@ -57,58 +57,35 @@ const obliterateProject = async (
 
 
         // #region private usage
-        if (privateUsage) {
-            logger.log(
-                obliterateProjectLogs.infoHandlePrivateUsage,
-                logLevels.trace,
-            );
+        // if (privateUsage) {
+        //     logger.log(
+        //         obliterateProjectLogs.infoHandlePrivateUsage,
+        //         logLevels.trace,
+        //     );
 
-            if (!privateOwnerIdentonym) {
-                logger.log(
-                    obliterateProjectLogs.infoEndPrivateUsage,
-                    logLevels.info,
-                );
+        //     if (!privateOwnerIdentonym) {
+        //         logger.log(
+        //             obliterateProjectLogs.infoEndPrivateUsage,
+        //             logLevels.info,
+        //         );
 
-                return {
-                    status: false,
-                };
-            }
+        //         return {
+        //             status: false,
+        //         };
+        //     }
 
-            await deregisterProject(value);
+        //     await deregisterProject(value);
 
-            logger.log(
-                obliterateProjectLogs.infoSuccessPrivateUsage,
-                logLevels.info,
-            );
+        //     logger.log(
+        //         obliterateProjectLogs.infoSuccessPrivateUsage,
+        //         logLevels.info,
+        //     );
 
-            return {
-                status: true,
-            };
-        }
+        //     return {
+        //         status: true,
+        //     };
+        // }
         // #endregion private usage
-
-
-        // #region logic usage
-        const logic = request.delogLogic;
-
-        if (customLogicUsage && logic) {
-            logger.log(
-                obliterateProjectLogs.infoHandleCustomLogicUsage,
-                logLevels.trace,
-            );
-
-            await deregisterProject(value);
-
-            logger.log(
-                obliterateProjectLogs.infoEndCustomLogicUsage,
-                logLevels.info,
-            );
-
-            return {
-                status: true,
-            };
-        }
-        // #endregion logic usage
 
 
         // #region public usage
