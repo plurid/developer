@@ -6,6 +6,7 @@
 
     // #region internal
     import projects from './projects/resolvers';
+    import builds from './builds/resolvers';
     // #endregion internal
 // #endregion imports
 
@@ -27,6 +28,7 @@ const generateResolvers = (
 
 const resolvers = generateResolvers(
     projects,
+    builds,
 );
 // #endregion module
 

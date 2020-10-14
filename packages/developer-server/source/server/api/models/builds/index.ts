@@ -1,15 +1,15 @@
 // #region imports
     // #region internal
-    import projects from './projects/schemas';
-    import builds from './builds/schemas';
+    import Query from './query';
+    import Mutation from './mutation';
     // #endregion internal
 // #endregion imports
 
 
 
 // #region exports
-export default [
-    projects,
-    builds,
-];
+export default {
+    Query,
+    Mutation,
+};
 // #endregion exports
