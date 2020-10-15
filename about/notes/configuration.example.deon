@@ -1,0 +1,39 @@
+// The configuration file sits in ./configurations/developer.deon
+// To register the configuration run from the root directory of the project
+// > developer register ./configurations/devloper.deon
+
+
+inject scriptStep2 from script.step2.js
+
+
+{
+    source ../                  // points to the target directory
+    project project one         // the package can belong to a project
+    name package one            // the package name
+    steps [                     // each step handles a part of transpilation/bundling
+        #step1
+        #step2
+        #step3
+    ]
+    dependencies {              // configuration-wide dependencies
+        name version
+    }
+}
+
+
+step1 {
+    script `
+// run arbitrary javascript/typescript
+`
+    dependencies {              // step-wide dependencies
+        name version
+    }
+}
+
+step2 {
+    script #scriptStep2
+}
+
+step3 {
+
+}
