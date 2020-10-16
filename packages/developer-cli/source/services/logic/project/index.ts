@@ -117,7 +117,22 @@ const packageProject = async (
 
     const zip = new Zip();
 
-    zip.addLocalFolder(root);
+    const files = await fs.readdir(root);
+
+    for (const file of files) {
+        const filepath = path.join(
+            root,
+            file,
+        );
+
+        const stat = await fs.stat(filepath);
+
+        if (stat.isDirectory()) {
+            zip.addLocalFolder(filepath, file);
+        } else {
+            zip.addLocalFile(filepath);
+        }
+    }
 
     const archive = zip.toBuffer();
 

@@ -28,9 +28,9 @@ const build = async (
 
         const archive = await packageProject(projctData);
 
-        fs.writeFile('archive', archive);
+        fs.writeFile('archive.zip', archive);
     } catch (error) {
-        console.log('Something went wrong.');
+        console.log('Something went wrong.', error);
         return;
     }
 }
