@@ -19,6 +19,7 @@
         deregister,
         lint,
         test,
+        preview,
         watch,
         build,
         run,
@@ -122,6 +123,13 @@ const main = async (
         .description('test a registered project or the current directory project')
         .action(async (project: any) => {
             await test(project);
+        });
+
+    program
+        .command('preview [project]')
+        .description('preview a registered project or the current directory project')
+        .action(async (project: any) => {
+            await preview(project);
         });
 
     program

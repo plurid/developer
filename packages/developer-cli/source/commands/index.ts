@@ -11,6 +11,7 @@
     import deregister from './deregister';
     import lint from './lint';
     import test from './test';
+    import preview from './preview';
     import watch from './watch';
     import build from './build';
     import run from './run';
@@ -32,6 +33,7 @@ export {
     deregister,
     lint,
     test,
+    preview,
     watch,
     build,
     run,
