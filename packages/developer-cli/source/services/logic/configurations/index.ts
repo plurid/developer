@@ -58,5 +58,5 @@ const readConfiguration = async (
 export {
     resolveConfigurationPath,
     readConfiguration,
-}
+};
 // #endregion exports
