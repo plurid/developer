@@ -22,6 +22,7 @@ export default {
     ],
     external: [
         'fs',
+        'original-fs',
         'os',
         'path',
         'events',
