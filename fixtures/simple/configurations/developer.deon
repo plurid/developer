@@ -1,0 +1,12 @@
+{
+    project developer-test
+    name fixtures/simple
+    root ../
+    language typescript
+    input {
+        entrypoint source/index.ts
+    }
+    output {
+        directory build
+    }
+}
