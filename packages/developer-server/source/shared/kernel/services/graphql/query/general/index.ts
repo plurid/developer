@@ -22,13 +22,6 @@ export const GET_CURRENT_OWNER = gql`
                     id
                     name
                 }
-                notifiers {
-                    id
-                    name
-                    notifyOn
-                    type
-                    data
-                }
             }
         }
     }
