@@ -1,8 +1,7 @@
 // #region imports
     // #region external
     import {
-        resolveProject,
-        readProjectConfiguration,
+        getProjectData,
     } from '../../services/logic/project';
     // #endregion external
 // #endregion imports
@@ -13,17 +12,8 @@
 const build = async (
     name: string,
 ) => {
-    const project = await resolveProject(
+    const configurationData = await getProjectData(
         name,
-    );
-
-    if (!project) {
-        console.log(`Could not resolve project.`);
-        return;
-    }
-
-    const configurationData = await readProjectConfiguration(
-        project,
     );
 
     console.log('configurationData', configurationData);

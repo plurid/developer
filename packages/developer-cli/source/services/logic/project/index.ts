@@ -63,6 +63,26 @@ const readProjectConfiguration = async (
 
     return projectData;
 }
+
+
+const getProjectData = async (
+    name: string,
+) => {
+    const project = await resolveProject(
+        name,
+    );
+
+    if (!project) {
+        console.log(`Could not resolve project.`);
+        return;
+    }
+
+    const configurationData = await readProjectConfiguration(
+        project,
+    );
+
+    return configurationData;
+}
 // #endregion module
 
 
@@ -71,5 +91,6 @@ const readProjectConfiguration = async (
 export {
     resolveProject,
     readProjectConfiguration,
+    getProjectData,
 };
 // #endregion exports
