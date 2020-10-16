@@ -41,9 +41,9 @@
 // #region module
 let connection: MongoClient | undefined;
 
-const mongoNoConnectionError = 'Delog Error :: No mongo connection.';
+const mongoNoConnectionError = 'Developer Error :: No mongo connection.';
 
-const DATABASE = 'delog';
+const DATABASE = 'developer';
 
 
 const createConnection = async () => {
