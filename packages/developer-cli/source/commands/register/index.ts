@@ -28,7 +28,10 @@ const register = async (
         return;
     }
 
-    const data = await readConfiguration(
+    const {
+        filePath,
+        data,
+    } = await readConfiguration(
         configurationPath || '',
     );
 
@@ -37,6 +40,7 @@ const register = async (
     const project = {
         name,
         space: data.space,
+        path: filePath,
     };
 
     const projects = [

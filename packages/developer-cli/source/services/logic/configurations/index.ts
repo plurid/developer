@@ -34,7 +34,10 @@ const readConfiguration = async (
     const deon = new Deon();
     const parsedData = typer(await deon.parse(data));
 
-    return parsedData;
+    return {
+        filePath,
+        data: parsedData,
+    };
 }
 // #endregion module
 
