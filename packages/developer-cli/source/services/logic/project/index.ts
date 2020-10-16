@@ -4,6 +4,10 @@
         promises as fs,
     } from 'fs';
 
+    import path from 'path';
+
+    import Zip from 'adm-zip';
+
     import Deon, {
         typer,
     } from '@plurid/deon';
@@ -46,6 +50,7 @@ const resolveProject = async (
     return;
 }
 
+
 const readProjectConfiguration = async (
     project: Project,
 ) => {
@@ -77,11 +82,47 @@ const getProjectData = async (
         return;
     }
 
-    const configurationData = await readProjectConfiguration(
+    const data = await readProjectConfiguration(
         project,
     );
 
-    return configurationData;
+    return {
+        project,
+        data,
+    };
+}
+
+
+const resolveRoot = (
+    configuration: any,
+) => {
+    const {
+        project,
+        data,
+    } = configuration;
+
+    const root = path.join(
+        project.path,
+        data.root,
+    );
+
+    return root;
+}
+
+
+const packageProject = async (
+    configuration: any,
+) => {
+    const root = resolveRoot(configuration);
+    console.log('root', root);
+
+    const zip = new Zip();
+
+    zip.addLocalFolder(root);
+
+    const archive = zip.toBuffer();
+
+    return archive;
 }
 // #endregion module
 
@@ -92,5 +133,6 @@ export {
     resolveProject,
     readProjectConfiguration,
     getProjectData,
+    packageProject,
 };
 // #endregion exports

@@ -2,6 +2,7 @@
     // #region external
     import {
         getProjectData,
+        packageProject,
     } from '../../services/logic/project';
     // #endregion external
 // #endregion imports
@@ -13,15 +14,15 @@ const build = async (
     name?: string,
 ) => {
     try {
-        const configurationData = await getProjectData(
+        const projctData = await getProjectData(
             name,
         );
 
-        if (!configurationData) {
+        if (!projctData) {
             return;
         }
 
-        console.log('configurationData', configurationData);
+        const archive = await packageProject(projctData);
     } catch (error) {
         console.log('Something went wrong.');
         return;
