@@ -6,15 +6,15 @@
 
 
 // #region module
-const deregister = async (
-    configuration?: string,
+const test = async (
+    project?: string,
 ) => {
-    console.log('developer deregister', configuration);
+    console.log('developer test');
 }
 // #endregion module
 
 
 
 // #region exports
-export default deregister;
+export default test;
 // #endregion exports

@@ -7,7 +7,7 @@
 
 // #region module
 const register = async (
-    configuration: string,
+    configuration?: string,
 ) => {
     console.log('developer register', configuration);
 }

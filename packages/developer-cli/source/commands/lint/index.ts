@@ -6,15 +6,15 @@
 
 
 // #region module
-const deregister = async (
-    configuration?: string,
+const lint = async (
+    project?: string,
 ) => {
-    console.log('developer deregister', configuration);
+    console.log('developer lint');
 }
 // #endregion module
 
 
 
 // #region exports
-export default deregister;
+export default lint;
 // #endregion exports
