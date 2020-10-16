@@ -49,6 +49,7 @@ export interface Context {
 
 
 export type DeveloperRequest = Request & {
+    developerLogic: any;
     rawBody: string | undefined;
 }
 // #endregion module
