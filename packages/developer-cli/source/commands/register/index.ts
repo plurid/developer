@@ -21,47 +21,52 @@
 const register = async (
     configurationPath?: string,
 ) => {
-    const configuration = await getConfiguration();
+    try {
+        const configuration = await getConfiguration();
 
-    if (!configuration) {
-        console.log(`Could not read configuration.`);
+        if (!configuration) {
+            console.log(`Could not read configuration.`);
+            return;
+        }
+
+        const {
+            filePath,
+            data,
+        } = await readConfiguration(
+            configurationPath || '',
+        );
+
+        const name = data.project + '//' + data.space;
+
+        const project = {
+            name,
+            space: data.space,
+            path: filePath,
+        };
+
+        const projects = [
+            ...configuration.projects,
+            {
+                ...project,
+            },
+        ];
+
+        const updatedConfiguration: Configuration = {
+            ...configuration,
+            projects: [
+                ...projects,
+            ],
+        };
+
+        await updateConfiguration(
+            configuration.server,
+            configuration.identonym,
+            updatedConfiguration,
+        );
+    } catch (error) {
+        console.log('Something went wrong.');
         return;
     }
-
-    const {
-        filePath,
-        data,
-    } = await readConfiguration(
-        configurationPath || '',
-    );
-
-    const name = data.project + '//' + data.space;
-
-    const project = {
-        name,
-        space: data.space,
-        path: filePath,
-    };
-
-    const projects = [
-        ...configuration.projects,
-        {
-            ...project,
-        },
-    ];
-
-    const updatedConfiguration: Configuration = {
-        ...configuration,
-        projects: [
-            ...projects,
-        ],
-    };
-
-    await updateConfiguration(
-        configuration.server,
-        configuration.identonym,
-        updatedConfiguration,
-    );
 }
 // #endregion module
 

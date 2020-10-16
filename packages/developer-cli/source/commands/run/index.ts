@@ -13,11 +13,16 @@ const run = async (
     name: string,
     project?: string,
 ) => {
-    const configurationData = await getProjectData(
-        project,
-    );
+    try {
+        const configurationData = await getProjectData(
+            project,
+        );
 
-    if (!configurationData) {
+        if (!configurationData) {
+            return;
+        }
+    } catch (error) {
+        console.log('Something went wrong.');
         return;
     }
 }

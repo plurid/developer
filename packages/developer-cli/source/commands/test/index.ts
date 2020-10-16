@@ -9,7 +9,12 @@
 const test = async (
     project?: string,
 ) => {
-    console.log('developer test');
+    try {
+        console.log('developer test');
+    } catch (error) {
+        console.log('Something went wrong.');
+        return;
+    }
 }
 // #endregion module
 

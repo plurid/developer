@@ -10,7 +10,12 @@ const start = async (
     server?: string,
     identonym?: string,
 ) => {
-    console.log('developer start');
+    try {
+        console.log('developer start');
+    } catch (error) {
+        console.log('Something went wrong.');
+        return;
+    }
 }
 // #endregion module
 

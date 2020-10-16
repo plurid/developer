@@ -12,15 +12,20 @@
 const build = async (
     name?: string,
 ) => {
-    const configurationData = await getProjectData(
-        name,
-    );
+    try {
+        const configurationData = await getProjectData(
+            name,
+        );
 
-    if (!configurationData) {
+        if (!configurationData) {
+            return;
+        }
+
+        console.log('configurationData', configurationData);
+    } catch (error) {
+        console.log('Something went wrong.');
         return;
     }
-
-    console.log('configurationData', configurationData);
 }
 // #endregion module
 

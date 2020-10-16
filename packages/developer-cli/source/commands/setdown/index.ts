@@ -11,7 +11,12 @@ const setdown = async (
     identonym: string,
     key: string,
 ) => {
-    console.log('developer setdown');
+    try {
+        console.log('developer setdown');
+    } catch (error) {
+        console.log('Something went wrong.');
+        return;
+    }
 }
 // #endregion module
 

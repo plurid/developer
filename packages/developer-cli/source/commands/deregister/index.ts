@@ -17,31 +17,36 @@
 const deregister = async (
     configurationPath?: string,
 ) => {
-    const configuration = await getConfiguration();
+    try {
+        const configuration = await getConfiguration();
 
-    if (!configuration) {
-        console.log(`Could not read configuration.`);
+        if (!configuration) {
+            console.log(`Could not read configuration.`);
+            return;
+        }
+
+        const filePath = resolveConfigurationPath(
+            configurationPath || '',
+        );
+
+        const projects = configuration.projects.filter(
+            project => project.path !== filePath,
+        );
+
+        const updatedConfiguration = {
+            ...configuration,
+            projects,
+        };
+
+        await updateConfiguration(
+            configuration.server,
+            configuration.identonym,
+            updatedConfiguration,
+        );
+    } catch (error) {
+        console.log('Something went wrong.');
         return;
     }
-
-    const filePath = resolveConfigurationPath(
-        configurationPath || '',
-    );
-
-    const projects = configuration.projects.filter(
-        project => project.path !== filePath,
-    );
-
-    const updatedConfiguration = {
-        ...configuration,
-        projects,
-    };
-
-    await updateConfiguration(
-        configuration.server,
-        configuration.identonym,
-        updatedConfiguration,
-    );
 }
 // #endregion module
 

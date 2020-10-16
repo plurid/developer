@@ -11,7 +11,12 @@ const setup = async (
     identonym: string,
     key: string,
 ) => {
-    console.log('developer setup');
+    try {
+        console.log('developer setup');
+    } catch (error) {
+        console.log('Something went wrong.');
+        return;
+    }
 }
 // #endregion module
 

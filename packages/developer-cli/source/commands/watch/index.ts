@@ -12,11 +12,16 @@
 const watch = async (
     name: string,
 ) => {
-    const configurationData = await getProjectData(
-        name,
-    );
+    try {
+        const configurationData = await getProjectData(
+            name,
+        );
 
-    if (!configurationData) {
+        if (!configurationData) {
+            return;
+        }
+    } catch (error) {
+        console.log('Something went wrong.');
         return;
     }
 }
