@@ -1,5 +1,8 @@
 // #region imports
     // #region external
+    import {
+        getProjectData,
+    } from '../../services/logic/project';
     // #endregion external
 // #endregion imports
 
@@ -10,7 +13,13 @@ const run = async (
     name: string,
     project?: string,
 ) => {
-    console.log('developer run', name, project);
+    const configurationData = await getProjectData(
+        project,
+    );
+
+    if (!configurationData) {
+        return;
+    }
 }
 // #endregion module
 

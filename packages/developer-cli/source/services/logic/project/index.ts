@@ -25,7 +25,7 @@
 
 // #region module
 const resolveProject = async (
-    name: string,
+    name?: string,
 ) => {
     const configuration = await getConfiguration();
 
@@ -66,7 +66,7 @@ const readProjectConfiguration = async (
 
 
 const getProjectData = async (
-    name: string,
+    name?: string,
 ) => {
     const project = await resolveProject(
         name,

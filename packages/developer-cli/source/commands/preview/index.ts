@@ -1,5 +1,8 @@
 // #region imports
     // #region external
+    import {
+        getProjectData,
+    } from '../../services/logic/project';
     // #endregion external
 // #endregion imports
 
@@ -7,9 +10,15 @@
 
 // #region module
 const preview = async (
-    project?: string,
+    name?: string,
 ) => {
-    console.log('developer preview');
+    const configurationData = await getProjectData(
+        name,
+    );
+
+    if (!configurationData) {
+        return;
+    }
 }
 // #endregion module
 

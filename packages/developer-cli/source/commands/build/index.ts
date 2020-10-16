@@ -10,11 +10,15 @@
 
 // #region module
 const build = async (
-    name: string,
+    name?: string,
 ) => {
     const configurationData = await getProjectData(
         name,
     );
+
+    if (!configurationData) {
+        return;
+    }
 
     console.log('configurationData', configurationData);
 }
