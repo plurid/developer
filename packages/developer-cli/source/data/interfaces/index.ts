@@ -5,6 +5,6 @@ export interface Configuration {
     key: string;
     token: string;
     isDefault: boolean;
-    projects: [];
+    projects: any[];
 }
 // #endregion exports

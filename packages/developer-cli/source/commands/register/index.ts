@@ -1,11 +1,16 @@
 // #region imports
     // #region external
     import {
+        Configuration,
+    } from '../../data/interfaces';
+
+    import {
         readConfiguration,
     } from '../../services/logic/configurations';
 
     import {
         getConfiguration,
+        updateConfiguration,
     } from '../../services/utilities';
     // #endregion external
 // #endregion imports
@@ -27,7 +32,32 @@ const register = async (
         configurationPath || '',
     );
 
-    console.log('developer register', data);
+    const name = data.project + '//' + data.space;
+
+    const project = {
+        name,
+        space: data.space,
+    };
+
+    const projects = [
+        ...configuration.projects,
+        {
+            ...project,
+        },
+    ];
+
+    const updatedConfiguration: Configuration = {
+        ...configuration,
+        projects: [
+            ...projects,
+        ],
+    };
+
+    await updateConfiguration(
+        configuration.server,
+        configuration.identonym,
+        updatedConfiguration,
+    );
 }
 // #endregion module
 
