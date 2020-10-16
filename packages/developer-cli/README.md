@@ -31,9 +31,9 @@
 
 `developer` is a [service](https://developer.plurid.cloud) or self-hosted Centralized Source Processor.
 
-`Source Processor` imply the totality of transformations that are required in order to have the source code runtime-ready.
+A `Source Processor` handles the totality of transformations that are required in order to have the source code runtime-ready.
 
-Such transformations, in a `NodeJS` for web context, consist of testing, linting, transpilation, tree-shaking and other optimizations, bundling. In a `C++` for embedded use context, it may consist only in a targeted compilation.
+Such transformations, in a `NodeJS` for web context, consist of linting, testing, transpilation, tree-shaking and other optimizations, bundling. In a `C++` for embedded use context, it may consist only in a targeted compilation.
 
 The `developer-server` registers configurations which receive messages from the `developer-client`, the `CLI`.
 
