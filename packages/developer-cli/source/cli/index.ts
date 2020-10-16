@@ -127,7 +127,7 @@ const main = async (
 
     program
         .command('preview [project]')
-        .description('preview a registered project or the current directory project')
+        .description('preview web elements and scenarios for a registered project or the current directory project')
         .action(async (project: any) => {
             await preview(project);
         });
