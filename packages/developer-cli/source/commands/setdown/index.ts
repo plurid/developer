@@ -6,7 +6,11 @@
 
 
 // #region module
-const setdown = async () => {
+const setdown = async (
+    server: string,
+    identonym: string,
+    key: string,
+) => {
     console.log('developer setdown');
 }
 // #endregion module

@@ -6,7 +6,10 @@
 
 
 // #region module
-const logout = async () => {
+const logout = async (
+    server?: string,
+    identonym?: string,
+) => {
     console.log('developer logout');
 }
 // #endregion module

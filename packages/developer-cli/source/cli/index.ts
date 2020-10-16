@@ -55,44 +55,125 @@ const main = async (
 
     program
         .command('start')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('start the developer server connection')
-        .action(async () => {
-            await start();
+        .action(async (options: any) => {
+            await start(
+                options.server,
+                options.identonym,
+            );
         });
 
     program
         .command('stop')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('stop the developer server connection')
-        .action(async () => {
-            await stop();
+        .action(async (options: any) => {
+            await stop(
+                options.server,
+                options.identonym,
+            );
         });
 
     program
         .command('setup')
+        .requiredOption(
+            '-s, --server <server>',
+            'server address',
+        )
+        .requiredOption(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
+        .requiredOption(
+            '-k, --key <key>',
+            'key',
+        )
         .description('setup a connection to a developer server')
-        .action(async () => {
-            await setup();
+        .action(async (options: any) => {
+            await setup(
+                options.server,
+                options.identonym,
+                options.key,
+            );
         });
 
     program
         .command('setdown')
+        .requiredOption(
+            '-s, --server <server>',
+            'server address',
+        )
+        .requiredOption(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
+        .requiredOption(
+            '-k, --key <key>',
+            'key',
+        )
         .description('setdown, remove a connection to a developer server')
-        .action(async () => {
-            await setdown();
+        .action(async (options: any) => {
+            await setdown(
+                options.server,
+                options.identonym,
+                options.key,
+            );
         });
 
     program
         .command('login')
+        .requiredOption(
+            '-s, --server <server>',
+            'server address',
+        )
+        .requiredOption(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
+        .requiredOption(
+            '-k, --key <key>',
+            'key',
+        )
         .description('log into a developer server')
-        .action(async () => {
-            await login();
+        .action(async (options: any) => {
+            await login(
+                options.server,
+                options.identonym,
+                options.key,
+            );
         });
 
     program
         .command('logout')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('log out of a developer server')
-        .action(async () => {
-            await logout();
+        .action(async (options: any) => {
+            await logout(
+                options.server,
+                options.identonym,
+            );
         });
 
 

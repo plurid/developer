@@ -6,7 +6,10 @@
 
 
 // #region module
-const stop = async () => {
+const stop = async (
+    server?: string,
+    identonym?: string,
+) => {
     console.log('developer stop');
 }
 // #endregion module

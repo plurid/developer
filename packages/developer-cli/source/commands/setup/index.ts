@@ -6,7 +6,11 @@
 
 
 // #region module
-const setup = async () => {
+const setup = async (
+    server: string,
+    identonym: string,
+    key: string,
+) => {
     console.log('developer setup');
 }
 // #endregion module

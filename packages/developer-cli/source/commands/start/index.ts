@@ -6,7 +6,10 @@
 
 
 // #region module
-const start = async () => {
+const start = async (
+    server?: string,
+    identonym?: string,
+) => {
     console.log('developer start');
 }
 // #endregion module
