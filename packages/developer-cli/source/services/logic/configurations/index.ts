@@ -16,7 +16,7 @@
 
 
 // #region module
-const readConfiguration = async (
+const resolveConfigurationPath = (
     configurationPath: string,
 ) => {
     const filePath = path.isAbsolute(configurationPath)
@@ -25,6 +25,17 @@ const readConfiguration = async (
             process.cwd(),
             configurationPath,
         );
+
+    return filePath;
+}
+
+
+const readConfiguration = async (
+    configurationPath: string,
+) => {
+    const filePath = resolveConfigurationPath(
+        configurationPath,
+    );
 
     const data = await fs.readFile(
         filePath,
@@ -45,6 +56,7 @@ const readConfiguration = async (
 
 // #region exports
 export {
+    resolveConfigurationPath,
     readConfiguration,
 }
 // #endregion exports
