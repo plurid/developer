@@ -15,14 +15,31 @@
 
 
 <h3 align="center">
-    Centralized Transpiler/Bundler/Linter/Tester
+    Cloud-Native Centralized Source Processor
 </h3>
 
 
 
 ### Contents
 
++ [About](#about)
 + [Packages](#packages)
+
+
+
+## About
+
+`developer` is a [service](https://developer.plurid.cloud) or self-hosted Centralized Source Processor.
+
+`Source Processor` imply the totality of transformations that are required in order to have the source code runtime-ready.
+
+Such transformations, in a `NodeJS` for web context, consist of testing, linting, transpilation, tree-shaking and other optimizations, bundling. In a `C++` for embedded use context, it may consist only in a targeted compilation.
+
+The `developer-server` registers configurations which receive messages from the `developer-client`, the `CLI`.
+
+The messages can be simple command calls defined in the configuration, such as `build`, or more complex ones, based on custom scripts.
+
+Given a command processed by the `server`, if there is any output, such as built files, the `server` will speak with the `client` to receive the files on the local machine, and place them accordingly, based on the configuration.
 
 
 
