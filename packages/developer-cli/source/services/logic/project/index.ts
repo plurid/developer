@@ -102,7 +102,7 @@ const resolveRoot = (
     } = configuration;
 
     const root = path.join(
-        project.path,
+        path.dirname(project.path),
         data.root,
     );
 
@@ -114,7 +114,6 @@ const packageProject = async (
     configuration: any,
 ) => {
     const root = resolveRoot(configuration);
-    console.log('root', root);
 
     const zip = new Zip();
 

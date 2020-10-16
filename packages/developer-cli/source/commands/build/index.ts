@@ -1,4 +1,8 @@
 // #region imports
+    import {
+        promises as fs,
+    } from 'fs';
+
     // #region external
     import {
         getProjectData,
@@ -23,6 +27,8 @@ const build = async (
         }
 
         const archive = await packageProject(projctData);
+
+        fs.writeFile('archive', archive);
     } catch (error) {
         console.log('Something went wrong.');
         return;
