@@ -3,16 +3,12 @@
     space fixtures/simple
     root ../
     commands {
-        build {
-            stages [
-                #buildStage
-            ]
-        }
+        #build
     }
 }
 
 
-buildStage {
+build {
     language typescript
     context nodejs
     input {
