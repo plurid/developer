@@ -1,6 +1,6 @@
 {
     project developer-test
-    name fixtures/simple
+    space fixtures/simple
     root ../
     commands {
         build {
