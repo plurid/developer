@@ -1,5 +1,6 @@
 // #region imports
     // #region internal
+    import Owner from './owner';
     import Projects from './projects';
     import Builds from './builds';
     // #endregion internal
@@ -9,6 +10,7 @@
 
 // #region exports
 export {
+    Owner,
     Projects,
     Builds,
 };

@@ -37,6 +37,9 @@ export interface Context {
     // notifiers: ClientNotifier[];
     notifiers: any[];
 
+    customLogicUsage: boolean;
+
+    privateUsage: boolean;
     privateOwnerIdentonym: string | undefined;
 
     logger: Logger;

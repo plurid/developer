@@ -20,6 +20,9 @@
         GRAPHQL_TITLE,
         GRAPHQL_ENDPOINT,
 
+        CUSTOM_LOGIC_USAGE,
+        PRIVATE_USAGE,
+
         logLevel,
         logLevels,
     } from '#server/data/constants';
@@ -32,6 +35,10 @@
     import loadData from '#server/logic/loader';
 
     import defaultLogger from '#server/services/logger';
+
+    import {
+        getPrivateOwner,
+    } from '#server/logic/privateUsage';
     // #endregion external
 // #endregion imports
 
@@ -46,6 +53,9 @@ const setupGraphQLServer = async (
         title: GRAPHQL_TITLE,
     };
 
+    const customLogicUsage = CUSTOM_LOGIC_USAGE;
+    const privateUsage = PRIVATE_USAGE;
+
     const logger = defaultLogger;
 
     const graphQLServer = new ApolloServer({
@@ -56,8 +66,9 @@ const setupGraphQLServer = async (
             req,
             res,
         }: any) => {
-            const privateOwnerIdentonym = '';
-            // const privateOwnerIdentonym = await getPrivateOwner(req);
+            const privateOwnerIdentonym = privateUsage
+                ? await getPrivateOwner(req)
+                : '';
 
             const {
                 projects,
@@ -75,6 +86,9 @@ const setupGraphQLServer = async (
                 projects,
                 notifiers,
 
+                customLogicUsage,
+
+                privateUsage,
                 privateOwnerIdentonym,
 
                 logger,
