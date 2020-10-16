@@ -1,5 +1,10 @@
 // #region imports
     // #region external
+    import {
+        getConfiguration,
+        removeConfiguration,
+        extractServerName,
+    } from '../../services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -10,7 +15,28 @@ const logout = async (
     server?: string,
     identonym?: string,
 ) => {
-    console.log('developer logout');
+    const configuration = await getConfiguration(
+        server,
+        identonym,
+    );
+
+    if (!configuration) {
+        return;
+    }
+
+    if (!configuration.server) {
+        console.log(`Not logged into a developer server.`);
+        return;
+    }
+
+    await removeConfiguration(
+        configuration.server,
+        configuration.identonym,
+    );
+
+    const serverName = extractServerName(configuration.server);
+
+    console.log(`Logged out identonym '${configuration.identonym}' from the developer server '${serverName}'.`);
 }
 // #endregion module
 

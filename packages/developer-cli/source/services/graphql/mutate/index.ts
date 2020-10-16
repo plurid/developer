@@ -9,11 +9,27 @@
 
 
 // #region module
+const LOGIN = gql`
+    mutation Login($input: InputLogin!) {
+        login(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+            }
+        }
+    }
+`;
 // #endregion module
 
 
 
 // #region exports
 export {
+    LOGIN,
 };
 // #endregion exports

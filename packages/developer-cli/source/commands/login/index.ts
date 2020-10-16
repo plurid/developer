@@ -1,5 +1,23 @@
 // #region imports
     // #region external
+    import {
+        Configuration,
+    } from '../../data/interfaces';
+
+    import {
+        defaultConfiguration,
+    } from '../../data/constants';
+
+    import client from '../../services/graphql/client';
+    import {
+        LOGIN,
+    } from '../../services/graphql/mutate';
+
+    import {
+        extractServerName,
+
+        updateConfiguration,
+    } from '../../services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -11,7 +29,53 @@ const login = async (
     identonym: string,
     key: string,
 ) => {
-    console.log('developer login');
+    const developer = client(
+        server,
+    );
+
+    const serverName = extractServerName(server);
+
+    const data: Configuration = {
+        ...defaultConfiguration,
+        server,
+        identonym,
+        key,
+    };
+
+    try {
+        const mutation = await developer.mutate({
+            mutation: LOGIN,
+            variables: {
+                input: {
+                    identonym,
+                    key,
+                },
+            },
+        });
+
+        const response = mutation.data.login;
+
+        if (!response.status) {
+            console.log(`Could not log in into the developer server '${serverName}' as '${identonym}'.`);
+            return;
+        }
+
+        // HACK
+        // to allow the token writing inside the apollo afterwareLink
+        setTimeout(async () => {
+            delete (data as any).token;
+
+            await updateConfiguration(
+                server,
+                identonym,
+                data,
+            );
+        }, 2_000);
+
+        console.log(`Logged in the developer server '${serverName}' as '${identonym}'.`);
+    } catch (error) {
+        console.log(`Could not log in into the developer server '${serverName}' as '${identonym}'.`);
+    }
 }
 // #endregion module
 

@@ -1,5 +1,10 @@
 // #region exports
 export interface Configuration {
-    projects: string[];
-};
+    server: string;
+    identonym: string;
+    key: string;
+    token: string;
+    isDefault: boolean;
+    projects: [];
+}
 // #endregion exports

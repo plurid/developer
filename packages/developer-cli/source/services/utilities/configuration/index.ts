@@ -16,6 +16,7 @@
     } from '../../../data/interfaces';
 
     import {
+        defaultConfiguration,
         developerConfigurationPath,
     } from '../../../data/constants';
 
@@ -42,9 +43,41 @@ const writeConfiguration = async (
 
 
 const updateConfiguration = async (
+    server: string,
+    identonym: string,
     data: Partial<Configuration>,
 ) => {
     try {
+        const configurations = await readConfigurations();
+
+        let updatedConfiguration = false;
+
+        const updatedConfigurations = configurations.map(configuration => {
+            if (
+                configuration.server === server
+                && configuration.identonym === identonym
+            ) {
+                updatedConfiguration = true;
+                return {
+                    ...configuration,
+                    ...data,
+                };
+            }
+
+            return {
+                ...configuration,
+            };
+        });
+
+        if (!updatedConfiguration) {
+            updatedConfigurations.push({
+                ...defaultConfiguration,
+                ...data,
+            });
+        }
+
+        await writeConfiguration(updatedConfigurations);
+
         return true;
     } catch (error) {
         return false;
@@ -52,7 +85,7 @@ const updateConfiguration = async (
 }
 
 
-const readConfiguration = async () => {
+const readConfigurations = async () => {
     try {
         const exists = await fileExists(developerConfigurationPath);
 
@@ -61,7 +94,7 @@ const readConfiguration = async () => {
                 developerConfigurationPath,
                 '',
             );
-            return;
+            return [] as Configuration[];
         }
 
         const data = await fs.readFile(
@@ -70,21 +103,97 @@ const readConfiguration = async () => {
         );
 
         const deon = new Deon();
-        const configurationData: Configuration = typer(await deon.parse(data));
+        const configurationsData: Configuration[] = typer(await deon.parse(data));
 
-        return configurationData;
+        if (!Array.isArray(configurationsData)) {
+            return [];
+        }
+
+        return configurationsData;
     } catch (error) {
-        return;
+        return [];
     }
 }
 
 
-const getConfiguration = async () => {
-    return;
+const getDefaultConfiguration = async () => {
+    const data = await readConfigurations();
+
+    if (data.length === 0) {
+        return;
+    }
+
+    if (data.length === 1) {
+        return data[0];
+    }
+
+    for (const configuration of data) {
+        if (configuration.isDefault) {
+            return configuration;
+        }
+    }
+
+    return data[0];
 }
 
 
-const removeConfiguration = async () => {
+const getConfiguration = async (
+    server?: string,
+    identonym?: string,
+) => {
+    if (!server || !identonym) {
+        return await getDefaultConfiguration();
+    }
+
+    const configurations = await readConfigurations();
+
+    const configuration = configurations.find(configuration => {
+        if (
+            configuration.server === server
+            && configuration.identonym === identonym
+        ) {
+            return true;
+        }
+
+        return false;
+    });
+
+    return configuration;
+}
+
+
+const removeConfiguration = async (
+    server?: string,
+    identonym?: string,
+) => {
+    const configurations = await readConfigurations();
+
+    let removedConfiguration = false;
+    let updatedConfigurations: Configuration[] = [];
+
+    updatedConfigurations = configurations.filter(configuration => {
+        if (
+            server === configuration.server
+            && identonym === configuration.identonym
+        ) {
+            removedConfiguration = true;
+            return false;
+        }
+
+        if (!server && !identonym && configuration.isDefault) {
+            removedConfiguration = true;
+            return false;
+        }
+
+        return true;
+    });
+
+    if (!removedConfiguration) {
+        updatedConfigurations = updatedConfigurations.slice(1);
+    }
+
+    await writeConfiguration(updatedConfigurations);
+
     return;
 }
 // #endregion module
@@ -93,8 +202,9 @@ const removeConfiguration = async () => {
 
 // #region exports
 export {
-    readConfiguration,
+    readConfigurations,
     updateConfiguration,
+    getDefaultConfiguration,
     getConfiguration,
     removeConfiguration,
 };

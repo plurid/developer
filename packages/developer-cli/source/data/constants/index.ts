@@ -3,6 +3,13 @@
     import os from 'os';
     import path from 'path';
     // #endregion libraries
+
+
+    // #region external
+    import {
+        Configuration,
+    } from '../interfaces';
+    // #endregion external
 // #endregion imports
 
 
@@ -15,6 +22,19 @@ const developerConfigurationPath = path.join(
     homeDirectory,
     DEVELOPER_CONFIGURATION_FILE
 );
+
+
+const defaultConfiguration: Configuration = {
+    identonym: '',
+    key: '',
+    server: '',
+    token: '',
+    isDefault: false,
+    projects: [],
+};
+
+
+const DEVELOPER_COOKIE = 'PVTTKN';
 // #endregion module
 
 
@@ -22,5 +42,8 @@ const developerConfigurationPath = path.join(
 // #region exports
 export {
     developerConfigurationPath,
+    defaultConfiguration,
+
+    DEVELOPER_COOKIE,
 };
 // #endregion exports

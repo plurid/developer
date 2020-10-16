@@ -12,6 +12,13 @@
 const fileExists = async (
     path: string,
 ) => !!(await fs.stat(path).catch(e => false));
+
+
+const extractServerName = (
+    server: string,
+) => {
+    return server.replace(/https?:\/\//, '');
+}
 // #endregion module
 
 
@@ -19,5 +26,6 @@ const fileExists = async (
 // #region exports
 export {
     fileExists,
+    extractServerName,
 };
 // #endregion exports
