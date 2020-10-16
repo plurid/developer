@@ -17,6 +17,11 @@
     // #region external
     import Head from '#kernel-components/Head';
 
+    import {
+        getCurrentOwner,
+        getUsageType,
+    } from '#kernel-services/logic/queries';
+
     import { AppState } from '#kernel-services/state/store';
     import selectors from '#kernel-services/state/selectors';
     import actions from '#kernel-services/state/actions';
@@ -75,7 +80,19 @@ const Home: React.FC<HomeProperties> = (
     // #region effects
     useEffect(() => {
         const loadData = async () => {
-            let indexView = 'general';
+            let indexView = 'initial';
+
+            /** Get usage type */
+            const usageType = await getUsageType(dispatchSetViewUsageType);
+            if (usageType) {
+                indexView = usageType;
+            }
+
+            /** Get current owner */
+            const ownerSet = await getCurrentOwner(dispatch);
+            if (ownerSet) {
+                indexView = 'general';
+            }
 
             dispatchSetViewType({
                 type: 'indexView',

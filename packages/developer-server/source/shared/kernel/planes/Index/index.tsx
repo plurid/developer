@@ -17,6 +17,7 @@
 
     // #region internal
     import GeneralView from './components/GeneralView';
+    import PrivateView from './components/PrivateView';
 
     import {
         StyledIndex,
@@ -60,6 +61,11 @@ const Index: React.FC<IndexProperties> = (
         case 'general':
             renderView = (
                 <GeneralView />
+            );
+            break;
+        case 'private':
+            renderView = (
+                <PrivateView />
             );
             break;
     }
