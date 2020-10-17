@@ -14,11 +14,11 @@ const status = async () => {
         const configurations = await readConfigurations();
 
         if (configurations.length === 0) {
-            console.log(`No current configuration.`);
+            console.log(`\n\tNo developer configurations.\n`);
             return;
         }
 
-        console.log(`\n\tDeveloper configuration`);
+        console.log(`\n\tDeveloper configurations:`);
 
         for (const configuration of configurations) {
             const {
