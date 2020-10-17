@@ -4,36 +4,27 @@
         promises as fs,
     } from 'fs';
 
-    import path from 'path';
-
     import Deon, {
         typer,
     } from '@plurid/deon';
     // #endregion libraries
+
+
+    // #region external
+    import {
+        resolvePathToAbsolute,
+    } from '../../utilities';
+    // #endregion external
 // #endregion imports
 
 
 
 
 // #region module
-const resolveConfigurationPath = (
-    configurationPath: string,
-) => {
-    const filePath = path.isAbsolute(configurationPath)
-        ? configurationPath
-        : path.join(
-            process.cwd(),
-            configurationPath,
-        );
-
-    return filePath;
-}
-
-
 const readConfiguration = async (
     configurationPath: string,
 ) => {
-    const filePath = resolveConfigurationPath(
+    const filePath = resolvePathToAbsolute(
         configurationPath,
     );
 
@@ -56,7 +47,6 @@ const readConfiguration = async (
 
 // #region exports
 export {
-    resolveConfigurationPath,
     readConfiguration,
 };
 // #endregion exports

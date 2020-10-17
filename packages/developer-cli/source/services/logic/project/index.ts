@@ -21,13 +21,48 @@
 
     import {
         getConfiguration,
-    } from '../../utilities/configuration';
+        fileExists,
+        resolvePathToAbsolute,
+    } from '../../utilities';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
+const resolveProjectConfigurationPath = async (
+    configurationPath?: string,
+) => {
+    const defaultLocations = [
+        'developer.deon',
+        './configurations/developer.deon',
+    ];
+
+    if (!configurationPath) {
+        for (const defaultLocation of defaultLocations) {
+            const locationPath = path.join(
+                process.cwd(),
+                defaultLocation,
+            );
+
+            const exists = await fileExists(locationPath);
+
+            if (exists) {
+                return locationPath;
+            }
+        }
+
+        return;
+    }
+
+    const resolvedPath = resolvePathToAbsolute(
+        configurationPath,
+    );
+
+    return resolvedPath;
+}
+
+
 const resolveProject = async (
     name?: string,
 ) => {
@@ -144,6 +179,7 @@ const packageProject = async (
 
 // #region exports
 export {
+    resolveProjectConfigurationPath,
     resolveProject,
     readProjectConfiguration,
     getProjectData,

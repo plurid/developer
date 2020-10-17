@@ -2,5 +2,6 @@
 export * from './api';
 export * from './general';
 export * from './configuration';
+export * from './paths';
 export * from './registration';
 // #endregion module
