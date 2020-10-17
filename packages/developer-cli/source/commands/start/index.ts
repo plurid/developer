@@ -1,5 +1,6 @@
 // #region imports
     // #region external
+    import Server from '../../objects/Server';
     // #endregion external
 // #endregion imports
 
@@ -11,6 +12,12 @@ const start = async (
     identonym?: string,
 ) => {
     try {
+        const server = new Server();
+
+        const port = server.start();
+
+        // write port to the configuration file
+
         console.log('developer start');
     } catch (error) {
         console.log('Something went wrong.');

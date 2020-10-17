@@ -11,6 +11,9 @@ const stop = async (
     identonym?: string,
 ) => {
     try {
+        // get port from the configuration file, if any
+        // stop the server
+
         console.log('developer stop');
     } catch (error) {
         console.log('Something went wrong.');
