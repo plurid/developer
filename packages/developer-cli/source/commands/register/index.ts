@@ -9,6 +9,10 @@
     } from '../../services/logic/configurations';
 
     import {
+        resolveProjectConfigurationPath,
+    } from '../../services/logic/project';
+
+    import {
         getConfiguration,
         updateConfiguration,
     } from '../../services/utilities';
@@ -25,7 +29,16 @@ const register = async (
         const configuration = await getConfiguration();
 
         if (!configuration) {
-            console.log(`Could not read configuration.`);
+            console.log(`Could not read configuration file.`);
+            return;
+        }
+
+        const projectConfigurationPath = await resolveProjectConfigurationPath(
+            configurationPath,
+        );
+
+        if (!projectConfigurationPath) {
+            console.log(`Could not read project configuration.`);
             return;
         }
 
@@ -33,7 +46,7 @@ const register = async (
             filePath,
             data,
         } = await readConfiguration(
-            configurationPath || '',
+            projectConfigurationPath,
         );
 
         const name = data.project + '//' + data.space;

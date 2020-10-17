@@ -1,8 +1,8 @@
 // #region imports
     // #region external
     import {
-        resolveConfigurationPath,
-    } from '../../services/logic/configurations';
+        resolveProjectConfigurationPath,
+    } from '../../services/logic/project';
 
     import {
         getConfiguration,
@@ -21,16 +21,21 @@ const deregister = async (
         const configuration = await getConfiguration();
 
         if (!configuration) {
-            console.log(`Could not read configuration.`);
+            console.log(`Could not read configuration file.`);
             return;
         }
 
-        const filePath = resolveConfigurationPath(
-            configurationPath || '',
+        const projectConfigurationPath = await resolveProjectConfigurationPath(
+            configurationPath,
         );
 
+        if (!projectConfigurationPath) {
+            console.log(`Could not read project configuration.`);
+            return;
+        }
+
         const projects = configuration.projects.filter(
-            project => project.path !== filePath,
+            project => project.path !== projectConfigurationPath,
         );
 
         const updatedConfiguration = {
