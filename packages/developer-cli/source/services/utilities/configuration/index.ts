@@ -12,17 +12,17 @@
 
     // #region external
     import {
-        Configuration,
-    } from '../../../data/interfaces';
+        DeveloperConfiguration,
+    } from '#data/interfaces';
 
     import {
-        defaultConfiguration,
+        defaultDeveloperConfiguration,
         developerConfigurationPath,
-    } from '../../../data/constants';
+    } from '#data/constants';
 
     import {
         fileExists,
-    } from '../general';
+    } from '#services/utilities/general';
     // #endregion external
 // #endregion imports
 
@@ -43,40 +43,23 @@ const writeConfiguration = async (
 
 
 const updateConfiguration = async (
-    server: string,
-    identonym: string,
-    data: Partial<Configuration>,
+    data: Partial<DeveloperConfiguration>,
 ) => {
     try {
-        const configurations = await readConfigurations();
+        const configuration = await readConfiguration();
 
-        let updatedConfiguration = false;
+        const updatedConfiguration: DeveloperConfiguration = {
+            workers: {
+                ...configuration.workers,
+                ...data.workers,
+            },
+            connections: {
+                ...configuration.connections,
+                ...data.connections,
+            },
+        };
 
-        const updatedConfigurations = configurations.map(configuration => {
-            if (
-                configuration.server === server
-                && configuration.identonym === identonym
-            ) {
-                updatedConfiguration = true;
-                return {
-                    ...configuration,
-                    ...data,
-                };
-            }
-
-            return {
-                ...configuration,
-            };
-        });
-
-        if (!updatedConfiguration) {
-            updatedConfigurations.push({
-                ...defaultConfiguration,
-                ...data,
-            });
-        }
-
-        await writeConfiguration(updatedConfigurations);
+        await writeConfiguration(updatedConfiguration);
 
         return true;
     } catch (error) {
@@ -85,16 +68,13 @@ const updateConfiguration = async (
 }
 
 
-const readConfigurations = async () => {
+const readConfiguration = async () => {
     try {
         const exists = await fileExists(developerConfigurationPath);
 
         if (!exists) {
-            await fs.writeFile(
-                developerConfigurationPath,
-                '',
-            );
-            return [] as Configuration[];
+            await writeConfiguration(defaultDeveloperConfiguration);
+            return defaultDeveloperConfiguration;
         }
 
         const data = await fs.readFile(
@@ -103,98 +83,12 @@ const readConfigurations = async () => {
         );
 
         const deon = new Deon();
-        const configurationsData: Configuration[] = typer(await deon.parse(data));
+        const configuration: DeveloperConfiguration = typer(await deon.parse(data));
 
-        if (!Array.isArray(configurationsData)) {
-            return [];
-        }
-
-        return configurationsData;
+        return configuration;
     } catch (error) {
-        return [];
+        return defaultDeveloperConfiguration;
     }
-}
-
-
-const getDefaultConfiguration = async () => {
-    const data = await readConfigurations();
-
-    if (data.length === 0) {
-        return;
-    }
-
-    if (data.length === 1) {
-        return data[0];
-    }
-
-    for (const configuration of data) {
-        if (configuration.isDefault) {
-            return configuration;
-        }
-    }
-
-    return data[0];
-}
-
-
-const getConfiguration = async (
-    server?: string,
-    identonym?: string,
-) => {
-    if (!server || !identonym) {
-        return await getDefaultConfiguration();
-    }
-
-    const configurations = await readConfigurations();
-
-    const configuration = configurations.find(configuration => {
-        if (
-            configuration.server === server
-            && configuration.identonym === identonym
-        ) {
-            return true;
-        }
-
-        return false;
-    });
-
-    return configuration;
-}
-
-
-const removeConfiguration = async (
-    server?: string,
-    identonym?: string,
-) => {
-    const configurations = await readConfigurations();
-
-    let removedConfiguration = false;
-    let updatedConfigurations: Configuration[] = [];
-
-    updatedConfigurations = configurations.filter(configuration => {
-        if (
-            server === configuration.server
-            && identonym === configuration.identonym
-        ) {
-            removedConfiguration = true;
-            return false;
-        }
-
-        if (!server && !identonym && configuration.isDefault) {
-            removedConfiguration = true;
-            return false;
-        }
-
-        return true;
-    });
-
-    if (!removedConfiguration) {
-        updatedConfigurations = updatedConfigurations.slice(1);
-    }
-
-    await writeConfiguration(updatedConfigurations);
-
-    return;
 }
 // #endregion module
 
@@ -202,10 +96,8 @@ const removeConfiguration = async (
 
 // #region exports
 export {
-    readConfigurations,
+    writeConfiguration,
+    readConfiguration,
     updateConfiguration,
-    getDefaultConfiguration,
-    getConfiguration,
-    removeConfiguration,
 };
 // #endregion exports

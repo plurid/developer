@@ -1,8 +1,8 @@
 // #region imports
     // #region external
     import {
-        readConfigurations,
-    } from '../../services/utilities';
+        readConfiguration,
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -11,34 +11,34 @@
 // #region module
 const status = async () => {
     try {
-        const configurations = await readConfigurations();
+        const configuration = await readConfiguration();
 
-        if (configurations.length === 0) {
+        if (configuration.workers.length === 0) {
             console.log(`\n\tNo developer configurations.\n`);
             return;
         }
 
         console.log(`\n\tDeveloper configurations:`);
 
-        for (const configuration of configurations) {
+        for (const worker of configuration.workers) {
             const {
                 identonym,
                 server,
                 isDefault,
-                projects,
-            } = configuration;
+                spaces,
+            } = worker;
 
             const defaultString = isDefault ? ' [default]': '';
 
             console.log(`\n\t${server} - ${identonym}${defaultString}`);
 
-            if (projects.length === 0) {
-                console.log(`\t\tno projects`);
+            if (spaces.length === 0) {
+                console.log(`\t\tno spaces`);
                 continue;
             }
 
-            for (const project of projects) {
-                console.log(`\t\t${project.name}`);
+            for (const space of spaces) {
+                console.log(`\t\t${space.identifier}`);
             }
         }
     } catch (error) {

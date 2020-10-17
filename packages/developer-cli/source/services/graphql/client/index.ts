@@ -15,11 +15,11 @@
     // #region external
     import {
         DEVELOPER_COOKIE,
-    } from '../../../data/constants';
+    } from '#data/constants';
 
     import {
-        updateConfiguration,
-    } from '../../utilities/configuration';
+        updateWorker,
+    } from '#services/utilities/worker';
      // #endregion external
 // #endregion imports
 
@@ -85,7 +85,7 @@ const client = (
                 identonym,
             };
 
-            updateConfiguration(
+            updateWorker(
                 url,
                 identonym,
                 data,

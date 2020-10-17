@@ -1,8 +1,8 @@
 // #region imports
     // #region external
     import {
-        getProjectData,
-    } from '../../services/logic/project';
+        getSpaceData,
+    } from '#services/logic/space';
     // #endregion external
 // #endregion imports
 
@@ -14,11 +14,11 @@ const run = async (
     project?: string,
 ) => {
     try {
-        const configurationData = await getProjectData(
+        const spaceData = await getSpaceData(
             project,
         );
 
-        if (!configurationData) {
+        if (!spaceData) {
             return;
         }
     } catch (error) {

@@ -16,21 +16,21 @@
 
     // #region external
     import {
-        Project,
-    } from '../../../data/interfaces';
+        Space,
+    } from '#data/interfaces';
 
     import {
-        getConfiguration,
+        getWorker,
         fileExists,
         resolvePathToAbsolute,
-    } from '../../utilities';
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
-const resolveProjectConfigurationPath = async (
+const resolveSpaceConfigurationPath = async (
     configurationPath?: string,
 ) => {
     const defaultLocations = [
@@ -63,22 +63,21 @@ const resolveProjectConfigurationPath = async (
 }
 
 
-const resolveProject = async (
+const resolveSpace = async (
     name?: string,
 ) => {
-    const configuration = await getConfiguration();
+    const configuration = await getWorker();
 
     if (!configuration) {
         return;
     }
 
-    for (const project of configuration.projects) {
-        if (project.name === name) {
-            return project;
-        }
-
-        if (project.space === name) {
-            return project;
+    for (const space of configuration.spaces) {
+        if (
+            space.identifier === name
+            || space.name === name
+        ) {
+            return space;
         }
     }
 
@@ -86,8 +85,8 @@ const resolveProject = async (
 }
 
 
-const readProjectConfiguration = async (
-    project: Project,
+const readSpaceConfiguration = async (
+    project: Space,
 ) => {
     const {
         path,
@@ -105,10 +104,10 @@ const readProjectConfiguration = async (
 }
 
 
-const getProjectData = async (
+const getSpaceData = async (
     name?: string,
 ) => {
-    const project = await resolveProject(
+    const project = await resolveSpace(
         name,
     );
 
@@ -117,7 +116,7 @@ const getProjectData = async (
         return;
     }
 
-    const data = await readProjectConfiguration(
+    const data = await readSpaceConfiguration(
         project,
     );
 
@@ -145,7 +144,7 @@ const resolveRoot = (
 }
 
 
-const packageProject = async (
+const packageSpace = async (
     configuration: any,
 ) => {
     const root = resolveRoot(configuration);
@@ -179,10 +178,10 @@ const packageProject = async (
 
 // #region exports
 export {
-    resolveProjectConfigurationPath,
-    resolveProject,
-    readProjectConfiguration,
-    getProjectData,
-    packageProject,
+    resolveSpaceConfigurationPath,
+    resolveSpace,
+    readSpaceConfiguration,
+    getSpaceData,
+    packageSpace,
 };
 // #endregion exports

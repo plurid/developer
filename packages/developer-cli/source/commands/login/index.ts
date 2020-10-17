@@ -1,23 +1,23 @@
 // #region imports
     // #region external
     import {
-        Configuration,
-    } from '../../data/interfaces';
+        DeveloperWorker,
+    } from '#data/interfaces';
 
     import {
-        defaultConfiguration,
-    } from '../../data/constants';
+        defaultDeveloperWorker,
+    } from '#data/constants';
 
-    import client from '../../services/graphql/client';
+    import client from '#services/graphql/client';
     import {
         LOGIN,
-    } from '../../services/graphql/mutate';
+    } from '#services/graphql/mutate';
 
     import {
         extractServerName,
 
-        updateConfiguration,
-    } from '../../services/utilities';
+        updateWorker,
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -35,8 +35,8 @@ const login = async (
 
     const serverName = extractServerName(server);
 
-    const data: Configuration = {
-        ...defaultConfiguration,
+    const data: DeveloperWorker = {
+        ...defaultDeveloperWorker,
         server,
         identonym,
         key,
@@ -65,7 +65,7 @@ const login = async (
         setTimeout(async () => {
             delete (data as any).token;
 
-            await updateConfiguration(
+            await updateWorker(
                 server,
                 identonym,
                 data,

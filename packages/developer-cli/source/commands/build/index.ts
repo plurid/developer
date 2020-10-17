@@ -5,9 +5,9 @@
 
     // #region external
     import {
-        getProjectData,
-        packageProject,
-    } from '../../services/logic/project';
+        getSpaceData,
+        packageSpace,
+    } from '#services/logic/space';
     // #endregion external
 // #endregion imports
 
@@ -18,15 +18,15 @@ const build = async (
     name?: string,
 ) => {
     try {
-        const projctData = await getProjectData(
+        const spaceData = await getSpaceData(
             name,
         );
 
-        if (!projctData) {
+        if (!spaceData) {
             return;
         }
 
-        const archive = await packageProject(projctData);
+        const archive = await packageSpace(spaceData);
 
         fs.writeFile('archive.zip', archive);
     } catch (error) {

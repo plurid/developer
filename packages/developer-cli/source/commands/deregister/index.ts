@@ -1,13 +1,13 @@
 // #region imports
     // #region external
     import {
-        resolveProjectConfigurationPath,
-    } from '../../services/logic/project';
+        resolveSpaceConfigurationPath,
+    } from '#services/logic/space';
 
     import {
-        getConfiguration,
-        updateConfiguration,
-    } from '../../services/utilities';
+        getWorker,
+        updateWorker,
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -18,35 +18,35 @@ const deregister = async (
     configurationPath?: string,
 ) => {
     try {
-        const configuration = await getConfiguration();
+        const worker = await getWorker();
 
-        if (!configuration) {
-            console.log(`Could not read configuration file.`);
+        if (!worker) {
+            console.log(`Could not read worker file.`);
             return;
         }
 
-        const projectConfigurationPath = await resolveProjectConfigurationPath(
+        const spaceConfigurationPath = await resolveSpaceConfigurationPath(
             configurationPath,
         );
 
-        if (!projectConfigurationPath) {
+        if (!spaceConfigurationPath) {
             console.log(`Could not read project configuration.`);
             return;
         }
 
-        const projects = configuration.projects.filter(
-            project => project.path !== projectConfigurationPath,
+        const spaces = worker.spaces.filter(
+            space => space.path !== spaceConfigurationPath,
         );
 
-        const updatedConfiguration = {
-            ...configuration,
-            projects,
+        const updatedWorker = {
+            ...worker,
+            spaces,
         };
 
-        await updateConfiguration(
-            configuration.server,
-            configuration.identonym,
-            updatedConfiguration,
+        await updateWorker(
+            worker.server,
+            worker.identonym,
+            updatedWorker,
         );
     } catch (error) {
         console.log('Something went wrong.');

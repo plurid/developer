@@ -2,15 +2,15 @@
     // #region external
     import {
         DEVELOPER_COOKIE,
-    } from '../../../data/constants';
+    } from '#data/constants';
 
     import {
         client,
-    } from '../../graphql';
+    } from '#services/graphql';
 
     import {
-        getConfiguration,
-    } from '../configuration';
+        getWorker,
+    } from '#services/utilities/worker';
     // #endregion external
 // #endregion imports
 
@@ -28,39 +28,39 @@ const getDeveloper = async (
     server?: string,
     identonym?: string,
 ) => {
-    const configuration = await getConfiguration(
+    const worker = await getWorker(
         server,
         identonym,
     );
 
-    if (!configuration) {
+    if (!worker) {
         return {
             developer: undefined,
-            configuration: undefined,
+            worker: undefined,
         };
     }
 
     const {
         token,
-    } = configuration;
+    } = worker;
 
-    if (!token || !configuration.server) {
+    if (!token || !worker.server) {
         return {
             developer: undefined,
-            configuration: undefined,
+            worker: undefined,
         };
     }
 
     const cookie = developerCookieFromToken(token);
 
     const developer = client(
-        configuration.server,
+        worker.server,
         cookie,
     );
 
     return {
         developer,
-        configuration,
+        worker,
     };
 }
 // #endregion module

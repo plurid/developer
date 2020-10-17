@@ -23,7 +23,7 @@
         watch,
         build,
         run,
-    } from '../commands';
+    } from '#commands/index';
     // #endregion external
 // #endregion imports
 

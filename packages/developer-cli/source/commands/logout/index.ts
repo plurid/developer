@@ -1,10 +1,10 @@
 // #region imports
     // #region external
     import {
-        getConfiguration,
-        removeConfiguration,
+        getWorker,
+        removeWorker,
         extractServerName,
-    } from '../../services/utilities';
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -15,7 +15,7 @@ const logout = async (
     server?: string,
     identonym?: string,
 ) => {
-    const configuration = await getConfiguration(
+    const configuration = await getWorker(
         server,
         identonym,
     );
@@ -29,7 +29,7 @@ const logout = async (
         return;
     }
 
-    await removeConfiguration(
+    await removeWorker(
         configuration.server,
         configuration.identonym,
     );

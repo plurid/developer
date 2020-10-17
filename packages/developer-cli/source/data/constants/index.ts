@@ -7,7 +7,8 @@
 
     // #region external
     import {
-        Configuration,
+        DeveloperConfiguration,
+        DeveloperWorker,
     } from '../interfaces';
     // #endregion external
 // #endregion imports
@@ -20,17 +21,23 @@ const homeDirectory = os.homedir();
 const DEVELOPER_CONFIGURATION_FILE = '.developer.config.deon';
 const developerConfigurationPath = path.join(
     homeDirectory,
-    DEVELOPER_CONFIGURATION_FILE
+    DEVELOPER_CONFIGURATION_FILE,
 );
 
 
-const defaultConfiguration: Configuration = {
+const defaultDeveloperWorker: DeveloperWorker = {
     identonym: '',
     key: '',
     server: '',
     token: '',
     isDefault: false,
-    projects: [],
+    spaces: [],
+};
+
+
+const defaultDeveloperConfiguration: DeveloperConfiguration = {
+    workers: [],
+    connections: {},
 };
 
 
@@ -42,7 +49,8 @@ const DEVELOPER_COOKIE = 'PVTTKN';
 // #region exports
 export {
     developerConfigurationPath,
-    defaultConfiguration,
+    defaultDeveloperWorker,
+    defaultDeveloperConfiguration,
 
     DEVELOPER_COOKIE,
 };

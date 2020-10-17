@@ -1,21 +1,22 @@
 // #region imports
     // #region external
     import {
-        Configuration,
-    } from '../../data/interfaces';
+        DeveloperWorker,
+        Space,
+    } from '#data/interfaces';
 
     import {
         readConfiguration,
-    } from '../../services/logic/configurations';
+    } from '#services/logic/configurations';
 
     import {
-        resolveProjectConfigurationPath,
-    } from '../../services/logic/project';
+        resolveSpaceConfigurationPath,
+    } from '#services/logic/space';
 
     import {
-        getConfiguration,
-        updateConfiguration,
-    } from '../../services/utilities';
+        getWorker,
+        updateWorker,
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -26,19 +27,19 @@ const register = async (
     configurationPath?: string,
 ) => {
     try {
-        const configuration = await getConfiguration();
+        const worker = await getWorker();
 
-        if (!configuration) {
-            console.log(`Could not read configuration file.`);
+        if (!worker) {
+            console.log(`Could not read worker file.`);
             return;
         }
 
-        const projectConfigurationPath = await resolveProjectConfigurationPath(
+        const spaceConfigurationPath = await resolveSpaceConfigurationPath(
             configurationPath,
         );
 
-        if (!projectConfigurationPath) {
-            console.log(`Could not read project configuration.`);
+        if (!spaceConfigurationPath) {
+            console.log(`Could not read project space.`);
             return;
         }
 
@@ -46,35 +47,36 @@ const register = async (
             filePath,
             data,
         } = await readConfiguration(
-            projectConfigurationPath,
+            spaceConfigurationPath,
         );
 
-        const name = data.project + '//' + data.space;
+        const identifier = data.project + '//' + data.space;
 
-        const project = {
-            name,
-            space: data.space,
+        const space: Space = {
+            identifier,
+            project: data.project,
+            name: data.space,
             path: filePath,
         };
 
-        const projects = [
-            ...configuration.projects,
+        const spaces: Space[] = [
+            ...worker.spaces,
             {
-                ...project,
+                ...space,
             },
         ];
 
-        const updatedConfiguration: Configuration = {
-            ...configuration,
-            projects: [
-                ...projects,
+        const updatedWorker: DeveloperWorker = {
+            ...worker,
+            spaces: [
+                ...spaces,
             ],
         };
 
-        await updateConfiguration(
-            configuration.server,
-            configuration.identonym,
-            updatedConfiguration,
+        await updateWorker(
+            worker.server,
+            worker.identonym,
+            updatedWorker,
         );
     } catch (error) {
         console.log('Something went wrong.');
