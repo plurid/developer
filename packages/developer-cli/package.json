@@ -52,16 +52,14 @@
         "cross-fetch": "^3.0.6",
         "forever-monitor": "^3.0.1",
         "graphql": "^15.3.0",
-        "graphql-tag": "^2.11.0",
-        "original-fs": "^1.1.0",
         "subscriptions-transport-ws": "^0.9.18"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^15.1.0",
-        "@rollup/plugin-node-resolve": "^9.0.0",
+        "@rollup/plugin-json": "^4.1.0",
         "@types/adm-zip": "^0.4.33",
         "@types/forever-monitor": "^1.7.5",
-        "@types/node": "^14.11.9",
+        "@types/node": "^14.11.10",
         "@typescript-eslint/eslint-plugin": "^4.4.1",
         "@typescript-eslint/parser": "^4.4.1",
         "eslint": "^7.11.0",

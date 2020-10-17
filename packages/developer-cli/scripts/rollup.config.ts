@@ -1,18 +1,31 @@
 // #region imports
     // #region libraries
-    import resolve from '@rollup/plugin-node-resolve';
     import commonjs from '@rollup/plugin-commonjs';
     import typescript from 'rollup-plugin-typescript2';
+    import json from '@rollup/plugin-json';
     // #endregion libraries
+
+
+    // #region external
+    import pkg from '../package.json';
+    // #endregion external
 // #endregion imports
 
 
 
 // #region module
-const pkg = require('../package.json');
+const common = {
+    plugins: [
+        json(),
+        typescript({
+            tsconfig: './tsconfig.json',
+        }),
+        commonjs(),
+    ]
+};
 
 
-export default {
+const cli = {
     input: './source/index.ts',
     output: [
         {
@@ -21,32 +34,41 @@ export default {
         },
     ],
     external: [
+        'commander',
         'fs',
-        'original-fs',
+        'cross-fetch',
+        '@apollo/client/core',
         'os',
         'path',
-        'events',
-        'child_process',
         '@plurid/deon',
-        '@plurid/performer-requests',
-        'https',
-        'http',
-        'url',
-        'stream',
-        'zlib',
-        'react',
+        'adm-zip',
+        'forever-monitor',
     ],
-    watch: {
-        include: 'source/**',
-    },
     plugins: [
-        typescript({
-            tsconfig: './tsconfig.json',
-        }),
-        resolve({
-            preferBuiltins: true,
-        }),
-        commonjs(),
+        ...common.plugins,
     ],
-}
+};
+
+
+const server = {
+    input: './source/server.ts',
+    output: [
+        {
+            file: 'distribution/server.js',
+            format: 'cjs',
+        },
+    ],
+    plugins: [
+        ...common.plugins,
+    ],
+};
 // #endregion module
+
+
+
+// #region exports
+export default [
+    cli,
+    server,
+];
+// #endregion exports

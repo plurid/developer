@@ -8,7 +8,7 @@
         ApolloLink,
         InMemoryCache,
         from,
-    } from '@apollo/client';
+    } from '@apollo/client/core';
     // #endregion libraries
 
 
