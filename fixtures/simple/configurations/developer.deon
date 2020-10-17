@@ -15,7 +15,8 @@ build {
         entrypoint source/index.ts
     }
     output {
-        directory build
         target es5
+        directory build
+        name index.js
     }
 }
