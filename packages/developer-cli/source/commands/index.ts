@@ -1,12 +1,12 @@
 // #region imports
     // #region internal
     import status from './status';
+    import login from './login';
+    import logout from './logout';
     import start from './start';
     import stop from './stop';
     import setup from './setup';
     import setdown from './setdown';
-    import login from './login';
-    import logout from './logout';
     import register from './register';
     import deregister from './deregister';
     import lint from './lint';
@@ -23,12 +23,12 @@
 // #region exports
 export {
     status,
+    login,
+    logout,
     start,
     stop,
     setup,
     setdown,
-    login,
-    logout,
     register,
     deregister,
     lint,

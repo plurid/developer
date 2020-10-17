@@ -9,12 +9,12 @@
     // #region external
     import {
         status,
+        login,
+        logout,
         start,
         stop,
         setup,
         setdown,
-        login,
-        logout,
         register,
         deregister,
         lint,
@@ -52,6 +52,49 @@ const main = async (
         .action(async () => {
             await status();
         });
+
+
+    program
+        .command('login')
+        .requiredOption(
+            '-s, --server <server>',
+            'server address',
+        )
+        .requiredOption(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
+        .requiredOption(
+            '-k, --key <key>',
+            'key',
+        )
+        .description('log into a developer server')
+        .action(async (options: any) => {
+            await login(
+                options.server,
+                options.identonym,
+                options.key,
+            );
+        });
+
+    program
+        .command('logout')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
+        .description('log out of a developer server')
+        .action(async (options: any) => {
+            await logout(
+                options.server,
+                options.identonym,
+            );
+        });
+
 
     program
         .command('start')
@@ -132,47 +175,6 @@ const main = async (
                 options.server,
                 options.identonym,
                 options.key,
-            );
-        });
-
-    program
-        .command('login')
-        .requiredOption(
-            '-s, --server <server>',
-            'server address',
-        )
-        .requiredOption(
-            '-i, --identonym <identonym>',
-            'identonym',
-        )
-        .requiredOption(
-            '-k, --key <key>',
-            'key',
-        )
-        .description('log into a developer server')
-        .action(async (options: any) => {
-            await login(
-                options.server,
-                options.identonym,
-                options.key,
-            );
-        });
-
-    program
-        .command('logout')
-        .option(
-            '-s, --server <server>',
-            'server address',
-        )
-        .option(
-            '-i, --identonym <identonym>',
-            'identonym',
-        )
-        .description('log out of a developer server')
-        .action(async (options: any) => {
-            await logout(
-                options.server,
-                options.identonym,
             );
         });
 
