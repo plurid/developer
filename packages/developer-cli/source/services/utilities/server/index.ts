@@ -1,6 +1,6 @@
 // #region imports
     // #region libraries
-    import {
+    import forever, {
         Monitor,
     } from 'forever-monitor';
     // #endregion libraries
@@ -12,7 +12,7 @@
 const serverStart = async () => {
     const server = new Monitor('server.js', {
         max: 3,
-        silent: true,
+        silent: false,
         sourceDir: __dirname,
     });
 
