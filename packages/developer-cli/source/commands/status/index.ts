@@ -33,7 +33,7 @@ const status = async () => {
             console.log(`\n\t${server} - ${identonym}${defaultString}`);
 
             if (spaces.length === 0) {
-                console.log(`\t  no spaces`);
+                console.log(`\t  no spaces registered`);
                 continue;
             }
 
