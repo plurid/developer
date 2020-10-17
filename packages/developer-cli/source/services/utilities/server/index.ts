@@ -13,7 +13,7 @@ const serverStart = async () => {
     const server = new Monitor('server.js', {
         max: 3,
         silent: true,
-        sourceDir: './distribution/',
+        sourceDir: __dirname,
     });
 
     server.start();
