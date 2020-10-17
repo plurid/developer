@@ -1,6 +1,8 @@
 // #region imports
     // #region external
-    import Server from '../../objects/Server';
+    import {
+        serverStart,
+    } from '../../services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -12,9 +14,7 @@ const start = async (
     identonym?: string,
 ) => {
     try {
-        const server = new Server();
-
-        const port = server.start();
+        const port = serverStart();
 
         // write port to the configuration file
 
