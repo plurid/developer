@@ -10,7 +10,9 @@
 const main = () => {
     const server = new Server();
 
-    server.start();
+    const port = server.start();
+
+    console.log(port);
 }
 
 

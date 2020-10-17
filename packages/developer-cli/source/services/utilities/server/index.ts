@@ -13,18 +13,14 @@ const serverStart = async () => {
     const server = new Monitor('server.js', {
         max: 3,
         silent: true,
-        args: []
+        sourceDir: './distribution/',
     });
 
     server.start();
 
-    const port = await new Promise((resolve, reject) => {
-        server.on('port', (error, data) => {
-            if (error) {
-                reject();
-            }
-
-            resolve(data);
+    const port: number = await new Promise((resolve, _) => {
+        server.on('stdout', (data) => {
+            resolve(data.toString());
         });
     });
 

@@ -14,11 +14,11 @@ const start = async (
     identonym?: string,
 ) => {
     try {
-        const port = serverStart();
+        const port = await serverStart();
 
         // write port to the configuration file
 
-        console.log('developer start');
+        console.log('developer start', port);
     } catch (error) {
         console.log('Something went wrong.');
         return;
