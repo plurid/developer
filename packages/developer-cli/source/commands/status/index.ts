@@ -28,7 +28,9 @@ const status = async () => {
                 projects,
             } = configuration;
 
-            console.log(`\n\t${server} - ${identonym}${isDefault ? ' [default]' : ''}`);
+            const defaultString = isDefault ? ' [default]': '';
+
+            console.log(`\n\t${server} - ${identonym}${defaultString}`);
 
             if (projects.length === 0) {
                 console.log(`\t\tno projects`);
