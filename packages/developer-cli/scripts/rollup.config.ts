@@ -58,6 +58,9 @@ const server = {
             format: 'cjs',
         },
     ],
+    external: [
+        'events',
+    ],
     plugins: [
         ...common.plugins,
     ],
