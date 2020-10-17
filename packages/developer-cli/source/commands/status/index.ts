@@ -33,16 +33,16 @@ const status = async () => {
             console.log(`\n\t${server} - ${identonym}${defaultString}`);
 
             if (spaces.length === 0) {
-                console.log(`\t\tno spaces`);
+                console.log(`\t  no spaces`);
                 continue;
             }
 
             for (const space of spaces) {
-                console.log(`\t\t${space.identifier}`);
+                console.log(`\t  ${space.identifier}`);
             }
         }
     } catch (error) {
-        console.log('Something went wrong.');
+        console.log('Something went wrong.', error);
         return;
     }
 }
