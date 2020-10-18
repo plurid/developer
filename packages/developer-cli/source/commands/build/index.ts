@@ -28,6 +28,8 @@ const build = async (
 
         const archive = await packageSpace(spaceData);
 
+        // get upload link from the developer server
+
         fs.writeFile('archive.zip', archive);
     } catch (error) {
         console.log('Something went wrong.', error);

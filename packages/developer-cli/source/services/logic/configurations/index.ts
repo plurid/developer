@@ -19,7 +19,6 @@
 
 
 
-
 // #region module
 const readConfiguration = async (
     configurationPath: string,
