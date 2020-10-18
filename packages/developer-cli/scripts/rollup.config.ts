@@ -60,6 +60,7 @@ const server = {
     ],
     external: [
         'events',
+        'express',
     ],
     plugins: [
         ...common.plugins,
