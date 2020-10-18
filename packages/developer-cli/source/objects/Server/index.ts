@@ -26,14 +26,8 @@ class Server extends EventEmitter {
         this.application = express();
     }
 
-    start() {
-        // start a daemon process which tunnels through to the developer server
-
-        // get the port of the daemon process
-
-        this.application.get('/', (request, response) => {
-            response.send('body');
-        });
+    public start() {
+        this.handleApplication();
 
         const server = this.application.listen();
 
@@ -42,6 +36,16 @@ class Server extends EventEmitter {
         }
 
         return;
+    }
+
+    private handleApplication() {
+        // start a daemon process which tunnels through to the developer server
+
+        // get the port of the daemon process
+
+        this.application.get('/', (request, response) => {
+            response.send('body');
+        });
     }
 }
 // #endregion module
