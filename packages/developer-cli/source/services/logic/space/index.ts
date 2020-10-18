@@ -6,6 +6,10 @@
 
     import path from 'path';
 
+    import fetch from 'cross-fetch';
+
+    import FormData from 'form-data';
+
     import Zip from 'adm-zip';
 
     import Deon, {
@@ -198,6 +202,20 @@ const packageSpace = async (
 
     return archive;
 }
+
+
+const uploadArchive = async (
+    archive: Buffer,
+) => {
+    const form = new FormData();
+
+    form.append('archive', archive);
+
+    await fetch('/', {
+        method: 'POST',
+        body: form as any,
+    });
+}
 // #endregion module
 
 
@@ -209,5 +227,6 @@ export {
     readSpaceConfiguration,
     getSpaceData,
     packageSpace,
+    uploadArchive,
 };
 // #endregion exports
