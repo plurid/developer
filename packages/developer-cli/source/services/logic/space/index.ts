@@ -107,21 +107,21 @@ const readSpaceConfiguration = async (
 const getSpaceData = async (
     name?: string,
 ) => {
-    const project = await resolveSpace(
+    const space = await resolveSpace(
         name,
     );
 
-    if (!project) {
-        console.log(`Could not resolve project.`);
+    if (!space) {
+        console.log(`Could not resolve space.`);
         return;
     }
 
     const data = await readSpaceConfiguration(
-        project,
+        space,
     );
 
     return {
-        project,
+        space,
         data,
     };
 }
@@ -131,12 +131,12 @@ const resolveRoot = (
     configuration: any,
 ) => {
     const {
-        project,
+        space,
         data,
     } = configuration;
 
     const root = path.join(
-        path.dirname(project.path),
+        path.dirname(space.path),
         data.root,
     );
 
