@@ -144,6 +144,26 @@ const resolveRoot = (
 }
 
 
+const readGitIgnore = async (
+    root: string,
+) => {
+    try {
+        const gitignore = await fs.readFile(
+            path.join(
+                root,
+                '.gitignore',
+            ),
+            'utf-8'
+        );
+        const gitignoreData = gitignore.split('\n');
+
+        return gitignoreData;
+    } catch (error) {
+        return [];
+    }
+}
+
+
 const packageSpace = async (
     configuration: any,
 ) => {
@@ -151,9 +171,15 @@ const packageSpace = async (
 
     const zip = new Zip();
 
+    const gitignore = await readGitIgnore(root);
+
     const files = await fs.readdir(root);
 
     for (const file of files) {
+        if (gitignore.includes(file)) {
+            continue;
+        }
+
         const filepath = path.join(
             root,
             file,
