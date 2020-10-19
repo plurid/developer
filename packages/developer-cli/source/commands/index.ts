@@ -1,6 +1,7 @@
 // #region imports
     // #region internal
     import status from './status';
+    import machine from './machine';
     import login from './login';
     import logout from './logout';
     import start from './start';
@@ -23,6 +24,7 @@
 // #region exports
 export {
     status,
+    machine,
     login,
     logout,
     start,

@@ -1,5 +1,6 @@
 // #region exports
 export interface DeveloperConfiguration {
+    machine: string;
     workers: DeveloperWorker[];
     connections: Record<string, DeveloperConnection>;
 }

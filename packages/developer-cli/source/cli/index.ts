@@ -9,6 +9,7 @@
     // #region external
     import {
         status,
+        machine,
         login,
         logout,
         start,
@@ -55,6 +56,19 @@ const main = async (
 
 
     program
+        .command('machine')
+        .requiredOption(
+            '-n, --name <name>',
+            'machine name',
+        )
+        .description('set a name for the machine')
+        .action(async (options: any) => {
+            await machine(
+                options.name,
+            );
+        });
+
+    program
         .command('login')
         .requiredOption(
             '-s, --server <server>',
@@ -94,7 +108,6 @@ const main = async (
                 options.identonym,
             );
         });
-
 
     program
         .command('start')

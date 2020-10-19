@@ -37,6 +37,7 @@ const defaultDeveloperWorker: DeveloperWorker = {
 
 
 const defaultDeveloperConfiguration: DeveloperConfiguration = {
+    machine: '',
     workers: [],
     connections: {},
 };
