@@ -1,4 +1,11 @@
 // #region imports
+    // #region libraries
+    import {
+        Express,
+    } from 'express';
+    // #endregion libraries
+
+
     // #region external
     // import database from '#server/services/database';
     // #endregion external
@@ -7,7 +14,9 @@
 
 
 // #region module
-const setup = async () => {
+const setup = async (
+    instance: Express,
+) => {
     try {
         // await database.initialize();
     } catch (error) {
