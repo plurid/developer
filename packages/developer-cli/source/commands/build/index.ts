@@ -7,6 +7,7 @@
     import {
         getSpaceData,
         packageSpace,
+        uploadArchive,
     } from '#services/logic/space';
     // #endregion external
 // #endregion imports
@@ -29,8 +30,10 @@ const build = async (
         const archive = await packageSpace(spaceData);
 
         // get upload link from the developer server
-
-        fs.writeFile('archive.zip', archive);
+        await uploadArchive(
+            archive,
+            'http://localhost:56765/upload',
+        );
     } catch (error) {
         console.log('Something went wrong.', error);
         return;

@@ -206,15 +206,27 @@ const packageSpace = async (
 
 const uploadArchive = async (
     archive: Buffer,
+    url: string,
 ) => {
     const form = new FormData();
 
-    form.append('archive', archive);
+    form.append(
+        'archive',
+        archive,
+        {
+            filename: 'archive',
+            contentType: 'application/zip',
+        },
+    );
 
-    await fetch('/', {
-        method: 'POST',
-        body: form as any,
-    });
+    await fetch(
+        url,
+        {
+            method: 'POST',
+            body: form.getBuffer(),
+            headers: form.getHeaders(),
+        },
+    );
 }
 // #endregion module
 
