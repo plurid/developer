@@ -3,6 +3,8 @@
     import {
         promises as fs,
     } from 'fs';
+
+    import url from 'url';
     // #endregion libraries
 // #endregion imports
 
@@ -19,6 +21,22 @@ const extractServerName = (
 ) => {
     return server.replace(/https?:\/\//, '');
 }
+
+
+const getServerURL = (
+    endpoint: string,
+) => {
+    const urlData = url.parse(endpoint);
+
+    const {
+        protocol,
+        host,
+    } = urlData;
+
+    const serverURL = protocol + '//' + host;
+
+    return serverURL;
+}
 // #endregion module
 
 
@@ -27,5 +45,6 @@ const extractServerName = (
 export {
     fileExists,
     extractServerName,
+    getServerURL,
 };
 // #endregion exports

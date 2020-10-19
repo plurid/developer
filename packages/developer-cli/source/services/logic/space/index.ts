@@ -70,18 +70,21 @@ const resolveSpaceConfigurationPath = async (
 const resolveSpace = async (
     name?: string,
 ) => {
-    const configuration = await getWorker();
+    const worker = await getWorker();
 
-    if (!configuration) {
+    if (!worker) {
         return;
     }
 
-    for (const space of configuration.spaces) {
+    for (const space of worker.spaces) {
         if (
             space.identifier === name
             || space.name === name
         ) {
-            return space;
+            return {
+                worker,
+                space,
+            };
         }
     }
 
@@ -90,11 +93,11 @@ const resolveSpace = async (
 
 
 const readSpaceConfiguration = async (
-    project: Space,
+    space: Space,
 ) => {
     const {
         path,
-    } = project;
+    } = space;
 
     const data = await fs.readFile(
         path,
@@ -102,29 +105,35 @@ const readSpaceConfiguration = async (
     );
 
     const deon = new Deon();
-    const projectData = typer(await deon.parse(data));
+    const configurationData = typer(await deon.parse(data));
 
-    return projectData;
+    return configurationData;
 }
 
 
 const getSpaceData = async (
     name?: string,
 ) => {
-    const space = await resolveSpace(
+    const spaceResolved = await resolveSpace(
         name,
     );
 
-    if (!space) {
+    if (!spaceResolved) {
         console.log(`Could not resolve space.`);
         return;
     }
+
+    const {
+        worker,
+        space,
+    } = spaceResolved;
 
     const data = await readSpaceConfiguration(
         space,
     );
 
     return {
+        worker,
         space,
         data,
     };

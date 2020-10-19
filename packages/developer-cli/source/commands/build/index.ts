@@ -1,14 +1,14 @@
 // #region imports
-    import {
-        promises as fs,
-    } from 'fs';
-
     // #region external
     import {
         getSpaceData,
         packageSpace,
         uploadArchive,
     } from '#services/logic/space';
+
+    import {
+        getServerURL,
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -29,10 +29,14 @@ const build = async (
 
         const archive = await packageSpace(spaceData);
 
+        const serverURL = getServerURL(spaceData.worker.server);
+
+        const uploadURL = serverURL + '/upload';
+
         // get upload link from the developer server
         await uploadArchive(
             archive,
-            'http://localhost:56765/upload',
+            uploadURL,
         );
     } catch (error) {
         console.log('Something went wrong.', error);
