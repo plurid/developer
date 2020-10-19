@@ -43,6 +43,8 @@ const cli = {
         '@plurid/deon',
         'adm-zip',
         'forever-monitor',
+        'form-data',
+        'url',
     ],
     plugins: [
         ...common.plugins,
