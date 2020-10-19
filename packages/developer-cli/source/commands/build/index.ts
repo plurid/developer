@@ -28,7 +28,7 @@ const build = async (
         const uploadURL = spaceData.worker.server + '/upload';
 
         // get upload link from the developer server
-        const uploadID = await uploadArchive(
+        const upload = await uploadArchive(
             archive,
             uploadURL,
         );
