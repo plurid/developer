@@ -81,7 +81,7 @@ const client = (
 
             const data = {
                 token: privateTokenValue,
-                server: url,
+                api: url,
                 identonym,
             };
 

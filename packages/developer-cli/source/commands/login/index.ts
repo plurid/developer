@@ -70,7 +70,7 @@ const login = async (
             delete (data as any).token;
 
             await updateWorker(
-                server,
+                api,
                 identonym,
                 data,
             );

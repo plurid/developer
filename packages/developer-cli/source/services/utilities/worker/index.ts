@@ -104,6 +104,7 @@ const updateWorker = async (
                 && worker.identonym === identonym
             ) {
                 updatedWorker = true;
+
                 return {
                     ...worker,
                     ...data,
