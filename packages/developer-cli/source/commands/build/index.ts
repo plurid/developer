@@ -28,10 +28,12 @@ const build = async (
         const uploadURL = spaceData.worker.server + '/upload';
 
         // get upload link from the developer server
-        await uploadArchive(
+        const uploadID = await uploadArchive(
             archive,
             uploadURL,
         );
+
+        // poll the cli server for the status of uploadID
     } catch (error) {
         console.log('Something went wrong.', error);
         return;

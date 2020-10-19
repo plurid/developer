@@ -228,7 +228,7 @@ const uploadArchive = async (
         },
     );
 
-    await fetch(
+    const response = await fetch(
         url,
         {
             method: 'POST',
@@ -236,6 +236,10 @@ const uploadArchive = async (
             headers: form.getHeaders(),
         },
     );
+
+    const data = await response.json();
+
+    return data;
 }
 // #endregion module
 
