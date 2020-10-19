@@ -85,7 +85,7 @@ const getWorker = async (
 
 
 const updateWorker = async (
-    server: string,
+    api: string,
     identonym: string,
     data: Partial<DeveloperWorker>,
 ) => {
@@ -100,7 +100,7 @@ const updateWorker = async (
 
         const updatedWorkers: DeveloperWorker[] = workers.map(worker => {
             if (
-                worker.server === server
+                worker.api === api
                 && worker.identonym === identonym
             ) {
                 updatedWorker = true;
