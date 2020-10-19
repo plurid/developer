@@ -3,6 +3,8 @@
     import {
         Express,
     } from 'express';
+
+    import multer from 'multer';
     // #endregion libraries
 
 
@@ -18,6 +20,17 @@ const setup = async (
     instance: Express,
 ) => {
     try {
+        const upload = multer({
+            dest: 'uploads/',
+        });
+
+        instance.post('/upload', upload.single('archive'), async (req, res) => {
+            const file: any = req.file;
+            console.log('file', file);
+
+            res.send('upload');
+        });
+
         // await database.initialize();
     } catch (error) {
         return;
