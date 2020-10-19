@@ -74,7 +74,7 @@ const register = async (
         };
 
         await updateWorker(
-            worker.server,
+            worker.api,
             worker.identonym,
             updatedWorker,
         );

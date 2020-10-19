@@ -136,7 +136,7 @@ const updateWorker = async (
 
 
 const removeWorker = async (
-    server?: string,
+    api?: string,
     identonym?: string,
 ) => {
     const configuration = await readConfiguration();
@@ -146,14 +146,14 @@ const removeWorker = async (
 
     updatedWorkers = configuration.workers.filter(worker => {
         if (
-            server === worker.server
+            api === worker.api
             && identonym === worker.identonym
         ) {
             removedWorker = true;
             return false;
         }
 
-        if (!server && !identonym && worker.isDefault) {
+        if (!api && !identonym && worker.isDefault) {
             removedWorker = true;
             return false;
         }

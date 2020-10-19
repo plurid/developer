@@ -44,7 +44,7 @@ const deregister = async (
         };
 
         await updateWorker(
-            worker.server,
+            worker.api,
             worker.identonym,
             updatedWorker,
         );

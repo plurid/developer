@@ -30,11 +30,11 @@ const logout = async (
     }
 
     await removeWorker(
-        configuration.server,
+        configuration.api,
         configuration.identonym,
     );
 
-    const serverName = extractServerName(configuration.server);
+    const serverName = extractServerName(configuration.api);
 
     console.log(`Logged out identonym '${configuration.identonym}' from the developer server '${serverName}'.`);
 }
