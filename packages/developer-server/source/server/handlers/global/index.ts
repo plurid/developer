@@ -24,12 +24,23 @@ const setup = async (
             dest: 'uploads/',
         });
 
-        instance.post('/upload', upload.single('archive'), async (req, res) => {
-            const file: any = req.file;
-            console.log('file', file);
+        instance.post(
+            '/upload',
+            upload.single('archive'),
+            async (
+                request,
+                response,
+            ) => {
+                const file: any = request.file;
+                console.log('file', file);
 
-            res.send('upload');
-        });
+                const data = {
+                    uploadID: 'uploadID',
+                };
+
+                response.json(data);
+            },
+        );
 
         // await database.initialize();
     } catch (error) {
