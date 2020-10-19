@@ -17,6 +17,7 @@
         extractServerName,
 
         updateWorker,
+        getServerURL,
     } from '#services/utilities';
     // #endregion external
 // #endregion imports
@@ -25,19 +26,22 @@
 
 // #region module
 const login = async (
-    server: string,
+    api: string,
     identonym: string,
     key: string,
 ) => {
     const developer = client(
-        server,
+        api,
     );
 
-    const serverName = extractServerName(server);
+    const serverName = extractServerName(api);
+
+    const server = getServerURL(api);
 
     const data: DeveloperWorker = {
         ...defaultDeveloperWorker,
         server,
+        api,
         identonym,
         key,
     };

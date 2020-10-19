@@ -7,6 +7,7 @@ export interface DeveloperConfiguration {
 
 export interface DeveloperWorker {
     server: string;
+    api: string;
     identonym: string;
     key: string;
     token: string;

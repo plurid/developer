@@ -29,6 +29,7 @@ const defaultDeveloperWorker: DeveloperWorker = {
     identonym: '',
     key: '',
     server: '',
+    api: '',
     token: '',
     isDefault: false,
     spaces: [],

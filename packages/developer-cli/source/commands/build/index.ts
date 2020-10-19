@@ -5,10 +5,6 @@
         packageSpace,
         uploadArchive,
     } from '#services/logic/space';
-
-    import {
-        getServerURL,
-    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -29,9 +25,7 @@ const build = async (
 
         const archive = await packageSpace(spaceData);
 
-        const serverURL = getServerURL(spaceData.worker.server);
-
-        const uploadURL = serverURL + '/upload';
+        const uploadURL = spaceData.worker.server + '/upload';
 
         // get upload link from the developer server
         await uploadArchive(
