@@ -42,9 +42,9 @@ const cli = {
         'path',
         '@plurid/deon',
         'adm-zip',
-        'forever-monitor',
         'form-data',
         'url',
+        'child_process',
     ],
     plugins: [
         ...common.plugins,
