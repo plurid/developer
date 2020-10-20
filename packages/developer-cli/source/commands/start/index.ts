@@ -20,7 +20,7 @@ const start = async (
 
         console.log('developer start', port);
     } catch (error) {
-        console.log('Something went wrong.');
+        console.log('Something went wrong.', error);
         return;
     }
 }
