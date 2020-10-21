@@ -26,7 +26,8 @@ export interface Space {
 
 
 export interface DeveloperConnection {
+    port: number;
     pid: number;
-    worker: any;
+    worker: DeveloperWorker;
 }
 // #endregion exports

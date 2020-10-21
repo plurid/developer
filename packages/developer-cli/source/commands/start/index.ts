@@ -7,6 +7,10 @@
     import {
         saveConnection,
     } from '#services/logic/connections';
+
+    import {
+        getWorker,
+    } from '#services/utilities';
     // #endregion external
 // #endregion imports
 
@@ -18,6 +22,15 @@ const start = async (
     identonym?: string,
 ) => {
     try {
+        const worker = await getWorker(
+            server,
+            identonym,
+        );
+
+        if (!worker) {
+            return;
+        }
+
         const data = await serverStart();
 
         if (!data) {
@@ -32,9 +45,10 @@ const start = async (
         await saveConnection(
             pid,
             port,
+            worker,
         );
 
-        console.log('developer start');
+        console.log('\n\tdeveloper started');
     } catch (error) {
         console.log('Something went wrong.', error);
         return;

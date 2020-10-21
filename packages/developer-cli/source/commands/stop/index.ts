@@ -1,5 +1,16 @@
 // #region imports
+    // #region libraries
+    import {
+        execSync,
+    } from 'child_process';
+    // #endregion libraries
+
+
     // #region external
+    import {
+        getConnection,
+        removeConnection,
+    } from '#services/logic/connections';
     // #endregion external
 // #endregion imports
 
@@ -9,12 +20,30 @@
 const stop = async (
     server?: string,
     identonym?: string,
+    port?: string,
 ) => {
     try {
-        // get port from the configuration file, if any
-        // stop the server
+        const connection = await getConnection(
+            server,
+            identonym,
+            port,
+        );
 
-        console.log('developer stop');
+        if (!connection) {
+            return;
+        }
+
+        const command = `kill -9 ${connection.pid}`;
+
+        execSync(command);
+
+        await removeConnection(
+            server,
+            identonym,
+            port,
+        );
+
+        console.log('developer stopped');
     } catch (error) {
         console.log('Something went wrong.');
         return;

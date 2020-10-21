@@ -137,11 +137,16 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
+        .port(
+            '-p, --port <port>',
+            'port',
+        )
         .description('stop the developer server connection')
         .action(async (options: any) => {
             await stop(
                 options.server,
                 options.identonym,
+                options.port,
             );
         });
 
