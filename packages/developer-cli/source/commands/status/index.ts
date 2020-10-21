@@ -18,9 +18,14 @@ const status = async () => {
             return;
         }
 
+        const {
+            workers,
+            connections,
+        } = configuration;
+
         console.log(`\n\tDeveloper configurations:`);
 
-        for (const worker of configuration.workers) {
+        for (const worker of workers) {
             const {
                 identonym,
                 server,
@@ -40,6 +45,22 @@ const status = async () => {
             for (const space of spaces) {
                 console.log(`\t  ${space.identifier}`);
             }
+        }
+
+        console.log(`\n\tDeveloper connections:`);
+
+        if (Object.values(connections).length === 0) {
+            console.log(`\t  no connections`);
+        }
+
+        for (const connection of Object.values(connections)) {
+            const {
+                port,
+                pid,
+                worker,
+            } = connection;
+
+            console.log(`\t  http://localhost:${port} - ${pid} - ${worker.server} - ${worker.identonym}`);
         }
     } catch (error) {
         console.log('Something went wrong.', error);
