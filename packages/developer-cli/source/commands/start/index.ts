@@ -2,7 +2,11 @@
     // #region external
     import {
         serverStart,
-    } from '#services/utilities';
+    } from '#services/logic/server';
+
+    import {
+        saveConnection,
+    } from '#services/logic/connections';
     // #endregion external
 // #endregion imports
 
@@ -14,11 +18,23 @@ const start = async (
     identonym?: string,
 ) => {
     try {
-        const port = await serverStart();
+        const data = await serverStart();
 
-        // write port to the configuration file
+        if (!data) {
+            return;
+        }
 
-        console.log('developer start', port);
+        const {
+            pid,
+            port,
+        } = data;
+
+        await saveConnection(
+            pid,
+            port,
+        );
+
+        console.log('developer start');
     } catch (error) {
         console.log('Something went wrong.', error);
         return;

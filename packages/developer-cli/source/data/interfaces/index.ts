@@ -2,7 +2,7 @@
 export interface DeveloperConfiguration {
     machine: string;
     workers: DeveloperWorker[];
-    connections: Record<string, DeveloperConnection>;
+    connections: Record<number, DeveloperConnection>;
 }
 
 
@@ -26,6 +26,7 @@ export interface Space {
 
 
 export interface DeveloperConnection {
-    uid: string;
+    pid: number;
+    worker: any;
 }
 // #endregion exports
