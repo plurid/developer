@@ -2,6 +2,7 @@
     // #region external
     import {
         readConfiguration,
+        getWorkerByID,
     } from '#services/utilities';
     // #endregion external
 // #endregion imports
@@ -57,8 +58,14 @@ const status = async () => {
             const {
                 port,
                 pid,
-                worker,
+                worker: workerID,
             } = connection;
+
+            const worker = await getWorkerByID(workerID);
+
+            if (!worker) {
+                continue;
+            }
 
             console.log(`\t  http://localhost:${port} - ${pid} - ${worker.server} - ${worker.identonym}`);
         }
