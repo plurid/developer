@@ -41,6 +41,7 @@ const cli = {
         'os',
         'path',
         '@plurid/deon',
+        '@plurid/plurid-functions',
         'adm-zip',
         'form-data',
         'url',
