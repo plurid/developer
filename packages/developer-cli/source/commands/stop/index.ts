@@ -33,6 +33,8 @@ const stop = async (
             return;
         }
 
+        console.log('connection', connection);
+
         const command = `kill -9 ${connection.pid}`;
 
         execSync(command);
@@ -43,7 +45,7 @@ const stop = async (
             port,
         );
 
-        console.log('developer stopped');
+        console.log('\n\tdeveloper stopped\n');
     } catch (error) {
         console.log('Something went wrong.');
         return;

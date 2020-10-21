@@ -48,7 +48,7 @@ const start = async (
             worker,
         );
 
-        console.log('\n\tdeveloper started');
+        console.log('\n\tdeveloper started\n');
     } catch (error) {
         console.log('Something went wrong.', error);
         return;

@@ -137,7 +137,7 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
-        .port(
+        .option(
             '-p, --port <port>',
             'port',
         )
