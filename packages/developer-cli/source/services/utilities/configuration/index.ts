@@ -48,12 +48,17 @@ const updateConfiguration = async (
     try {
         const configuration = await readConfiguration();
 
+        const dataWorkers = data.workers
+            ? [
+                ...data.workers,
+            ] : [];
+
         const updatedConfiguration: DeveloperConfiguration = {
             machine: data.machine || configuration.machine,
-            workers: {
+            workers: [
                 ...configuration.workers,
-                ...data.workers,
-            },
+                ...dataWorkers,
+            ],
             connections: {
                 ...configuration.connections,
                 ...data.connections,
