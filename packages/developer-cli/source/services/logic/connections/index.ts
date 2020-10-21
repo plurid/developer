@@ -8,6 +8,7 @@
     import {
         readConfiguration,
         updateConfiguration,
+        getWorker,
     } from '#services/utilities';
     // #endregion external
 // #endregion imports
@@ -28,7 +29,7 @@ const saveConnection = async (
     connections[port] = {
         port,
         pid,
-        worker,
+        worker: worker.id,
     };
 
     await updateConfiguration({
@@ -59,9 +60,15 @@ const getConnection = async (
         && identonym
     ) {
         for (const [_, connection] of Object.entries(connections)) {
+            const worker = await getWorker(connection.worker);
+
+            if (!worker) {
+                continue;
+            }
+
             if (
-                connection.worker.server === server
-                && connection.worker.identonym === identonym
+                worker.server === server
+                && worker.identonym === identonym
             ) {
                 return connection;
             }
@@ -106,9 +113,15 @@ const removeConnection = async (
         let port;
 
         for (const [key, connection] of Object.entries(connections)) {
+            const worker = await getWorker(connection.worker);
+
+            if (!worker) {
+                continue;
+            }
+
             if (
-                connection.worker.server === server
-                && connection.worker.identonym === identonym
+                worker.server === server
+                && worker.identonym === identonym
             ) {
                 port = key;
                 break;

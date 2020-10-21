@@ -7,6 +7,7 @@ export interface DeveloperConfiguration {
 
 
 export interface DeveloperWorker {
+    id: string;
     server: string;
     api: string;
     identonym: string;
@@ -28,6 +29,6 @@ export interface Space {
 export interface DeveloperConnection {
     port: number;
     pid: number;
-    worker: DeveloperWorker;
+    worker: string;
 }
 // #endregion exports

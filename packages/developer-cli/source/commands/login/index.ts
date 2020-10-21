@@ -1,4 +1,11 @@
 // #region imports
+    // #region libraries
+    import {
+        uuid,
+    } from '@plurid/plurid-functions';
+    // #endregion libraries
+
+
     // #region external
     import {
         DeveloperWorker,
@@ -40,6 +47,7 @@ const login = async (
 
     const data: DeveloperWorker = {
         ...defaultDeveloperWorker,
+        id: uuid.generate(),
         server,
         api,
         identonym,

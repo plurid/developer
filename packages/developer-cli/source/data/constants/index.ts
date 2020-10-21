@@ -26,6 +26,7 @@ const developerConfigurationPath = path.join(
 
 
 const defaultDeveloperWorker: DeveloperWorker = {
+    id: '',
     identonym: '',
     key: '',
     server: '',

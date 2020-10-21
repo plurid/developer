@@ -84,6 +84,19 @@ const getWorker = async (
 }
 
 
+const getWorkerByID = async (
+    id: string,
+) => {
+    const configurations = await readConfiguration();
+
+    const worker = configurations.workers.find(
+        worker => worker.id === id,
+    );
+
+    return worker;
+}
+
+
 const updateWorker = async (
     api: string,
     identonym: string,
@@ -181,6 +194,7 @@ export {
     writeWorkers,
     getDefaultWorker,
     getWorker,
+    getWorkerByID,
     updateWorker,
     removeWorker,
 };
