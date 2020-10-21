@@ -25,17 +25,19 @@ const serverStart = async () => {
     const {
         pid,
     } = spawnedChild;
+    console.log('pid', pid);
 
-    const port: number = await new Promise((resolve, _) => {
+    const port: string = await new Promise((resolve, _) => {
         if (!spawnedChild.stdout) {
             resolve();
             return;
         }
 
-        spawnedChild.stdout.on('data', (data) => {
+        spawnedChild.stdout.on('data', (data: any) => {
             resolve(data.toString());
         });
     });
+    console.log('port', port);
 
     spawnedChild.unref();
 
