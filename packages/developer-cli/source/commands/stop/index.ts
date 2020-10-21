@@ -33,7 +33,6 @@ const stop = async (
             return;
         }
 
-        console.log('connection', connection);
 
         const command = `kill -9 ${connection.pid}`;
 

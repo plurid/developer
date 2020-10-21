@@ -55,8 +55,8 @@ const getConnection = async (
     }
 
     if (
-        !server
-        && !identonym
+        server
+        && identonym
     ) {
         for (const [_, connection] of Object.entries(connections)) {
             if (
@@ -68,7 +68,7 @@ const getConnection = async (
         }
     }
 
-    return;
+    return Object.values(connections)[0];
 }
 
 
@@ -95,11 +95,13 @@ const removeConnection = async (
                 ...updatedConnections,
             },
         });
+
+        return;
     }
 
     if (
-        !server
-        && !identonym
+        server
+        && identonym
     ) {
         let port;
 
@@ -126,7 +128,28 @@ const removeConnection = async (
                 ...updatedConnections,
             },
         });
+
+        return;
     }
+
+
+    const connection = Object.values(connections)[0];
+
+    if (!connection) {
+        return;
+    }
+
+    const updatedConnections = {
+        ...connections,
+    };
+
+    delete updatedConnections[connection.port];
+
+    await updateConfiguration({
+        connections: {
+            ...updatedConnections,
+        },
+    });
 
     return;
 }
