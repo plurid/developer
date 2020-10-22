@@ -12,6 +12,10 @@
     import {
         transpileTypescript,
     } from '#server/logic/typescript';
+
+    import {
+        archiveBuild,
+    } from '#server/logic/archive';
     // #endregion external
 // #endregion imports
 
@@ -60,12 +64,20 @@ const handleDeveloper = async (
         input.entrypoint,
     );
 
-    await transpileTypescript(
+    const transpiled = await transpileTypescript(
         id,
         entrypoint,
     );
 
-    return;
+    if (!transpiled) {
+        return;
+    }
+
+    archiveBuild(
+        id,
+    );
+
+    // mark the build as succesful
 }
 // #endregion module
 

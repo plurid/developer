@@ -12,7 +12,7 @@ const transpileTypescript = async (
     file: string,
 ) => {
     try {
-        await new Promise((resolve, _) => {
+        const result: boolean = await new Promise((resolve, _) => {
             const program = typescript.createProgram(
                 [file],
                 {
@@ -22,8 +22,10 @@ const transpileTypescript = async (
 
             program.emit();
 
-            resolve();
+            resolve(true);
         });
+
+        return result;
     } catch (error) {
         return;
     }
