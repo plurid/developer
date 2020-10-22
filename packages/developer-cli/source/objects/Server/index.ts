@@ -4,8 +4,13 @@
         AddressInfo,
     } from 'net';
 
-    import fs from 'fs';
-    import https from 'https';
+    import path from 'path';
+
+    import {
+        promises as fs,
+    } from 'fs';
+
+    import fetch from 'cross-fetch';
 
     import {
         EventEmitter,
@@ -16,6 +21,8 @@
     } from 'express';
 
     import bodyparser from 'body-parser';
+
+    import Zip from 'adm-zip';
     // #endregion libraries
 
 
@@ -48,35 +55,41 @@ export interface PollData {
 const handlePoll = async (
     poll: PollData,
 ) => {
-    const spaceData = await getSpaceData(poll.space);
+    try {
+        const spaceData = await getSpaceData(poll.space);
 
-    if (!spaceData) {
+        if (!spaceData) {
+            return;
+        }
+
+        const url = spaceData.worker.server + `/download/${poll.id}`;
+
+        const response = await fetch(url);
+        const buffer = await response.arrayBuffer();
+
+        const tmpArchive = path.join(
+            __dirname,
+            'archive-' + poll.id,
+        );
+        await fs.writeFile(
+            tmpArchive,
+            Buffer.from(new Uint8Array(buffer)),
+        );
+
+        const zip = new Zip(tmpArchive);
+        const zipPath = path.join(
+            __dirname,
+            // path to build
+            'extract-' + poll.id,
+        );
+        zip.extractAllTo(zipPath);
+
+        await fs.unlink(tmpArchive);
+
+        return true;
+    } catch (error) {
         return;
     }
-
-    const url = spaceData.worker.server + `/download/${poll.id}`;
-
-    const file = fs.createWriteStream('foo');
-
-    const result: boolean = await new Promise((resolve) => {
-        https.get(
-            url,
-            (response) => {
-                if (response.headers['content-type'] !== 'application/zip') {
-                    resolve(false);
-                    return;
-                }
-
-                const stream = response.pipe(file);
-
-                stream.on('finish', function() {
-                    resolve(true);
-                });
-            },
-        );
-    });
-
-    return result;
 }
 
 
@@ -93,6 +106,8 @@ class Poller {
     }
 
     private async poll() {
+        console.log('this.poll', this.polls);
+
         if (this.polls.length === 0) {
             return;
         }
