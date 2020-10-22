@@ -16,7 +16,7 @@ const transpileTypescript = async (
             const program = typescript.createProgram(
                 [file],
                 {
-                    outDir: `./data/builds/${id}`,
+                    outDir: `./data/emits/${id}`,
                 },
             );
 

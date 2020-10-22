@@ -1,5 +1,9 @@
 // #region imports
     // #region libraries
+    import {
+        promises as fs,
+    } from 'fs';
+
     import path from 'path';
 
     import Zip from 'adm-zip';
@@ -9,12 +13,12 @@
 
 
 // #region module
-const archiveBuild = (
+const archiveBuild = async (
     id: string,
 ) => {
     const buildPath = path.join(
         process.cwd(),
-        `./data/builds/${id}`,
+        `./data/emits/${id}`,
     );
 
     const zip = new Zip();
@@ -27,6 +31,13 @@ const archiveBuild = (
     );
 
     zip.writeZip(archivePath);
+
+    await fs.rmdir(
+        buildPath,
+        {
+            recursive: true,
+        },
+    );
 }
 // #endregion module
 

@@ -73,7 +73,7 @@ const handleDeveloper = async (
         return;
     }
 
-    archiveBuild(
+    await archiveBuild(
         id,
     );
 
