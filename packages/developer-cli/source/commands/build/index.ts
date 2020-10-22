@@ -30,7 +30,7 @@ const build = async (
         const configurationData = await readConfiguration();
 
         if (Object.values(configurationData.connections).length === 0) {
-            console.log('\n\tcould not build, no developer connection');
+            console.log('\n\tcould not build, no developer connection\n');
             return;
         }
 
@@ -40,7 +40,7 @@ const build = async (
         );
 
         if (!spaceData) {
-            console.log('\n\tcould not build, no space data');
+            console.log('\n\tcould not build, no space data\n');
             return;
         }
 
@@ -51,7 +51,7 @@ const build = async (
         );
 
         if (!connection) {
-            console.log('\n\tcould not build, no developer connection');
+            console.log('\n\tcould not build, no developer connection\n');
             return;
         }
 
