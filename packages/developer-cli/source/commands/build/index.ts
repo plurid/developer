@@ -5,6 +5,18 @@
         packageSpace,
         uploadArchive,
     } from '#services/logic/space';
+
+    import {
+        getConnection,
+    } from '#services/logic/connections';
+
+    import {
+        pollServer,
+    } from '#services/logic/poll';
+
+    import {
+        readConfiguration,
+    } from '#services/utilities/configuration';
     // #endregion external
 // #endregion imports
 
@@ -15,22 +27,39 @@ const build = async (
     name?: string,
 ) => {
     try {
+        const configurationData = await readConfiguration();
+
+        if (Object.values(configurationData.connections).length === 0) {
+            console.log('\n\tcould not build, no developer connection');
+            return;
+        }
+
+
         const spaceData = await getSpaceData(
             name,
         );
 
         if (!spaceData) {
+            console.log('\n\tcould not build, no space data');
             return;
         }
 
+
+        const connection = await getConnection(
+            spaceData.worker.server,
+            spaceData.worker.identonym,
+        );
+
+        if (!connection) {
+            console.log('\n\tcould not build, no developer connection');
+            return;
+        }
+
+
         const archive = await packageSpace(spaceData);
-
         const uploadURL = spaceData.worker.server + '/upload';
-
         const configuration = JSON.stringify(spaceData.data);
-
         const command = 'build';
-
         const upload = await uploadArchive(
             archive,
             uploadURL,
@@ -44,10 +73,13 @@ const build = async (
 
         const id = upload.data;
 
-        // based on the id
-        // start a poll on the connection server
+        pollServer(
+            id,
+            spaceData.worker.id,
+            connection,
+        );
     } catch (error) {
-        console.log('Something went wrong.', error);
+        console.log('\n\tsomething went wrong', error);
         return;
     }
 }

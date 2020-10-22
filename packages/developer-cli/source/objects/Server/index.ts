@@ -12,6 +12,11 @@
         Express,
     } from 'express';
     // #endregion libraries
+
+
+    // #region internal
+    import indexHTML from './templates/index.html';
+    // #endregion internal
 // #endregion imports
 
 
@@ -39,13 +44,30 @@ class Server extends EventEmitter {
     }
 
     private handleApplication() {
-        // start a daemon process which tunnels through to the developer server
+        this.application.get(
+            '/',
+            (
+                request,
+                response,
+            ) => {
+                response.send(indexHTML);
+            },
+        );
 
-        // get the port of the daemon process
+        this.application.post(
+            '/poll',
+            (
+                request,
+                response,
+            ) => {
+                const {
+                    id,
+                    worker,
+                } = request.params;
 
-        this.application.get('/', (request, response) => {
-            response.send('body');
-        });
+                console.log(id, worker);
+            },
+        );
     }
 }
 // #endregion module
