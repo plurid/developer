@@ -41,7 +41,7 @@ const status = async () => {
 
                 const defaultString = isDefault ? ' [default]': '';
 
-                console.log(`\n\t${server} - ${identonym}${defaultString}`);
+                console.log(`\t  ${server} - ${identonym}${defaultString}`);
 
                 if (spaces.length === 0) {
                     console.log(`\t  no spaces registered`);
@@ -49,7 +49,7 @@ const status = async () => {
                 }
 
                 for (const space of spaces) {
-                    console.log(`\t  ${space.identifier}`);
+                    console.log(`\t    ${space.identifier}`);
                 }
             }
         }
