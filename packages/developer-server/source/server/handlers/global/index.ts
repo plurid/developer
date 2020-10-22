@@ -11,6 +11,7 @@
     // #region external
     import {
         handleUploadArchive,
+        handleDownloadArchive,
     } from '#server/logic/upload';
 
     // import database from '#server/services/database';
@@ -32,6 +33,11 @@ const setup = async (
             '/upload',
             upload.single('archive'),
             handleUploadArchive,
+        );
+
+        instance.post(
+            '/download/:id',
+            handleDownloadArchive,
         );
 
         // await database.initialize();
