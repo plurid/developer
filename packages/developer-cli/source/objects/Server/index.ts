@@ -78,7 +78,6 @@ const handlePoll = async (
 
         const zip = new Zip(tmpArchive);
         const zipPath = path.join(
-            __dirname,
             spaceData.space.spacePath,
             '/build',
         );
