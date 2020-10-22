@@ -1,8 +1,6 @@
 // #region imports
     // #region libraries
     import fetch from 'cross-fetch';
-
-    import FormData from 'form-data';
     // #endregion libraries
 
 
@@ -16,31 +14,26 @@
 
 
 // #region module
-const pollServer = (
+const pollServer = async (
     id: string,
     worker: string,
+    space: string,
     connection: DeveloperConnection,
 ) => {
     const url = `http://localhost:${connection.port}/poll`;
 
-    const form = new FormData();
-
-    form.append(
-        'id',
-        id,
-    );
-
-    form.append(
-        'worker',
-        worker,
-    );
-
-    fetch(
+    await fetch(
         url,
         {
             method: 'POST',
-            body: form.getBuffer(),
-            headers: form.getHeaders(),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id,
+                worker,
+                space,
+            }),
         },
     );
 }

@@ -73,9 +73,10 @@ const build = async (
 
         const id = upload.data;
 
-        pollServer(
+        await pollServer(
             id,
             spaceData.worker.id,
+            spaceData.space.identifier,
             connection,
         );
     } catch (error) {
