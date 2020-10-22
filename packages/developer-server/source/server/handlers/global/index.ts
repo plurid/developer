@@ -35,7 +35,7 @@ const setup = async (
             handleUploadArchive,
         );
 
-        instance.post(
+        instance.get(
             '/download/:id',
             handleDownloadArchive,
         );

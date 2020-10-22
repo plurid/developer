@@ -1,5 +1,7 @@
 // #region imports
     // #region libraries
+    import path from 'path';
+
     import fsSync, {
         promises as fs,
     } from 'fs';
@@ -99,7 +101,12 @@ const handleDownloadArchive = async (
 ) => {
     const id = request.params.id;
 
-    const readStream = fsSync.createReadStream(`./data/emits/${id}`);
+    const filepath = path.join(
+        process.cwd(),
+        `./data/archives/${id}`,
+    );
+
+    const readStream = fsSync.createReadStream(filepath);
 
     readStream.on('open', () => {
         readStream.pipe(response);
