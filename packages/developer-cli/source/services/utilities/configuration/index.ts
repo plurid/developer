@@ -61,7 +61,7 @@ const updateConfiguration = async (
             };
 
         const updatedConfiguration: DeveloperConfiguration = {
-            machine: data.machine || configuration.machine,
+            machine: data.machine ?? configuration.machine,
             workers: [
                 ...configuration.workers,
                 ...dataWorkers,
