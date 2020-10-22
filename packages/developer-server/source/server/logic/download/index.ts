@@ -41,6 +41,8 @@ const handleDownloadArchive = async (
 
     const readStream = fsSync.createReadStream(filepath);
 
+    response.contentType('application/zip');
+
     readStream.on('open', () => {
         readStream.pipe(response);
     });
