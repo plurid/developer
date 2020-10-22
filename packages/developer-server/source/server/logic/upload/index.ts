@@ -82,6 +82,7 @@ const handleUploadArchive = async (
     zip.extractAllTo(unarchivePath);
 
     await handleDeveloper(
+        file.filename,
         command,
         unarchivePath,
         configuration,

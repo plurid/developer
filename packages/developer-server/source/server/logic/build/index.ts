@@ -1,8 +1,17 @@
 // #region imports
+    // #region libraries
+    import path from 'path';
+    // #endregion libraries
+
+
     // #region external
     import {
         DeveloperConfiguration,
     } from '#server/data/interfaces';
+
+    import {
+        transpileTypescript,
+    } from '#server/logic/typescript';
     // #endregion external
 // #endregion imports
 
@@ -20,6 +29,7 @@ const build = (
 
 
 const handleDeveloper = async (
+    id: string,
     command: string,
     directory: string,
     configuration: DeveloperConfiguration,
@@ -43,6 +53,17 @@ const handleDeveloper = async (
         return;
     }
 
+
+    const entrypoint = path.join(
+        process.cwd(),
+        directory,
+        input.entrypoint,
+    );
+
+    await transpileTypescript(
+        id,
+        entrypoint,
+    );
 
     return;
 }
