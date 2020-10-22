@@ -38,7 +38,14 @@ const build = async (
             command,
         );
 
-        // poll the cli server for the status of uploadID
+        if (!upload.status) {
+            return;
+        }
+
+        const id = upload.data;
+
+        // based on the id
+        // start a poll on the connection server
     } catch (error) {
         console.log('Something went wrong.', error);
         return;
