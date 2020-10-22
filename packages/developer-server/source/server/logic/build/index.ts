@@ -24,7 +24,27 @@ const handleDeveloper = async (
     directory: string,
     configuration: DeveloperConfiguration,
 ) => {
-    // handle the configuration
+    const commandData = configuration.commands[command];
+
+    const {
+        input,
+    } = commandData;
+
+
+    if (Array.isArray(input)) {
+        for (const inputItem of input) {
+        }
+
+        return;
+    }
+
+    if (typeof input === 'string') {
+
+        return;
+    }
+
+
+    return;
 }
 // #endregion module
 

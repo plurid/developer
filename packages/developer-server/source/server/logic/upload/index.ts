@@ -50,16 +50,20 @@ const handleUploadArchive = async (
     const command = request.body.command;
     const configuration = getConfiguration(request);
 
+    const errorResponse = {
+        status: false,
+    };
+
     if (
         !command
         || !configuration
     ) {
-        const data = {
-            status: false,
-        };
+        response.json(errorResponse);
+        return;
+    }
 
-        response.json(data);
-
+    if (!configuration.commands[command]) {
+        response.json(errorResponse);
         return;
     }
 
