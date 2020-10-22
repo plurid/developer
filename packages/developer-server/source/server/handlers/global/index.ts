@@ -9,6 +9,10 @@
 
 
     // #region external
+    import {
+        FileUpload,
+    } from '#server/data/interfaces';
+
     // import database from '#server/services/database';
     // #endregion external
 // #endregion imports
@@ -31,11 +35,10 @@ const setup = async (
                 request,
                 response,
             ) => {
-                const file: any = request.file;
-                console.log('file', file);
+                const file: FileUpload = request.file;
 
                 const data = {
-                    uploadID: 'uploadID',
+                    uploadID: file.filename,
                 };
 
                 response.json(data);
