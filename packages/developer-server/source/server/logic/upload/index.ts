@@ -1,5 +1,9 @@
 // #region imports
     // #region libraries
+    import {
+        promises as fs,
+    } from 'fs';
+
     import Zip from 'adm-zip';
 
     import {
@@ -12,6 +16,7 @@
     // #region external
     import {
         FileUpload,
+        DeveloperConfiguration,
     } from '#server/data/interfaces';
 
     import {
@@ -23,14 +28,42 @@
 
 
 // #region module
+const getConfiguration = (
+    request: Request,
+) => {
+    try {
+        const configuration: DeveloperConfiguration = JSON.parse(
+            request.body.data,
+        );
+
+        return configuration;
+    } catch (error) {
+        return;
+    }
+}
+
+
 const handleUploadArchive = async (
     request: Request,
     response: Response,
 ) => {
+    const configuration = getConfiguration(request);
+
+    if (!configuration) {
+        const data = {
+            status: false,
+        };
+
+        response.json(data);
+
+        return;
+    }
+
     const file: FileUpload = request.file;
 
     const data = {
-        uploadID: file.filename,
+        status: true,
+        data: file.filename,
     };
 
     response.json(data);
@@ -40,9 +73,12 @@ const handleUploadArchive = async (
     const zip = new Zip(file.path);
     zip.extractAllTo(unarchivePath);
 
-    handleDeveloper(
+    await handleDeveloper(
         unarchivePath,
+        configuration,
     );
+
+    await fs.unlink(file.path);
 }
 // #endregion module
 

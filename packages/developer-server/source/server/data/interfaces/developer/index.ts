@@ -1,5 +1,5 @@
 // #region module
-export interface DevloperConfiguration {
+export interface DeveloperConfiguration {
     project: string;
     space: string;
     root: string;

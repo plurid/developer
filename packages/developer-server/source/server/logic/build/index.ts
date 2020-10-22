@@ -1,3 +1,13 @@
+// #region imports
+    // #region external
+    import {
+        DeveloperConfiguration,
+    } from '#server/data/interfaces';
+    // #endregion external
+// #endregion imports
+
+
+
 // #region module
 const build = (
     files: string[],
@@ -9,11 +19,10 @@ const build = (
 }
 
 
-const handleDeveloper = (
+const handleDeveloper = async (
     directory: string,
+    configuration: DeveloperConfiguration,
 ) => {
-    // read the developer file
-
     // handle the configuration
 }
 // #endregion module
