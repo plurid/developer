@@ -47,9 +47,13 @@ const handleUploadArchive = async (
     request: Request,
     response: Response,
 ) => {
+    const command = request.body.command;
     const configuration = getConfiguration(request);
 
-    if (!configuration) {
+    if (
+        !command
+        || !configuration
+    ) {
         const data = {
             status: false,
         };
@@ -74,6 +78,7 @@ const handleUploadArchive = async (
     zip.extractAllTo(unarchivePath);
 
     await handleDeveloper(
+        command,
         unarchivePath,
         configuration,
     );

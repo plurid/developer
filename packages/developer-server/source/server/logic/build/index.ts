@@ -20,6 +20,7 @@ const build = (
 
 
 const handleDeveloper = async (
+    command: string,
     directory: string,
     configuration: DeveloperConfiguration,
 ) => {
