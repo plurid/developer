@@ -81,7 +81,7 @@ const handlePoll = async (
             spaceData.space.spacePath,
             '/build',
         );
-        zip.extractAllTo(zipPath);
+        zip.extractAllTo(zipPath, true);
 
         await fs.unlink(tmpArchive);
 
