@@ -1,4 +1,19 @@
+// #region imports
+    // #region libraries
+    import {
+        promises as fs,
+    } from 'fs';
+    // #endregion libraries
+// #endregion imports
+
+
+
 // #region module
+export const fileExists = async (
+    path: string,
+) => !!(await fs.stat(path).catch(e => false));
+
+
 export const cleanFileName = (
     name: string,
 ) => {

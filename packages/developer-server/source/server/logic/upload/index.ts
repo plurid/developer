@@ -1,8 +1,6 @@
 // #region imports
     // #region libraries
-    import path from 'path';
-
-    import fsSync, {
+    import {
         promises as fs,
     } from 'fs';
 
@@ -93,29 +91,6 @@ const handleUploadArchive = async (
     await fs.unlink(file.path);
     await fs.rmdir(unarchivePath, {recursive: true});
 }
-
-
-const handleDownloadArchive = async (
-    request: Request,
-    response: Response,
-) => {
-    const id = request.params.id;
-
-    const filepath = path.join(
-        process.cwd(),
-        `./data/archives/${id}`,
-    );
-
-    const readStream = fsSync.createReadStream(filepath);
-
-    readStream.on('open', () => {
-        readStream.pipe(response);
-    });
-
-    readStream.on('error', (error) => {
-        response.end(error);
-    });
-}
 // #endregion module
 
 
@@ -123,6 +98,5 @@ const handleDownloadArchive = async (
 // #region exports
 export {
     handleUploadArchive,
-    handleDownloadArchive,
 };
 // #endregion exports
