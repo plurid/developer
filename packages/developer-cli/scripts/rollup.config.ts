@@ -64,6 +64,16 @@ const server = {
     external: [
         'events',
         'express',
+        'path',
+        'fs',
+        'cross-fetch',
+        'body-parser',
+        'adm-zip',
+        'form-data',
+        '@plurid/deon',
+        'url',
+        'os',
+        '@apollo/client/core',
     ],
     plugins: [
         ...common.plugins,
