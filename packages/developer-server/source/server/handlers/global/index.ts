@@ -25,7 +25,7 @@ const setup = async (
 ) => {
     try {
         const upload = multer({
-            dest: 'uploads/',
+            dest: './data/uploads/',
         });
 
         instance.post(

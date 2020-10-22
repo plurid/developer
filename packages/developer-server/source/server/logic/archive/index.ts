@@ -23,7 +23,7 @@ const archiveBuild = (
 
     const archivePath = path.join(
         process.cwd(),
-        `./data/buildsArchives/${id}`,
+        `./data/archives/${id}`,
     );
 
     zip.writeZip(archivePath);

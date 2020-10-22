@@ -76,7 +76,7 @@ const handleUploadArchive = async (
 
     response.json(data);
 
-    const unarchivePath = `./data/${file.filename}`;
+    const unarchivePath = `./data/unpacks/${file.filename}`;
 
     const zip = new Zip(file.path);
     zip.extractAllTo(unarchivePath);
@@ -89,6 +89,7 @@ const handleUploadArchive = async (
     );
 
     await fs.unlink(file.path);
+    await fs.rmdir(unarchivePath, {recursive: true});
 }
 // #endregion module
 
