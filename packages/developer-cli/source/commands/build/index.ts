@@ -27,10 +27,10 @@ const build = async (
 
         const uploadURL = spaceData.worker.server + '/upload';
 
-        // get upload link from the developer server
         const upload = await uploadArchive(
             archive,
             uploadURL,
+            JSON.stringify(spaceData.data),
         );
 
         // poll the cli server for the status of uploadID

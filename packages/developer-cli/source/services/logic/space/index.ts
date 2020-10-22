@@ -216,6 +216,7 @@ const packageSpace = async (
 const uploadArchive = async (
     archive: Buffer,
     url: string,
+    configuration: string,
 ) => {
     const form = new FormData();
 
@@ -226,6 +227,11 @@ const uploadArchive = async (
             filename: 'archive',
             contentType: 'application/zip',
         },
+    );
+
+    form.append(
+        'data',
+        configuration,
     );
 
     const response = await fetch(
