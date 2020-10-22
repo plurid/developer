@@ -7,4 +7,21 @@ const build = (
     // handle the configuration
     // emit the result
 }
+
+
+const handleDeveloper = (
+    directory: string,
+) => {
+    // read the developer file
+
+    // handle the configuration
+}
 // #endregion module
+
+
+
+// #region exports
+export {
+    handleDeveloper,
+};
+// #endregion exports

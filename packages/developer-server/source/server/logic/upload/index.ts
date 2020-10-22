@@ -1,5 +1,7 @@
 // #region imports
     // #region libraries
+    import Zip from 'adm-zip';
+
     import {
         Request,
         Response,
@@ -11,6 +13,10 @@
     import {
         FileUpload,
     } from '#server/data/interfaces';
+
+    import {
+        handleDeveloper,
+    } from '#server/logic/build';
     // #endregion external
 // #endregion imports
 
@@ -28,6 +34,15 @@ const handleUploadArchive = async (
     };
 
     response.json(data);
+
+    const unarchivePath = `./data/${file.filename}`;
+
+    const zip = new Zip(file.path);
+    zip.extractAllTo(unarchivePath);
+
+    handleDeveloper(
+        unarchivePath,
+    );
 }
 // #endregion module
 
