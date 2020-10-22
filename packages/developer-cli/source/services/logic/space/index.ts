@@ -217,6 +217,7 @@ const uploadArchive = async (
     archive: Buffer,
     url: string,
     configuration: string,
+    command: string,
 ) => {
     const form = new FormData();
 
@@ -232,6 +233,11 @@ const uploadArchive = async (
     form.append(
         'data',
         configuration,
+    );
+
+    form.append(
+        'command',
+        command,
     );
 
     const response = await fetch(
