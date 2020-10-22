@@ -22,7 +22,8 @@ export interface Space {
     identifier: string;
     project: string;
     name: string;
-    path: string;
+    configurationPath: string;
+    spacePath: string;
 }
 
 

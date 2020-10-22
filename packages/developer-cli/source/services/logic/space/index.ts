@@ -96,11 +96,11 @@ const readSpaceConfiguration = async (
     space: Space,
 ) => {
     const {
-        path,
+        configurationPath,
     } = space;
 
     const data = await fs.readFile(
-        path,
+        configurationPath,
         'utf-8',
     );
 
@@ -149,7 +149,7 @@ const resolveRoot = (
     } = configuration;
 
     const root = path.join(
-        path.dirname(space.path),
+        path.dirname(space.configurationPath),
         data.root,
     );
 

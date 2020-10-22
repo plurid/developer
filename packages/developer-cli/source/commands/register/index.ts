@@ -1,4 +1,9 @@
 // #region imports
+    // #region libraries
+    import path from 'path';
+    // #endregion libraries
+
+
     // #region external
     import {
         DeveloperWorker,
@@ -52,11 +57,17 @@ const register = async (
 
         const identifier = data.project + '//' + data.space;
 
+        const spacePath = path.join(
+            path.dirname(filePath),
+            data.root,
+        );
+
         const space: Space = {
             identifier,
             project: data.project,
             name: data.space,
-            path: filePath,
+            configurationPath: filePath,
+            spacePath,
         };
 
         const spaces: Space[] = [

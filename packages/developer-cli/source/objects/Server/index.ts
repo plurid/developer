@@ -79,8 +79,8 @@ const handlePoll = async (
         const zip = new Zip(tmpArchive);
         const zipPath = path.join(
             __dirname,
-            // path to build
-            'extract-' + poll.id,
+            spaceData.space.spacePath,
+            '/build',
         );
         zip.extractAllTo(zipPath);
 
