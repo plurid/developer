@@ -32,6 +32,10 @@ const externalPackages = [
     'https',
     'path',
     'stream',
+    'os',
+    'buffer',
+    'crypto',
+    'inspector',
 ];
 
 const styledComponentsTransformer = createStyledComponentsTransformer({
