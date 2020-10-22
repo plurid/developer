@@ -50,25 +50,26 @@ Given a command processed by the `server`, if there is any output, such as built
 Usage: developer <command>
 
 Options:
-    -v, --version            output the version number
-    -h, --help               display help for command
+    -v, --version               output the version number
+    -h, --help                  display help for command
 
 Commands:
-    status                   show the connection status
-    start [options]          start the developer server connection
-    stop [options]           stop the developer server connection
-    setup [options]          setup a connection to a developer server
-    setdown [options]        setdown, remove a connection to a developer server
-    login [options]          log into a developer server
-    logout [options]         log out of a developer server
-    register [path]          register a project for the developer server, on a path or in the current directory
-    deregister [path]        deregister a project for the developer server, on a path or in the current directory
-    lint [project]           lint a registered project or the current directory project
-    test [project]           test a registered project or the current directory project
-    preview [project]        preview web elements and scenarios for a registered project or the current directory project
-    watch [project]          watch for changes a registered project or the current directory project
-    build [project]          build a registered project or the current directory project
-    run <command> [project]  run a named-command in a registered project or the current directory project
+  status                        show the connection status
+  machine [options]             set a name for the machine
+  login [options]               log into a developer server
+  logout [options]              log out of a developer server
+  start [options]               start the developer server connection
+  stop [options]                stop the developer server connection
+  setup [options]               setup a connection to a developer server
+  setdown [options]             setdown, remove a connection to a developer server
+  register [path]               register a project for the developer server, on a path or in the current directory
+  deregister [path]             deregister a project for the developer server, on a path or in the current directory
+  lint [project]                lint a registered project or the current directory project
+  test [project]                test a registered project or the current directory project
+  preview [project]             preview web elements and scenarios for a registered project or the current directory project
+  watch [project]               watch for changes a registered project or the current directory project
+  build [project]               build a registered project or the current directory project
+  run <command> [project]       run a named-command in a registered project or the current directory project
 ```
 
 
