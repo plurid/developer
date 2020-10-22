@@ -10,8 +10,8 @@
 
     // #region external
     import {
-        FileUpload,
-    } from '#server/data/interfaces';
+        handleUploadArchive,
+    } from '#server/logic/upload';
 
     // import database from '#server/services/database';
     // #endregion external
@@ -31,18 +31,7 @@ const setup = async (
         instance.post(
             '/upload',
             upload.single('archive'),
-            async (
-                request,
-                response,
-            ) => {
-                const file: FileUpload = request.file;
-
-                const data = {
-                    uploadID: file.filename,
-                };
-
-                response.json(data);
-            },
+            handleUploadArchive,
         );
 
         // await database.initialize();
