@@ -47,7 +47,7 @@ const main = async (
 
     program
         .command('status')
-        .description('show the connection status')
+        .description('show the developer status')
         .action(async () => {
             await status();
         });
@@ -80,12 +80,18 @@ const main = async (
             '-k, --key <key>',
             'key',
         )
+        .option(
+            '-t, --start',
+            'start',
+            false,
+        )
         .description('log into a developer server')
         .action(async (options: any) => {
             await login(
                 options.server,
                 options.identonym,
                 options.key,
+                options.start,
             );
         });
 

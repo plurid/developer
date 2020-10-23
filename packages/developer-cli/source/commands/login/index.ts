@@ -26,6 +26,9 @@
         updateWorker,
         getServerURL,
     } from '#services/utilities';
+
+
+    import startCommand from '../start';
     // #endregion external
 // #endregion imports
 
@@ -36,6 +39,7 @@ const login = async (
     api: string,
     identonym: string,
     key: string,
+    start?: boolean,
 ) => {
     const developer = client(
         api,
@@ -82,6 +86,13 @@ const login = async (
                 identonym,
                 data,
             );
+
+            if (start) {
+                await startCommand(
+                    server,
+                    identonym,
+                );
+            }
         }, 2_000);
 
         console.log(`Logged in the developer server '${serverName}' as '${identonym}'.`);
