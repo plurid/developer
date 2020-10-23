@@ -114,6 +114,7 @@ const main = async (
             await logout(
                 options.server,
                 options.identonym,
+                options.obliterate,
             );
         });
 

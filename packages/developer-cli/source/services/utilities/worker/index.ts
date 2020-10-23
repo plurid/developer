@@ -151,6 +151,7 @@ const updateWorker = async (
 const removeWorker = async (
     api?: string,
     identonym?: string,
+    obliterate?: boolean,
 ) => {
     const configuration = await readConfiguration();
 
@@ -162,19 +163,27 @@ const removeWorker = async (
             api === worker.api
             && identonym === worker.identonym
         ) {
-            removedWorker = true;
-            return false;
+            if (obliterate) {
+                removedWorker = true;
+                return false;
+            }
+
+            return true;
         }
 
         if (!api && !identonym && worker.isDefault) {
-            removedWorker = true;
-            return false;
+            if (obliterate) {
+                removedWorker = true;
+                return false;
+            }
+
+            return true;
         }
 
         return true;
     });
 
-    if (!removedWorker) {
+    if (!removedWorker && obliterate) {
         updatedWorkers = updatedWorkers.slice(1);
     }
 

@@ -14,6 +14,7 @@
 const logout = async (
     server?: string,
     identonym?: string,
+    obliterate?: boolean,
 ) => {
     const configuration = await getWorker(
         server,
@@ -32,6 +33,7 @@ const logout = async (
     await removeWorker(
         configuration.api,
         configuration.identonym,
+        obliterate,
     );
 
     const serverName = extractServerName(configuration.api);
