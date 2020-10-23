@@ -16,9 +16,14 @@
 // #region module
 const deregister = async (
     configurationPath?: string,
+    server?: string,
+    identonym?: string,
 ) => {
     try {
-        const worker = await getWorker();
+        const worker = await getWorker(
+            server,
+            identonym,
+        );
 
         if (!worker) {
             console.log(`Could not read worker file.`);

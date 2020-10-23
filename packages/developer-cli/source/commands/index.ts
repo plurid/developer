@@ -6,8 +6,6 @@
     import logout from './logout';
     import start from './start';
     import stop from './stop';
-    import setup from './setup';
-    import setdown from './setdown';
     import register from './register';
     import deregister from './deregister';
     import lint from './lint';
@@ -29,8 +27,6 @@ export {
     logout,
     start,
     stop,
-    setup,
-    setdown,
     register,
     deregister,
     lint,

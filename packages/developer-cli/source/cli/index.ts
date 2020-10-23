@@ -14,8 +14,6 @@
         logout,
         start,
         stop,
-        setup,
-        setdown,
         register,
         deregister,
         lint,
@@ -101,6 +99,10 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
+        .option(
+            '-o, --obliterate <obliterate>',
+            'obliterate all the registered spaces',
+        )
         .description('log out of a developer server')
         .action(async (options: any) => {
             await logout(
@@ -150,110 +152,88 @@ const main = async (
             );
         });
 
-    program
-        .command('setup')
-        .requiredOption(
-            '-s, --server <server>',
-            'server address',
-        )
-        .requiredOption(
-            '-i, --identonym <identonym>',
-            'identonym',
-        )
-        .requiredOption(
-            '-k, --key <key>',
-            'key',
-        )
-        .description('setup a connection to a developer server')
-        .action(async (options: any) => {
-            await setup(
-                options.server,
-                options.identonym,
-                options.key,
-            );
-        });
-
-    program
-        .command('setdown')
-        .requiredOption(
-            '-s, --server <server>',
-            'server address',
-        )
-        .requiredOption(
-            '-i, --identonym <identonym>',
-            'identonym',
-        )
-        .requiredOption(
-            '-k, --key <key>',
-            'key',
-        )
-        .description('setdown, remove a connection to a developer server')
-        .action(async (options: any) => {
-            await setdown(
-                options.server,
-                options.identonym,
-                options.key,
-            );
-        });
-
 
     program
         .command('register [path]')
-        .description('register a project for the developer server, on a path or in the current directory')
-        .action(async (path: any) => {
-            await register(path);
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
+        .description('register a space for the developer server, on a path or in the current directory')
+        .action(async (path: any, options: any) => {
+            await register(
+                path,
+                options.server,
+                options.identonym,
+            );
         });
 
     program
         .command('deregister [path]')
-        .description('deregister a project for the developer server, on a path or in the current directory')
-        .action(async (path: any) => {
-            await deregister(path);
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
+        .description('deregister a space for the developer server, on a path or in the current directory')
+        .action(async (path: any, options: any) => {
+            await deregister(
+                path,
+                options.server,
+                options.identonym,
+            );
         });
 
 
     program
-        .command('lint [project]')
-        .description('lint a registered project or the current directory project')
-        .action(async (project: any) => {
-            await lint(project);
+        .command('lint [space]')
+        .description('lint a registered space or the current directory space')
+        .action(async (space: any) => {
+            await lint(space);
         });
 
     program
-        .command('test [project]')
-        .description('test a registered project or the current directory project')
-        .action(async (project: any) => {
-            await test(project);
+        .command('test [space]')
+        .description('test a registered space or the current directory space')
+        .action(async (space: any) => {
+            await test(space);
         });
 
     program
-        .command('preview [project]')
-        .description('preview web elements and scenarios for a registered project or the current directory project')
-        .action(async (project: any) => {
-            await preview(project);
+        .command('preview [space]')
+        .description('preview web elements and scenarios for a registered space or the current directory space')
+        .action(async (space: any) => {
+            await preview(space);
         });
 
     program
-        .command('watch [project]')
-        .description('watch for changes a registered project or the current directory project')
-        .action(async (project: any) => {
-            await watch(project);
+        .command('watch [space]')
+        .description('watch for changes a registered space or the current directory space')
+        .action(async (space: any) => {
+            await watch(space);
         });
 
     program
-        .command('build [project]')
-        .description('build a registered project or the current directory project')
-        .action(async (project: any) => {
-            await build(project);
+        .command('build [space]')
+        .description('build a registered space or the current directory space')
+        .action(async (space: any) => {
+            await build(space);
         });
 
     program
-        .command('run <command> [project]')
-        .description('run a named-command in a registered project or the current directory project')
-        .action(async (command, project) => {
+        .command('run <command> [space]')
+        .description('run a named-command in a registered space or the current directory space')
+        .action(async (command, space) => {
             await run(
                 command,
-                project,
+                space,
             );
         });
 
