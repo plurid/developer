@@ -46,4 +46,9 @@ export const obliterateDirectory = async (
         return;
     }
 }
+
+
+export const fileExists = async (
+    path: string,
+) => !!(await promisesFS.stat(path).catch(e => false));
 // #endregion module
