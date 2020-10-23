@@ -54,22 +54,20 @@ Options:
     -h, --help                  display help for command
 
 Commands:
-  status                        show the connection status
+  status                        show the developer status
   machine [options]             set a name for the machine
   login [options]               log into a developer server
   logout [options]              log out of a developer server
   start [options]               start the developer server connection
   stop [options]                stop the developer server connection
-  setup [options]               setup a connection to a developer server
-  setdown [options]             setdown, remove a connection to a developer server
-  register [path]               register a project for the developer server, on a path or in the current directory
-  deregister [path]             deregister a project for the developer server, on a path or in the current directory
-  lint [project]                lint a registered project or the current directory project
-  test [project]                test a registered project or the current directory project
-  preview [project]             preview web elements and scenarios for a registered project or the current directory project
-  watch [project]               watch for changes a registered project or the current directory project
-  build [project]               build a registered project or the current directory project
-  run <command> [project]       run a named-command in a registered project or the current directory project
+  register [options] [path]     register a space for the developer server, on a path or in the current directory
+  deregister [options] [path]   deregister a space for the developer server, on a path or in the current directory
+  lint [space]                  lint a registered space or the current directory space
+  test [space]                  test a registered space or the current directory space
+  preview [space]               preview web elements and scenarios for a registered space or the current directory space
+  watch [space]                 watch for changes a registered space or the current directory space
+  build [space]                 build a registered space or the current directory space
+  run <command> [space]         run a named-command in a registered space or the current directory space
 ```
 
 
