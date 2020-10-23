@@ -60,8 +60,8 @@ Commands:
   logout [options]              log out of a developer server
   start [options]               start the developer server connection
   stop [options]                stop the developer server connection
-  register [options] [path]     register a space for the developer server, on a path or in the current directory
-  deregister [options] [path]   deregister a space for the developer server, on a path or in the current directory
+  register [options] [path]     register a space for the developer server, given a path or the current directory
+  deregister [options] [path]   deregister a space for the developer server, given a path or the current directory
   lint [space]                  lint a registered space or the current directory space
   test [space]                  test a registered space or the current directory space
   preview [space]               preview web elements and scenarios for a registered space or the current directory space
