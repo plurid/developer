@@ -107,7 +107,7 @@ const main = async (
         )
         .option(
             '-o, --obliterate <obliterate>',
-            'obliterate all the registered spaces',
+            'obliterate the developer server and the registered spaces',
         )
         .description('log out of a developer server')
         .action(async (options: any) => {

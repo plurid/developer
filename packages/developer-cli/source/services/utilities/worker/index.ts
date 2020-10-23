@@ -160,30 +160,29 @@ const removeWorker = async (
 
     updatedWorkers = configuration.workers.filter(worker => {
         if (
-            api === worker.api
-            && identonym === worker.identonym
+            obliterate
+            && (
+                (
+                    api === worker.api
+                    && identonym === worker.identonym
+                ) || (
+                    !api
+                    && !identonym
+                    && worker.isDefault
+                )
+            )
         ) {
-            if (obliterate) {
-                removedWorker = true;
-                return false;
-            }
-
-            return true;
-        }
-
-        if (!api && !identonym && worker.isDefault) {
-            if (obliterate) {
-                removedWorker = true;
-                return false;
-            }
-
-            return true;
+            removedWorker = true;
+            return false;
         }
 
         return true;
     });
 
-    if (!removedWorker && obliterate) {
+    if (
+        obliterate
+        && !removedWorker
+    ) {
         updatedWorkers = updatedWorkers.slice(1);
     }
 
