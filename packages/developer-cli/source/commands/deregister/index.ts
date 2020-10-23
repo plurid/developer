@@ -35,7 +35,7 @@ const deregister = async (
         }
 
         const spaces = worker.spaces.filter(
-            space => space.path !== spaceConfigurationPath,
+            space => space.configurationPath !== spaceConfigurationPath,
         );
 
         const updatedWorker = {
