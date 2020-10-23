@@ -106,8 +106,9 @@ const main = async (
             'identonym',
         )
         .option(
-            '-o, --obliterate <obliterate>',
+            '-o, --obliterate',
             'obliterate the developer server and the registered spaces',
+            false,
         )
         .description('log out of a developer server')
         .action(async (options: any) => {
@@ -170,7 +171,7 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
-        .description('register a space for the developer server, on a path or in the current directory')
+        .description('register a space for the developer server, given a path or the current directory')
         .action(async (path: any, options: any) => {
             await register(
                 path,
@@ -189,7 +190,7 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
-        .description('deregister a space for the developer server, on a path or in the current directory')
+        .description('deregister a space for the developer server, given a path or the current directory')
         .action(async (path: any, options: any) => {
             await deregister(
                 path,
