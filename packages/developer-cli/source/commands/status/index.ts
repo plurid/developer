@@ -22,7 +22,7 @@ const status = async () => {
 
 
         if (machine) {
-            console.log(`\n\t${machine} developer machine`);
+            console.log(`\n\t'${machine}' developer machine`);
         }
 
 
@@ -41,15 +41,17 @@ const status = async () => {
 
                 const defaultString = isDefault ? ' [default]': '';
 
-                console.log(`\t  ${server} - ${identonym}${defaultString}`);
+                console.log(`\t  - server '${server}' with identonym '${identonym}'${defaultString}`);
 
                 if (spaces.length === 0) {
                     console.log(`\t  no spaces registered`);
                     continue;
                 }
 
+                console.log(`\t      spaces registered:`);
+
                 for (const space of spaces) {
-                    console.log(`\t    ${space.identifier}`);
+                    console.log(`\t        - ${space.identifier}`);
                 }
             }
         }
@@ -73,7 +75,7 @@ const status = async () => {
                     continue;
                 }
 
-                console.log(`\t  http://localhost:${port} - ${pid} - ${worker.server} - ${worker.identonym}`);
+                console.log(`\t  - 'http://localhost:${port}' with pid '${pid}' for the server '${worker.server}' with identonym '${worker.identonym}'`);
             }
         }
     } catch (error) {
