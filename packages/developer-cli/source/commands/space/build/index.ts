@@ -1,14 +1,11 @@
 // #region imports
     // #region external
     import {
-        getSpaceData,
-        packageSpace,
-        uploadArchive,
-    } from '#services/logic/space';
+        checkExecutionContext,
+    } from '#services/logic/execution';
 
     import {
         getConnection,
-        verifyConnections,
     } from '#services/logic/connections';
 
     import {
@@ -16,8 +13,10 @@
     } from '#services/logic/poll';
 
     import {
-        readConfiguration,
-    } from '#services/utilities/configuration';
+        getSpaceData,
+        packageSpace,
+        uploadArchive,
+    } from '#services/logic/space';
     // #endregion external
 // #endregion imports
 
@@ -28,12 +27,10 @@ const build = async (
     name?: string,
 ) => {
     try {
-        await verifyConnections();
+        const execute = await checkExecutionContext();
 
-        const configurationData = await readConfiguration();
-
-        if (Object.values(configurationData.connections).length === 0) {
-            console.log('\n\tcould not build, no developer connection\n');
+        if (!execute) {
+            console.log(`\n\tcould not build, no developer connection\n`);
             return;
         }
 
