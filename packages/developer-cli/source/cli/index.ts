@@ -16,6 +16,7 @@
         stop,
         register,
         deregister,
+
         lint,
         test,
         preview,

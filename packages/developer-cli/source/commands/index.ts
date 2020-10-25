@@ -8,12 +8,13 @@
     import stop from './stop';
     import register from './register';
     import deregister from './deregister';
-    import lint from './lint';
-    import test from './test';
-    import preview from './preview';
-    import watch from './watch';
-    import build from './build';
-    import run from './run';
+
+    import lint from './space/lint';
+    import test from './space/test';
+    import preview from './space/preview';
+    import watch from './space/watch';
+    import build from './space/build';
+    import run from './space/run';
     // #endregion internal
 // #endregion imports
 
@@ -29,6 +30,7 @@ export {
     stop,
     register,
     deregister,
+
     lint,
     test,
     preview,

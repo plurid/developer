@@ -8,6 +8,7 @@
 
     import {
         getConnection,
+        verifyConnections,
     } from '#services/logic/connections';
 
     import {
@@ -27,6 +28,8 @@ const build = async (
     name?: string,
 ) => {
     try {
+        await verifyConnections();
+
         const configurationData = await readConfiguration();
 
         if (Object.values(configurationData.connections).length === 0) {
