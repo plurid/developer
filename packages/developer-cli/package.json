@@ -45,10 +45,10 @@
     },
     "dependencies": {
         "@apollo/client": "^3.2.5",
-        "@plurid/deon": "^0.0.19",
+        "@plurid/deon": "^0.0.20",
         "@plurid/plurid-functions": "^0.1.17",
         "adm-zip": "^0.4.16",
-        "commander": "^6.1.0",
+        "commander": "^6.2.0",
         "cross-fetch": "^3.0.6",
         "express": "^4.17.1",
         "form-data": "^3.0.0",

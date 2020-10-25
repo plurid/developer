@@ -546,10 +546,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@plurid/deon@^0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@plurid/deon/-/deon-0.0.19.tgz#78a277b17b6f00b139606803e2ea8279b29039c4"
-  integrity sha512-CIAbMlqAXwpFWC8HjSq7pquvJ/6qB7MjpTJErG4QpMuH9QrBX1Be0jjfyKGwxdlg8RZfyzguEc5UF/ozQNSUUA==
+"@plurid/deon@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@plurid/deon/-/deon-0.0.20.tgz#1c610c438681de475df212b5101b04ea577ef247"
+  integrity sha512-SGqaG7ax+ZafglL8e8fYxjHfjg0p0dF3vh9RZVAjFVDsbNQm4peAaNtz1DrergWE+2SmxlGQV/hjLYQTrftgMQ==
   dependencies:
     cross-fetch "^3.0.6"
 
@@ -1389,10 +1389,10 @@ combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-6.1.0.tgz#f8d722b78103141006b66f4c7ba1e97315ba75bc"
-  integrity sha512-wl7PNrYWd2y5mp1OK/LhTlv8Ff4kQJQRXXAvF+uU/TPNiVJUxZLRYGj/B0y/lPGAVcSbJqH2Za/cvHmrPMC8mA==
+commander@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.0.tgz#b990bfb8ac030aedc6d11bc04d1488ffef56db75"
+  integrity sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q==
 
 commondir@^1.0.1:
   version "1.0.1"
