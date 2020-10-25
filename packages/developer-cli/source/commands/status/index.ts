@@ -1,6 +1,10 @@
 // #region imports
     // #region external
     import {
+        verifyConnections,
+    } from '#services/logic/connections';
+
+    import {
         readConfiguration,
         getWorkerByID,
     } from '#services/utilities';
@@ -12,6 +16,8 @@
 // #region module
 const status = async () => {
     try {
+        await verifyConnections();
+
         const configuration = await readConfiguration();
 
         const {

@@ -1,4 +1,9 @@
 // #region imports
+    // #region libraries
+    import fetch from 'cross-fetch';
+    // #endregion libraries
+
+
     // #region external
     import {
         DeveloperWorker,
@@ -82,7 +87,7 @@ const getConnection = async (
 const removeConnection = async (
     server?: string,
     identonym?: string,
-    port?: string,
+    port?: number,
 ) => {
     const configuration = await readConfiguration();
 
@@ -166,6 +171,48 @@ const removeConnection = async (
 
     return;
 }
+
+
+const verifyConnection = async (
+    port: number,
+) => {
+    try {
+        const response = await fetch(`http://localhost:${port}`);
+
+        return response.status === 200;
+    } catch (error) {
+        return;
+    }
+}
+
+
+const verifyConnections = async () => {
+    const configuration = await readConfiguration();
+
+    const {
+        connections,
+    } = configuration;
+
+    if (Object.values(connections).length === 0) {
+        return;
+    }
+
+    for (const connection of Object.values(connections)) {
+        const {
+            port,
+        } = connection;
+
+        const exists = await verifyConnection(
+            port,
+        );
+
+        if (!exists) {
+            await removeConnection(
+                undefined, undefined, port,
+            );
+        }
+    }
+}
 // #endregion module
 
 
@@ -175,5 +222,7 @@ export {
     saveConnection,
     getConnection,
     removeConnection,
+    verifyConnection,
+    verifyConnections,
 };
 // #endregion exports
