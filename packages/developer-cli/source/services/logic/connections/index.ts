@@ -46,7 +46,7 @@ const saveConnection = async (
 const getConnection = async (
     server?: string,
     identonym?: string,
-    port?: string,
+    port?: number,
 ) => {
     const configuration = await readConfiguration();
 

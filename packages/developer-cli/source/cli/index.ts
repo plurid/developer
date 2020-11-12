@@ -157,7 +157,7 @@ const main = async (
             await stop(
                 options.server,
                 options.identonym,
-                options.port,
+                parseInt(options.port),
             );
         });
 

@@ -20,7 +20,7 @@
 const stop = async (
     server?: string,
     identonym?: string,
-    port?: string,
+    port?: number,
 ) => {
     try {
         const connection = await getConnection(
