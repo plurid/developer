@@ -8,6 +8,7 @@
     import {
         PluridIconApps,
         PluridIconContact,
+        PluridIconBrainCircuits,
         PluridIconArrowRight,
         PluridIconDocuments,
         PluridIconExternalLink,
@@ -29,6 +30,8 @@
 
     // #region internal
     import ProjectsView from './components/ProjectsView';
+    import NotifiersView from './components/NotifiersView';
+    import DevelopsView from './components/DevelopsView';
 
     import {
         StyledGeneralView,
@@ -48,11 +51,13 @@
 export const generalSelectors = [
     'projects',
     'notifiers',
+    'develops',
 ];
 
 export const generalSelectorsIcons = {
     projects: PluridIconApps,
     notifiers: PluridIconContact,
+    develops: PluridIconBrainCircuits,
 };
 
 
@@ -64,6 +69,18 @@ export const renderSelectedView = (
         case 'projects':
             return (
                 <ProjectsView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'notifiers':
+            return (
+                <NotifiersView
+                    setGeneralView={setGeneralView}
+                />
+            );
+        case 'develops':
+            return (
+                <DevelopsView
                     setGeneralView={setGeneralView}
                 />
             );
