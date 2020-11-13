@@ -50,8 +50,8 @@ const handleDeveloper = async (
 
 
     if (Array.isArray(input)) {
-        for (const inputItem of input) {
-        }
+        // for (const inputItem of input) {
+        // }
 
         return;
     }
