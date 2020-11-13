@@ -16,6 +16,10 @@
     import {
         archiveBuild,
     } from '#server/logic/archive';
+
+    import {
+        registerDevelop,
+    } from '#server/logic/operators/develops';
     // #endregion external
 // #endregion imports
 
@@ -77,7 +81,11 @@ const handleDeveloper = async (
         id,
     );
 
-    // mark the build as succesful
+    await registerDevelop(
+        'a',
+        'b',
+        configuration,
+    );
 }
 // #endregion module
 

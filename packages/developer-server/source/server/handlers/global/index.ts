@@ -17,7 +17,7 @@
         handleDownloadArchive,
     } from '#server/logic/download';
 
-    // import database from '#server/services/database';
+    import database from '#server/services/database';
     // #endregion external
 // #endregion imports
 
@@ -43,7 +43,7 @@ const setup = async (
             handleDownloadArchive,
         );
 
-        // await database.initialize();
+        await database.initialize();
     } catch (error) {
         return;
     }
