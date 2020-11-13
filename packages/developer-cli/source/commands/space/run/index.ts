@@ -20,6 +20,8 @@
 const run = async (
     command: string,
     name?: string,
+    server?: string,
+    identonym?: string,
 ) => {
     try {
         const execute = await checkExecutionContext();
@@ -32,10 +34,12 @@ const run = async (
 
         const spaceData = await getSpaceData(
             name,
+            server,
+            identonym,
         );
 
         if (!spaceData) {
-            console.log('\n\tcould not run, no space data\n');
+            console.log(`\n\tcould not build, no registered space '${name}'\n`);
             return;
         }
 

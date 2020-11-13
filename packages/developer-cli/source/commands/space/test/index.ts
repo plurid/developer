@@ -19,6 +19,8 @@
 // #region module
 const test = async (
     name?: string,
+    server?: string,
+    identonym?: string,
 ) => {
     try {
         const execute = await checkExecutionContext();
@@ -31,10 +33,12 @@ const test = async (
 
         const spaceData = await getSpaceData(
             name,
+            server,
+            identonym,
         );
 
         if (!spaceData) {
-            console.log('\n\tcould not test, no space data\n');
+            console.log(`\n\tcould not build, no registered space '${name}'\n`);
             return;
         }
 

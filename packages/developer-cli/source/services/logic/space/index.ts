@@ -69,8 +69,13 @@ const resolveSpaceConfigurationPath = async (
 
 const resolveSpace = async (
     name?: string,
+    server?: string,
+    identonym?: string,
 ) => {
-    const worker = await getWorker();
+    const worker = await getWorker(
+        server,
+        identonym,
+    );
 
     if (!worker) {
         return;
@@ -113,13 +118,16 @@ const readSpaceConfiguration = async (
 
 const getSpaceData = async (
     name?: string,
+    server?: string,
+    identonym?: string,
 ) => {
     const spaceResolved = await resolveSpace(
         name,
+        server,
+        identonym,
     );
 
     if (!spaceResolved) {
-        console.log(`Could not resolve space.`);
         return;
     }
 

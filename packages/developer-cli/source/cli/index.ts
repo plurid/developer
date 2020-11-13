@@ -61,7 +61,9 @@ const main = async (
             'machine name',
         )
         .description('set a name for the machine')
-        .action(async (options: any) => {
+        .action(async (
+            options,
+        ) => {
             await machine(
                 options.name,
             );
@@ -87,7 +89,9 @@ const main = async (
             false,
         )
         .description('log into a developer server')
-        .action(async (options: any) => {
+        .action(async (
+            options,
+        ) => {
             await login(
                 options.server,
                 options.identonym,
@@ -112,7 +116,9 @@ const main = async (
             false,
         )
         .description('log out of a developer server')
-        .action(async (options: any) => {
+        .action(async (
+            options,
+        ) => {
             await logout(
                 options.server,
                 options.identonym,
@@ -131,7 +137,9 @@ const main = async (
             'identonym',
         )
         .description('start the developer server connection')
-        .action(async (options: any) => {
+        .action(async (
+            options,
+        ) => {
             await start(
                 options.server,
                 options.identonym,
@@ -153,7 +161,9 @@ const main = async (
             'port',
         )
         .description('stop the developer server connection')
-        .action(async (options: any) => {
+        .action(async (
+            options,
+        ) => {
             await stop(
                 options.server,
                 options.identonym,
@@ -173,7 +183,10 @@ const main = async (
             'identonym',
         )
         .description('register a space for the developer server, given a path or the current directory')
-        .action(async (path: any, options: any) => {
+        .action(async (
+            path,
+            options,
+        ) => {
             await register(
                 path,
                 options.server,
@@ -192,7 +205,10 @@ const main = async (
             'identonym',
         )
         .description('deregister a space for the developer server, given a path or the current directory')
-        .action(async (path: any, options: any) => {
+        .action(async (
+            path,
+            options,
+        ) => {
             await deregister(
                 path,
                 options.server,
@@ -202,47 +218,136 @@ const main = async (
 
 
     program
-        .command('lint [space]')
+        .command('lint <space>')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('lint a registered space or the current directory space')
-        .action(async (space: any) => {
-            await lint(space);
+        .action(async (
+            space,
+            options,
+        ) => {
+            await lint(
+                space,
+                options.server,
+                options.identonym,
+            );
         });
 
     program
-        .command('test [space]')
+        .command('test <space>')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('test a registered space or the current directory space')
-        .action(async (space: any) => {
-            await test(space);
+        .action(async (
+            space,
+            options,
+        ) => {
+            await test(
+                space,
+                options.server,
+                options.identonym,
+            );
         });
 
     program
-        .command('preview [space]')
+        .command('preview <space>')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('preview web elements and scenarios for a registered space or the current directory space')
-        .action(async (space: any) => {
-            await preview(space);
+        .action(async (
+            space,
+            options,
+        ) => {
+            await preview(
+                space,
+                options.server,
+                options.identonym,
+            );
         });
 
     program
-        .command('watch [space]')
+        .command('watch <space>')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('watch for changes a registered space or the current directory space')
-        .action(async (space: any) => {
-            await watch(space);
+        .action(async (
+            space,
+            options,
+        ) => {
+            await watch(
+                space,
+                options.server,
+                options.identonym,
+            );
         });
 
     program
-        .command('build [space]')
+        .command('build <space>')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('build a registered space or the current directory space')
-        .action(async (space: any) => {
-            await build(space);
+        .action(async (
+            space: any,
+            options: any,
+        ) => {
+            await build(
+                space,
+                options.server,
+                options.identonym,
+            );
         });
 
     program
-        .command('run <command> [space]')
+        .command('run <command> <space>')
+        .option(
+            '-s, --server <server>',
+            'server address',
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            'identonym',
+        )
         .description('run a named-command in a registered space or the current directory space')
-        .action(async (command, space) => {
+        .action(async (
+            command,
+            space,
+            options,
+        ) => {
             await run(
                 command,
                 space,
+                options.server,
+                options.identonym,
             );
         });
 
