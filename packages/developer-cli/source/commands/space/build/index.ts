@@ -29,7 +29,10 @@ const build = async (
     identonym?: string,
 ) => {
     try {
-        const execute = await checkExecutionContext();
+        const execute = await checkExecutionContext(
+            server,
+            identonym,
+        );
 
         if (!execute) {
             console.log(`\n\tcould not build, no developer connection\n`);

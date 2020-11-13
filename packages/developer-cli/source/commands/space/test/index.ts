@@ -23,7 +23,10 @@ const test = async (
     identonym?: string,
 ) => {
     try {
-        const execute = await checkExecutionContext();
+        const execute = await checkExecutionContext(
+            server,
+            identonym,
+        );
 
         if (!execute) {
             console.log(`\n\tcould not test, no developer connection\n`);
