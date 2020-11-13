@@ -105,8 +105,6 @@ class Poller {
     }
 
     private async poll() {
-        console.log('this.poll', this.polls);
-
         if (this.polls.length === 0) {
             return;
         }
