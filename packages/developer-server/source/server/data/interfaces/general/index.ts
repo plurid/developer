@@ -37,6 +37,16 @@ export interface DeveloperOwner {
 }
 
 
+export interface Develop {
+    id: string;
+    start: number;
+    duration: number;
+    machine: string;
+    project: string;
+    space: string;
+}
+
+
 export interface OwnerToken {
     token: string;
 }
