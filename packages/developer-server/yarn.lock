@@ -759,10 +759,10 @@
   resolved "https://registry.yarnpkg.com/@plurid/plurid-themes/-/plurid-themes-0.1.27.tgz#426cf8bb9dada8c2ac43e7978d1d2894eba62bd0"
   integrity sha512-5SZ6sTDxfRmhfp4CWSndWI0NWQNAevx/XHsyAmElCBX8TOl2qMzH1jkT63TZL5NuclzVzQkJYVughbGhSbsqrQ==
 
-"@plurid/plurid-ui-react@^0.1.94":
-  version "0.1.94"
-  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.94.tgz#9ec7bc2fac6eea20ab12a1518279367665fdb526"
-  integrity sha512-zaeZY/m+C4Fq9VrdhPrwKjxcgNVywLYGmFzAsrfVgZ2sOh57h8TSMI6s/sqwKS5clp9ybt/OBwGJwbQ6xC6kFw==
+"@plurid/plurid-ui-react@^0.1.95":
+  version "0.1.95"
+  resolved "https://registry.yarnpkg.com/@plurid/plurid-ui-react/-/plurid-ui-react-0.1.95.tgz#56cf4c5b550a79acf3618f071cb602c30e48ab10"
+  integrity sha512-NKwV8qCwNXJz0JXaVHPWkgYb+Q1214w0NJYcBugyHJaEPTxkenPir53pTI3FwLiSGLEWIFfZmYHKS8uAyGxuXA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
@@ -2199,10 +2199,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-aws-sdk@^2.790.0:
-  version "2.790.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.790.0.tgz#0c01634e59ff2a761e889808bee26dfd1ea28a2d"
-  integrity sha512-L278KsE+g/LsXIjLhpdtbvMcEZzZ/5dTBLIh6VIcNF0z63xlnDJQ4IWTDZ3Op5fK9B6vwQxlPT7XD5+egu+qoA==
+aws-sdk@^2.791.0:
+  version "2.791.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.791.0.tgz#a85bedd46c97e0d262edb055651075c3171a171c"
+  integrity sha512-oIWu0hLKmDS+rOmjud2Z1CaDXtmxKSJF4937dSNLf/vNkxxjJA/6HapSfKqsraLnekI9DLP8uop5HnCHC++Abw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
