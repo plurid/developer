@@ -2,10 +2,12 @@
     // #region external
     import {
         Context,
+        InputOf,
+        InputValueString,
     } from '#server/data/interfaces';
 
     import {
-        Builds,
+        Develops,
     } from '#server/api/models';
     // #endregion external
 // #endregion imports
@@ -14,11 +16,12 @@
 
 // #region exports
 export default {
-    getBuilds: (
+    handleDevelop: (
         _: any,
-        __: any,
+        { input }: InputOf<InputValueString>,
         context: Context,
-    ) => Builds.Query.getBuilds(
+    ) => Develops.Mutation.handleDevelop(
+        input,
         context,
     ),
 };

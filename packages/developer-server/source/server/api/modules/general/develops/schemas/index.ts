@@ -9,32 +9,32 @@
 // #region module
 export const queries = gql`
     extend type Query {
-        getBuilds: ResponseBuilds!
+        getDevelops: ResponseDevelops!
     }
 `;
 
 
 export const mutations = gql`
     extend type Mutation {
-        handleBuild(input: InputValueString!): ResponseBuild!
+        handleDevelop(input: InputValueString!): ResponseDevelop!
     }
 `;
 
 
 export const types = gql`
-    type ResponseBuild {
+    type ResponseDevelop {
         status: Boolean!
         error: Error
-        data: Build
+        data: Develop
     }
 
-    type ResponseBuilds {
+    type ResponseDevelops {
         status: Boolean!
         error: Error
-        data: [Build!]
+        data: [Develop!]
     }
 
-    type Build {
+    type Develop {
         id: String!
         name: String!
     }

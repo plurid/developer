@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import handleBuild from './handleBuild';
+    import getDevelops from './getDevelops';
     // #endregion internal
 // #endregion imports
 
@@ -8,6 +8,6 @@
 
 // #region exports
 export default {
-    handleBuild,
+    getDevelops,
 };
 // #endregion exports

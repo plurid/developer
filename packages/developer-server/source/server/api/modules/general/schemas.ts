@@ -2,7 +2,7 @@
     // #region internal
     import owner from './owner/schemas';
     import projects from './projects/schemas';
-    import builds from './builds/schemas';
+    import develops from './develops/schemas';
     // #endregion internal
 // #endregion imports
 
@@ -12,6 +12,6 @@
 export default [
     owner,
     projects,
-    builds,
+    develops,
 ];
 // #endregion exports

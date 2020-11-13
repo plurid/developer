@@ -7,7 +7,7 @@
     // #region internal
     import owner from './owner/resolvers';
     import projects from './projects/resolvers';
-    import builds from './builds/resolvers';
+    import develops from './develops/resolvers';
     // #endregion internal
 // #endregion imports
 
@@ -30,7 +30,7 @@ const generateResolvers = (
 const resolvers = generateResolvers(
     owner,
     projects,
-    builds,
+    develops,
 );
 // #endregion module
 
