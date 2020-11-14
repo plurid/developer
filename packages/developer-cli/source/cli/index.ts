@@ -227,6 +227,10 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
+        .option(
+            '-p, --path <path>',
+            `path to directory/file, defaults to './source'`,
+        )
         .description('lint a registered space or the current directory space')
         .action(async (
             space,
@@ -236,6 +240,7 @@ const main = async (
                 space,
                 options.server,
                 options.identonym,
+                options.path,
             );
         });
 
@@ -249,6 +254,10 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
+        .option(
+            '-p, --path <path>',
+            `path to test directory/file, defaults to './source'`,
+        )
         .description('test a registered space or the current directory space')
         .action(async (
             space,
@@ -258,6 +267,7 @@ const main = async (
                 space,
                 options.server,
                 options.identonym,
+                options.path,
             );
         });
 

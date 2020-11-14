@@ -21,6 +21,7 @@ const lint = async (
     name?: string,
     server?: string,
     identonym?: string,
+    path?: string,
 ) => {
     try {
         const execute = await checkExecutionContext(
