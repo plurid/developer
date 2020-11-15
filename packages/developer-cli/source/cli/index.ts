@@ -74,11 +74,11 @@ const main = async (
     program
         .command('login')
         .requiredOption(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .requiredOption(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .requiredOption(
@@ -105,11 +105,11 @@ const main = async (
     program
         .command('logout')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .option(
@@ -131,11 +131,11 @@ const main = async (
     program
         .command('start')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .description('start the developer server connection')
@@ -151,11 +151,11 @@ const main = async (
     program
         .command('stop')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .option(
@@ -177,11 +177,11 @@ const main = async (
     program
         .command('register [path]')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .description('register a space for the developer server, given a path or the current directory')
@@ -199,11 +199,11 @@ const main = async (
     program
         .command('deregister [path]')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .description('deregister a space for the developer server, given a path or the current directory')
@@ -221,11 +221,11 @@ const main = async (
     program
         .command('describe <entity> <name>')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             `server address (if describing a 'space')`,
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             `identonym (if describing a 'space')`,
         )
         .description(`describes an entity ('server', 'connection', 'space') given the name`)
@@ -259,11 +259,11 @@ const main = async (
     program
         .command('lint <space>')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .option(
@@ -286,11 +286,11 @@ const main = async (
     program
         .command('test <space>')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .option(
@@ -313,11 +313,11 @@ const main = async (
     program
         .command('preview <space>')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .description('preview web elements and scenarios for a registered space or the current directory space')
@@ -335,11 +335,11 @@ const main = async (
     program
         .command('watch <space>')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .description('watch for changes a registered space or the current directory space')
@@ -357,11 +357,11 @@ const main = async (
     program
         .command('build <space>')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .option(
@@ -391,11 +391,11 @@ const main = async (
     program
         .command('run <command> <space>')
         .option(
-            '-s, --server <server>',
+            '-s, --server <value>',
             'server address',
         )
         .option(
-            '-i, --identonym <identonym>',
+            '-i, --identonym <value>',
             'identonym',
         )
         .description('run a named-command in a registered space or the current directory space')
