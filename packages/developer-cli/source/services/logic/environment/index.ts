@@ -54,25 +54,29 @@ const readEnvironment = async (
         return;
     }
 
-    const environmentPath = path.isAbsolute(environment)
-        ? environment
-        : path.join(
-            process.cwd(),
-            environment,
-        );
+    try {
+        const environmentPath = path.isAbsolute(environment)
+            ? environment
+            : path.join(
+                process.cwd(),
+                environment,
+            );
 
-    const fileData = await fs.readFile(environmentPath, 'utf-8');
+        const fileData = await fs.readFile(environmentPath, 'utf-8');
 
-    const extension = path.extname(environment);
+        const extension = path.extname(environment);
 
-    if (extension === '.deon') {
-        const deon = new Deon();
-        const parsedData = await deon.parse(fileData);
+        if (extension === '.deon') {
+            const deon = new Deon();
+            const parsedData = await deon.parse(fileData);
+            return parsedData;
+        }
+
+        const parsedData = parseEnvironmentFile(fileData);
         return parsedData;
+    } catch (error) {
+        return;
     }
-
-    const parsedData = parseEnvironmentFile(fileData);
-    return parsedData;
 }
 // #endregion module
 
