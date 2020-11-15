@@ -19,9 +19,10 @@
 // #region module
 const run = async (
     command: string,
-    name?: string,
-    server?: string,
-    identonym?: string,
+    name: string,
+    server: string | undefined,
+    identonym: string | undefined,
+    environment: string | undefined,
 ) => {
     try {
         const execute = await checkExecutionContext(

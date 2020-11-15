@@ -28,8 +28,11 @@ const build = async (
     server: string | undefined,
     identonym: string | undefined,
     production: boolean,
+    environment: string | undefined,
 ) => {
     try {
+        console.log('environment', environment);
+
         const execute = await checkExecutionContext(
             server,
             identonym,

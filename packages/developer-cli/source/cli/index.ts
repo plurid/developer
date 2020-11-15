@@ -297,16 +297,28 @@ const main = async (
             '-p, --path <path>',
             `path to test directory/file, defaults to './source'`,
         )
+        .option(
+            '-e, --environment',
+            'path to environment file (.env-like or .deon file)',
+        )
         .description('test a registered space or the current directory space')
         .action(async (
             space,
             options,
         ) => {
+            const {
+                server,
+                identonym,
+                path,
+                environment,
+            } = options;
+
             await test(
                 space,
-                options.server,
-                options.identonym,
-                options.path,
+                server,
+                identonym,
+                path,
+                environment,
             );
         });
 
@@ -320,15 +332,26 @@ const main = async (
             '-i, --identonym <value>',
             'identonym',
         )
+        .option(
+            '-e, --environment',
+            'path to environment file (.env-like or .deon file)',
+        )
         .description('preview web elements and scenarios for a registered space or the current directory space')
         .action(async (
             space,
             options,
         ) => {
+            const {
+                server,
+                identonym,
+                environment,
+            } = options;
+
             await preview(
                 space,
-                options.server,
-                options.identonym,
+                server,
+                identonym,
+                environment,
             );
         });
 
@@ -342,15 +365,26 @@ const main = async (
             '-i, --identonym <value>',
             'identonym',
         )
+        .option(
+            '-e, --environment',
+            'path to environment file (.env-like or .deon file)',
+        )
         .description('watch for changes a registered space or the current directory space')
         .action(async (
             space,
             options,
         ) => {
+            const {
+                server,
+                identonym,
+                environment,
+            } = options;
+
             await watch(
                 space,
-                options.server,
-                options.identonym,
+                server,
+                identonym,
+                environment,
             );
         });
 
@@ -369,6 +403,10 @@ const main = async (
             'production flag',
             false,
         )
+        .option(
+            '-e, --environment',
+            'path to environment file (.env-like or .deon file)',
+        )
         .description('build a registered space or the current directory space')
         .action(async (
             space: string,
@@ -378,6 +416,7 @@ const main = async (
                 server,
                 identonym,
                 production,
+                environment,
             } = options;
 
             await build(
@@ -385,6 +424,7 @@ const main = async (
                 server,
                 identonym,
                 production,
+                environment,
             );
         });
 
@@ -398,17 +438,28 @@ const main = async (
             '-i, --identonym <value>',
             'identonym',
         )
+        .option(
+            '-e, --environment',
+            'path to environment file (.env-like or .deon file)',
+        )
         .description('run a named-command in a registered space or the current directory space')
         .action(async (
             command,
             space,
             options,
         ) => {
+            const {
+                server,
+                identonym,
+                environment,
+            } = options;
+
             await run(
                 command,
                 space,
-                options.server,
-                options.identonym,
+                server,
+                identonym,
+                environment,
             );
         });
 
