@@ -10,6 +10,8 @@
 
     import {
         getSpaceData,
+        packageSpace,
+        uploadArchive,
     } from '#services/logic/space';
     // #endregion external
 // #endregion imports
@@ -56,6 +58,26 @@ const lint = async (
             console.log('\n\tcould not lint, no developer connection\n');
             return;
         }
+
+
+        const archive = await packageSpace(spaceData);
+        const uploadURL = spaceData.worker.server + '/upload';
+        const configuration = JSON.stringify(spaceData.data);
+        const command = 'lint';
+        const upload = await uploadArchive(
+            archive,
+            uploadURL,
+            configuration,
+            command,
+        );
+
+        if (!upload.status) {
+            return;
+        }
+
+        const id = upload.data;
+
+        console.log('lint id', id);
     } catch (error) {
         console.log('Something went wrong.');
         return;
