@@ -1,4 +1,9 @@
 // #region imports
+    // #region libraries
+    import openBrowser from 'open';
+    // #endregion libraries
+
+
     // #region external
     import {
         DeveloperConnection,
@@ -19,6 +24,8 @@ const openConnection = (
     const url = 'http://localhost:' + connection.port;
 
     console.log(`Opened connection ${url}`);
+
+    openBrowser(url);
 }
 
 
