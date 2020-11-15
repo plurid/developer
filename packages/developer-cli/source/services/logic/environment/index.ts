@@ -22,13 +22,20 @@ const parseEnvironmentFile = (
 
     for (const line of lines) {
         const split = line.split('=');
-        const key = split[0].trim();
-        let value = split[1].trim();
+        let key = split[0];
+        let value = split[1] || '';
+
+        if (!key) {
+            continue;
+        }
+
+        key = key.trim();
+        value = value.trim();
 
         // Interpolate process.env variables.
         for (const [environmentName, environmentValue] of Object.entries(process.env)) {
             if (environmentValue) {
-                const re = new RegExp(`\$${environmentName}`);
+                const re = new RegExp(`\\$${environmentName}`);
                 value = value.replace(re, environmentValue);
             }
         }
