@@ -1,12 +1,6 @@
 // #region imports
     // #region libraries
     import {
-        promises as fs,
-    } from 'fs';
-
-    import Zip from 'adm-zip';
-
-    import {
         Request,
         Response,
     } from 'express';
@@ -15,13 +9,10 @@
 
     // #region external
     import {
-        FileUpload,
         DeveloperConfiguration,
     } from '#server/data/interfaces';
 
-    import {
-        handleDeveloper,
-    } from '#server/logic/build';
+    import * as commands from '#server/logic/commands';
     // #endregion external
 // #endregion imports
 
@@ -58,38 +49,43 @@ const handleUploadArchive = async (
         !command
         || !configuration
     ) {
-        response.json(errorResponse);
+        console.log('developer :: Command or configuration invalid');
+
+        // 400 Bad Request
+        response.status(400).json(errorResponse);
         return;
     }
 
-    if (!configuration.commands[command]) {
-        response.json(errorResponse);
-        return;
+    switch (command) {
+        case 'lint':
+            commands.lint();
+            break;
+        case 'test':
+            commands.test();
+            break;
+        case 'preview':
+            commands.preview();
+            break;
+        case 'watch':
+            commands.watch();
+            break;
+        case 'build':
+            commands.build(
+                request,
+                response,
+                configuration,
+            );
+            break;
+        case 'run':
+            commands.run();
+            break;
+        default:
+            console.log('developer :: Command not found');
+
+            // 405 Method Not Allowed
+            response.status(405).json(errorResponse);
+            break;
     }
-
-    const file: FileUpload = request.file;
-
-    const data = {
-        status: true,
-        data: file.filename,
-    };
-
-    response.json(data);
-
-    const unarchivePath = `./data/unpacks/${file.filename}`;
-
-    const zip = new Zip(file.path);
-    zip.extractAllTo(unarchivePath);
-
-    await handleDeveloper(
-        file.filename,
-        command,
-        unarchivePath,
-        configuration,
-    );
-
-    await fs.unlink(file.path);
-    await fs.rmdir(unarchivePath, {recursive: true});
 }
 // #endregion module
 
