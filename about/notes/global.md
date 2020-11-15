@@ -1,7 +1,7 @@
 # global view
 
 
-`joiner` orders updates (or the coder changes some) of the packages and pushes the updated repository
+`joiner` orders updates (or the coder changes some) of the packages and pushes the updated repository to `decode`
 
 `performer` listens for changes on the repository and starts building the packages
 
