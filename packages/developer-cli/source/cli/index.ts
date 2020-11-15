@@ -298,7 +298,7 @@ const main = async (
             `path to test directory/file, defaults to './source'`,
         )
         .option(
-            '-e, --environment',
+            '-e, --environment <value>',
             'path to environment file (.env-like or .deon file)',
         )
         .description('test a registered space or the current directory space')
@@ -333,7 +333,7 @@ const main = async (
             'identonym',
         )
         .option(
-            '-e, --environment',
+            '-e, --environment <value>',
             'path to environment file (.env-like or .deon file)',
         )
         .description('preview web elements and scenarios for a registered space or the current directory space')
@@ -366,7 +366,7 @@ const main = async (
             'identonym',
         )
         .option(
-            '-e, --environment',
+            '-e, --environment <value>',
             'path to environment file (.env-like or .deon file)',
         )
         .description('watch for changes a registered space or the current directory space')
@@ -404,7 +404,7 @@ const main = async (
             false,
         )
         .option(
-            '-e, --environment',
+            '-e, --environment <value>',
             'path to environment file (.env-like or .deon file)',
         )
         .description('build a registered space or the current directory space')
@@ -439,7 +439,7 @@ const main = async (
             'identonym',
         )
         .option(
-            '-e, --environment',
+            '-e, --environment <value>',
             'path to environment file (.env-like or .deon file)',
         )
         .description('run a named-command in a registered space or the current directory space')

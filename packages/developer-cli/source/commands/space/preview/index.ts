@@ -1,6 +1,10 @@
 // #region imports
     // #region external
     import {
+        readEnvironment,
+    } from '#services/logic/environment';
+
+    import {
         checkExecutionContext,
     } from '#services/logic/execution';
 
@@ -24,6 +28,14 @@ const preview = async (
     environment: string | undefined,
 ) => {
     try {
+        const environmentData = await readEnvironment(environment);
+
+        if (environment && !environmentData) {
+            console.log(`\n\tcould not read environment file\n`);
+
+            return;
+        }
+
         const execute = await checkExecutionContext(
             server,
             identonym,
