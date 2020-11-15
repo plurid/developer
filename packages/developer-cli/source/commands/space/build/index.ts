@@ -25,8 +25,9 @@
 // #region module
 const build = async (
     name: string,
-    server?: string,
-    identonym?: string,
+    server: string | undefined,
+    identonym: string | undefined,
+    production: boolean,
 ) => {
     try {
         const execute = await checkExecutionContext(
@@ -65,7 +66,10 @@ const build = async (
 
         const archive = await packageSpace(spaceData);
         const uploadURL = spaceData.worker.server + '/upload';
-        const configuration = JSON.stringify(spaceData.data);
+        const configuration = JSON.stringify({
+            ...spaceData.data,
+            production,
+        });
         const command = 'build';
         const upload = await uploadArchive(
             archive,

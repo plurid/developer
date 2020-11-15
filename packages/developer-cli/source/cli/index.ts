@@ -364,15 +364,27 @@ const main = async (
             '-i, --identonym <identonym>',
             'identonym',
         )
+        .option(
+            '-p, --production',
+            'production flag',
+            false,
+        )
         .description('build a registered space or the current directory space')
         .action(async (
-            space: any,
-            options: any,
+            space: string,
+            options,
         ) => {
+            const {
+                server,
+                identonym,
+                production,
+            } = options;
+
             await build(
                 space,
-                options.server,
-                options.identonym,
+                server,
+                identonym,
+                production,
             );
         });
 
