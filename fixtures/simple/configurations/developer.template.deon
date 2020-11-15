@@ -1,0 +1,5 @@
+{
+    project developer-test
+    space fixtures/simple
+    template typescript
+}

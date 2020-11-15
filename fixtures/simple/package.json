@@ -2,5 +2,14 @@
     "name": "simple",
     "version": "0.0.0",
     "license": "UNLICENSED",
-    "private": true
+    "private": true,
+    "scripts": {
+        "start": "node build",
+        "lint": "developer lint",
+        "test": "developer test",
+        "preview": "developer preview",
+        "watch": "developer watch",
+        "build": "developer build",
+        "build.production": "developer build --production"
+    }
 }
