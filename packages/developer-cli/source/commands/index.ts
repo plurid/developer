@@ -8,6 +8,8 @@
     import stop from './stop';
     import register from './register';
     import deregister from './deregister';
+    import describe from './describe';
+    import open from './open';
 
     import lint from './space/lint';
     import test from './space/test';
@@ -30,6 +32,8 @@ export {
     stop,
     register,
     deregister,
+    describe,
+    open,
 
     lint,
     test,

@@ -16,6 +16,8 @@
         stop,
         register,
         deregister,
+        describe,
+        open,
 
         lint,
         test,
@@ -216,7 +218,44 @@ const main = async (
             );
         });
 
+    program
+        .command('describe <entity> <name>')
+        .option(
+            '-s, --server <server>',
+            `server address (if describing a 'space')`,
+        )
+        .option(
+            '-i, --identonym <identonym>',
+            `identonym (if describing a 'space')`,
+        )
+        .description(`describes an entity ('server', 'connection', 'space') given the name`)
+        .action(async (
+            entity,
+            name,
+            options,
+        ) => {
+            await describe(
+                entity,
+                name,
+                options.server,
+                options.identonym,
+            );
+        });
 
+    program
+        .command('open [connection]')
+        .description(`opens the server in browser for a given connection (by name or number); defaults to the first connection, if any`)
+        .action(async (
+            value,
+        ) => {
+            await open(
+                value,
+            );
+        });
+
+
+
+    // Space commands.
     program
         .command('lint <space>')
         .option(
