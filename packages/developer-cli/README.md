@@ -62,6 +62,8 @@ Commands:
     stop [options]                      stop the developer server connection
     register [options] [path]           register a space for the developer server, given a path or the current directory
     deregister [options] [path]         deregister a space for the developer server, given a path or the current directory
+    describe [options] <entity> <name>  describes an entity ('server', 'connection', 'space') given the name
+    open [connection]                   opens the server in browser for a given connection (by name or number); defaults to the first connection, if any
     lint [options] <space>              lint a registered space or the current directory space
     test [options] <space>              test a registered space or the current directory space
     preview [options] <space>           preview web elements and scenarios for a registered space or the current directory space
