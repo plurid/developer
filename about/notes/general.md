@@ -20,3 +20,21 @@ issues
 
 
 to check out diff engines
+
+
+
+
+---
+
+
+at the level of the configuration to have `templates` which are all encompassing
+
+and at the level of commands to have `schemas`
+
+which provide general scaffolding
+
+
+---
+
+
+there should be no need for a developer configuration to be present, the template typescript will be assumed
