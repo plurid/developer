@@ -49,7 +49,7 @@ const listWorkers = (
             console.log(`\t  - server '${server}' with identonym '${identonym}'${defaultString}`);
 
             if (spaces.length === 0) {
-                console.log(`\t  no spaces registered`);
+                console.log(`\t      no spaces registered`);
                 continue;
             }
 
