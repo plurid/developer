@@ -10,6 +10,7 @@
         "preview": "developer preview",
         "watch": "developer watch",
         "build": "developer build",
+        "build.local": "developer build --environment ./environments/local.deon",
         "build.production": "developer build --production"
     }
 }
