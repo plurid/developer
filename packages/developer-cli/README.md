@@ -20,6 +20,8 @@
 
 
 
+`developer` is a [service](https://developer.plurid.cloud) or self-hosted Centralized Source Processor.
+
 ### Contents
 
 + [About](#about)
@@ -29,8 +31,6 @@
 
 
 ## About
-
-`developer` is a [service](https://developer.plurid.cloud) or self-hosted Centralized Source Processor.
 
 A `Source Processor` handles the totality of transformations that are required in order to have the source code runtime-ready.
 
