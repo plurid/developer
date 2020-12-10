@@ -15,18 +15,20 @@
 
 
 <h3 align="center">
-    Cloud-Native Centralized Source Processor
+    Cloud Service for Centralized Source Processor
 </h3>
 
 
 
 `developer` is a [service](https://developer.plurid.cloud) or self-hosted Centralized Source Processor.
 
+
 ### Contents
 
 + [About](#about)
 + [CLI](#cli)
 + [Packages](#packages)
++ [Codeophon](#codeophon)
 
 
 
@@ -92,3 +94,10 @@ Commands:
 [@plurid/developer-server][developer-server] • the server application
 
 [developer-server]: https://github.com/plurid/developer/tree/master/packages/developer-server
+
+
+
+## [Codeophon](https://github.com/ly3xqhl8g9/codeophon)
+
++ licensing: [delicense](https://github.com/ly3xqhl8g9/delicense)
++ versioning: [αver](https://github.com/ly3xqhl8g9/alpha-versioning)
