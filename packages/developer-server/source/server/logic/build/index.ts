@@ -7,19 +7,19 @@
     // #region external
     import {
         DeveloperConfiguration,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         transpileTypescript,
-    } from '#server/logic/typescript';
+    } from '~server/logic/typescript';
 
     import {
         archiveBuild,
-    } from '#server/logic/archive';
+    } from '~server/logic/archive';
 
     import {
         registerDevelop,
-    } from '#server/logic/operators/develops';
+    } from '~server/logic/operators/develops';
     // #endregion external
 // #endregion imports
 

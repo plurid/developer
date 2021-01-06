@@ -11,13 +11,13 @@
     // #region external
     import {
         handleUploadArchive,
-    } from '#server/logic/upload';
+    } from '~server/logic/upload';
 
     import {
         handleDownloadArchive,
-    } from '#server/logic/download';
+    } from '~server/logic/download';
 
-    import database from '#server/services/database';
+    import database from '~server/services/database';
     // #endregion external
 // #endregion imports
 

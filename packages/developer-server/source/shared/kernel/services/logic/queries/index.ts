@@ -10,14 +10,14 @@
 
 
     // #region external
-    import client from '#kernel-services/graphql/client';
+    import client from '~kernel-services/graphql/client';
 
     import {
         GET_CURRENT_OWNER,
         GET_USAGE_TYPE,
-    } from '#kernel-services/graphql/query';
+    } from '~kernel-services/graphql/query';
 
-    import actions from '#kernel-services/state/actions';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 // #endregion imports
 

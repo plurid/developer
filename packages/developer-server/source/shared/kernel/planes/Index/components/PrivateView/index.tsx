@@ -13,29 +13,29 @@
     } from '@plurid/plurid-themes';
 
     import {
-        PluridPureButton,
-    } from '@plurid/plurid-ui-react';
+        universal,
+    } from '@plurid/plurid-ui-components-react';
     // #endregion libraries
 
 
     // #region external
     import developerLogo from '../../assets/developer-logo.png';
 
-    import client from '#kernel-services/graphql/client';
+    import client from '~kernel-services/graphql/client';
 
     import {
         LOGIN,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
-    import InputLine from '#kernel-components/InputLine';
+    import InputLine from '~kernel-components/InputLine';
 
     import {
         getCurrentOwner,
-    } from '#kernel-services/logic/queries';
+    } from '~kernel-services/logic/queries';
 
-    import { AppState } from '#kernel-services/state/store';
-    import selectors from '#kernel-services/state/selectors';
-    import actions from '#kernel-services/state/actions';
+    import { AppState } from '~kernel-services/state/store';
+    import selectors from '~kernel-services/state/selectors';
+    import actions from '~kernel-services/state/actions';
     // #endregion external
 
 
@@ -51,6 +51,12 @@
 
 
 // #region module
+const {
+    buttons: {
+        PureButton: PluridPureButton,
+    },
+} = universal;
+
 export interface PrivateViewOwnProperties {
 }
 

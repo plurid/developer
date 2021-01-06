@@ -11,9 +11,9 @@
     // #region external
     import {
         Project,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import CopyableField from '#kernel-components/CopyableField';
+    import CopyableField from '~kernel-components/CopyableField';
     // #endregion external
 // #endregion imports
 

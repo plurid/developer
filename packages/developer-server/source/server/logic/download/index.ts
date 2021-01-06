@@ -14,7 +14,7 @@
     // #region external
     import {
         fileExists,
-    } from '#server/utilities';
+    } from '~server/utilities';
     // #endregion external
 // #endregion imports
 

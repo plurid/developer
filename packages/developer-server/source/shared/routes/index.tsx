@@ -9,12 +9,12 @@
 
 
     // #region external
-    import IndexPlane from '#kernel-planes/Index';
-    import NotFoundPlane from '#kernel-planes/NotFound';
+    import IndexPlane from '~kernel-planes/Index';
+    import NotFoundPlane from '~kernel-planes/NotFound';
 
-    import Head from '#kernel-components/Head';
+    import Head from '~kernel-components/Head';
 
-    import Home from '#kernel-containers/Home';
+    import Home from '~kernel-containers/Home';
     // #endregion external
 // #endregion imports
 

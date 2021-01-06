@@ -13,21 +13,21 @@
     // #region external
     import {
         Project as IProject,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     // import {
     //     addEntityMutation,
-    // } from '#kernel-services/logic/mutations';
+    // } from '~kernel-services/logic/mutations';
 
     import {
         GENERATE_PROJECT,
-    } from '#kernel-services/graphql/mutate';
+    } from '~kernel-services/graphql/mutate';
 
     import {
         StyledH1,
         StyledPluridPureButton,
         StyledPluridLinkButton,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
 
     import InputLine from '../InputLine';
     // #endregion external

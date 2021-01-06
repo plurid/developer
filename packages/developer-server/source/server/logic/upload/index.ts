@@ -10,9 +10,9 @@
     // #region external
     import {
         DeveloperConfiguration,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
-    import * as commands from '#server/logic/commands';
+    import * as commands from '~server/logic/commands';
     // #endregion external
 // #endregion imports
 

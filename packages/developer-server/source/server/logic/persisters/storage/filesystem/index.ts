@@ -18,16 +18,16 @@
         StorageObliterateAll,
         StorageGenerateLocations,
         StorageReadDirectory,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         QUIET,
         BASE_PATH,
-    } from '#server/data/constants';
+    } from '~server/data/constants';
 
     import {
         makeDirectorySync,
-    } from '#server/utilities/directory';
+    } from '~server/utilities/directory';
     // #endregion external
 // #endregion imports
 

@@ -3,9 +3,8 @@
     import React from 'react';
 
     import {
-        PluridSwitch,
-        PluridFormLeftRight,
-    } from '@plurid/plurid-ui-react';
+        universal,
+    } from '@plurid/plurid-ui-components-react';
     // #endregion libraries
 
 
@@ -19,6 +18,15 @@
 
 
 // #region module
+const {
+    inputs: {
+        Switch: PluridSwitch,
+    },
+    form: {
+        FormLeftRight: PluridFormLeftRight,
+    },
+} = universal;
+
 export interface InputSwitchProperties {
     name: string;
     checked: boolean;

@@ -7,7 +7,7 @@
     // #region external
     import {
         StyledPluridTextline,
-    } from '#kernel-services/styled';
+    } from '~kernel-services/styled';
     // #endregion external
 
 

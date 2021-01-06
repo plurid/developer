@@ -17,11 +17,11 @@
     import {
         FileUpload,
         DeveloperConfiguration,
-    } from '#server/data/interfaces';
+    } from '~server/data/interfaces';
 
     import {
         handleDeveloper,
-    } from '#server/logic/build';
+    } from '~server/logic/build';
     // #endregion external
 // #endregion imports
 
