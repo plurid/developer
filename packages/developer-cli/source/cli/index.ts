@@ -257,7 +257,7 @@ const main = async (
 
     // Space commands.
     program
-        .command('lint <space>')
+        .command('lint [space]')
         .option(
             '-s, --server <value>',
             'server address',
@@ -284,7 +284,7 @@ const main = async (
         });
 
     program
-        .command('test <space>')
+        .command('test [space]')
         .option(
             '-s, --server <value>',
             'server address',
@@ -323,7 +323,7 @@ const main = async (
         });
 
     program
-        .command('preview <space>')
+        .command('preview [space]')
         .option(
             '-s, --server <value>',
             'server address',
@@ -336,7 +336,7 @@ const main = async (
             '-e, --environment <value>',
             'path to environment file (.env-like or .deon file)',
         )
-        .description('preview web elements and scenarios for a registered space or the current directory space')
+        .description('preview elements and scenarios for a registered space or the current directory space')
         .action(async (
             space,
             options,
@@ -356,7 +356,7 @@ const main = async (
         });
 
     program
-        .command('watch <space>')
+        .command('watch [space]')
         .option(
             '-s, --server <value>',
             'server address',
@@ -389,7 +389,7 @@ const main = async (
         });
 
     program
-        .command('build <space>')
+        .command('build [space]')
         .option(
             '-s, --server <value>',
             'server address',
@@ -429,7 +429,7 @@ const main = async (
         });
 
     program
-        .command('run <command> <space>')
+        .command('run <command> [space]')
         .option(
             '-s, --server <value>',
             'server address',
