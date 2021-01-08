@@ -66,12 +66,12 @@ Commands:
     deregister [options] [path]         deregister a space for the developer server, given a path or the current directory
     describe [options] <entity> <name>  describes an entity ('server', 'connection', 'space') given the name
     open [connection]                   opens the server in browser for a given connection (by name or number); defaults to the first connection, if any
-    lint [options] <space>              lint a registered space or the current directory space
-    test [options] <space>              test a registered space or the current directory space
-    preview [options] <space>           preview web elements and scenarios for a registered space or the current directory space
-    watch [options] <space>             watch for changes a registered space or the current directory space
-    build [options] <space>             build a registered space or the current directory space
-    run [options] <command> <space>     run a named-command in a registered space or the current directory space
+    lint [options] [space]              lint a registered space or the current directory space
+    test [options] [space]              test a registered space or the current directory space
+    preview [options] [space]           preview elements and scenarios for a registered space or the current directory space
+    watch [options] [space]             watch for changes a registered space or the current directory space
+    build [options] [space]             build a registered space or the current directory space
+    run [options] <command> [space]     run a named-command in a registered space or the current directory space
 ```
 
 
