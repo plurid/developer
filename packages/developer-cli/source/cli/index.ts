@@ -37,7 +37,6 @@ const main = async (
 ) => {
     program
         .storeOptionsAsProperties(false)
-        .passCommandToAction(false);
 
     program
         .name('developer')
