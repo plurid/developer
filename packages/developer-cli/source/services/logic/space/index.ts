@@ -37,52 +37,56 @@
 const resolveSpaceConfigurationPath = async (
     configurationPath?: string,
 ) => {
-    const defaultLocations = [
-        'developer.deon',
-        './configurations/developer.deon',
-    ];
+    try {
+        const defaultLocations = [
+            'developer.deon',
+            './configurations/developer.deon',
+        ];
 
-    if (!configurationPath) {
-        for (const defaultLocation of defaultLocations) {
-            const locationPath = path.join(
-                process.cwd(),
-                defaultLocation,
-            );
+        if (!configurationPath) {
+            for (const defaultLocation of defaultLocations) {
+                const locationPath = path.join(
+                    process.cwd(),
+                    defaultLocation,
+                );
 
-            const exists = await fileExists(locationPath);
+                const exists = await fileExists(locationPath);
 
-            if (exists) {
-                return locationPath;
+                if (exists) {
+                    return locationPath;
+                }
             }
+
+            return;
         }
 
-        return;
-    }
+        const isDirectory = fsSynchronous.statSync(configurationPath).isDirectory();
 
-    const isDirectory = fsSynchronous.statSync(configurationPath).isDirectory();
+        const absolutePath = resolvePathToAbsolute(
+            configurationPath,
+        );
 
-    const absolutePath = resolvePathToAbsolute(
-        configurationPath,
-    );
+        if (isDirectory) {
+            for (const defaultLocation of defaultLocations) {
+                const locationPath = path.join(
+                    absolutePath,
+                    defaultLocation,
+                );
 
-    if (isDirectory) {
-        for (const defaultLocation of defaultLocations) {
-            const locationPath = path.join(
-                absolutePath,
-                defaultLocation,
-            );
+                const exists = await fileExists(locationPath);
 
-            const exists = await fileExists(locationPath);
-
-            if (exists) {
-                return locationPath;
+                if (exists) {
+                    return locationPath;
+                }
             }
+
+            return;
         }
 
+        return absolutePath;
+    } catch (error) {
         return;
     }
-
-    return absolutePath;
 }
 
 

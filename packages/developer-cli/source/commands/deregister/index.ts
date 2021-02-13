@@ -1,6 +1,11 @@
 // #region imports
     // #region external
     import {
+        DeveloperWorker,
+        Space,
+    } from '#data/interfaces';
+
+    import {
         resolveSpaceConfigurationPath,
     } from '#services/logic/space';
 
@@ -14,6 +19,35 @@
 
 
 // #region module
+const deregisterAction = async (
+    worker: DeveloperWorker,
+    deregisteredSpace: Space,
+    spaceConfigurationPath: string | undefined,
+) => {
+    const {
+        identifier,
+        spacePath,
+    } = deregisteredSpace;
+
+    const spaces = worker.spaces.filter(
+        space => space.configurationPath !== spaceConfigurationPath,
+    );
+
+    const updatedWorker = {
+        ...worker,
+        spaces,
+    };
+
+    await updateWorker(
+        worker.api,
+        worker.identonym,
+        updatedWorker,
+    );
+
+    console.log(`\n\tDeregistered space\n\t'${identifier}'\n\tin '${spacePath}'\n`);
+}
+
+
 const deregister = async (
     configurationPath?: string,
     server?: string,
@@ -35,6 +69,20 @@ const deregister = async (
         );
 
         if (!spaceConfigurationPath) {
+            // Check if identifier match.
+            const deregisteredSpace = worker.spaces.find(
+                space => space.identifier === configurationPath,
+            );
+
+            if (deregisteredSpace) {
+                await deregisterAction(
+                    worker,
+                    deregisteredSpace,
+                    spaceConfigurationPath,
+                );
+                return;
+            }
+
             console.log(`Could not read project configuration.`);
             return;
         }
@@ -48,28 +96,13 @@ const deregister = async (
             return;
         }
 
-        const {
-            identifier,
-            spacePath,
-        } = deregisteredSpace;
-
-        const spaces = worker.spaces.filter(
-            space => space.configurationPath !== spaceConfigurationPath,
+        deregisterAction(
+            worker,
+            deregisteredSpace,
+            spaceConfigurationPath,
         );
-
-        const updatedWorker = {
-            ...worker,
-            spaces,
-        };
-
-        await updateWorker(
-            worker.api,
-            worker.identonym,
-            updatedWorker,
-        );
-
-        console.log(`\n\tDeregistered space\n\t'${identifier}'\n\tin '${spacePath}'\n`);
     } catch (error) {
+        console.log(error);
         console.log('Something went wrong.');
         return;
     }

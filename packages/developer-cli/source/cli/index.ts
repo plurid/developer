@@ -196,7 +196,7 @@ const main = async (
         });
 
     program
-        .command('deregister [path]')
+        .command('deregister [space]')
         .option(
             '-s, --server <value>',
             'server address',
@@ -205,13 +205,13 @@ const main = async (
             '-i, --identonym <value>',
             'identonym',
         )
-        .description('deregister a space for the developer server, given a path or the current directory')
+        .description('deregister a space for the developer server, given a path, an identifier, or the current directory')
         .action(async (
-            path,
+            space,
             options,
         ) => {
             await deregister(
-                path,
+                space,
                 options.server,
                 options.identonym,
             );
