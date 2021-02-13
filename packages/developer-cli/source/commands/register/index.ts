@@ -63,7 +63,7 @@ const register = async (
         const identifier = data.project + '//' + data.space;
 
         const alreadyRegisteredSpace = worker.spaces.find(
-            space => space.configurationPath !== spaceConfigurationPath,
+            space => space.configurationPath === spaceConfigurationPath,
         );
 
         if (alreadyRegisteredSpace) {
