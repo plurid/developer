@@ -26,10 +26,11 @@ const deregisterAction = async (
     const {
         identifier,
         spacePath,
+        configurationPath,
     } = deregisteredSpace;
 
     const spaces = worker.spaces.filter(
-        space => space.configurationPath !== spacePath,
+        space => space.configurationPath !== configurationPath,
     );
 
     const updatedWorker = {
