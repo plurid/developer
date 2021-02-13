@@ -1,6 +1,6 @@
 // #region imports
     // #region libraries
-    import {
+    import fsSynchronous, {
         promises as fs,
     } from 'fs';
 
@@ -46,6 +46,25 @@ const resolveSpaceConfigurationPath = async (
         for (const defaultLocation of defaultLocations) {
             const locationPath = path.join(
                 process.cwd(),
+                defaultLocation,
+            );
+
+            const exists = await fileExists(locationPath);
+
+            if (exists) {
+                return locationPath;
+            }
+        }
+
+        return;
+    }
+
+    const isDirectory = fsSynchronous.statSync(configurationPath).isDirectory();
+
+    if (isDirectory) {
+        for (const defaultLocation of defaultLocations) {
+            const locationPath = path.join(
+                configurationPath,
                 defaultLocation,
             );
 

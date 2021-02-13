@@ -94,6 +94,8 @@ const register = async (
             worker.identonym,
             updatedWorker,
         );
+
+        console.log(`\n\tRegistered space\n\t'${identifier}'\n\tin '${spacePath}'\n`);
     } catch (error) {
         console.log('Something went wrong.');
         return;
