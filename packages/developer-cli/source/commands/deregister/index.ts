@@ -22,7 +22,6 @@
 const deregisterAction = async (
     worker: DeveloperWorker,
     deregisteredSpace: Space,
-    spaceConfigurationPath: string | undefined,
 ) => {
     const {
         identifier,
@@ -30,7 +29,7 @@ const deregisterAction = async (
     } = deregisteredSpace;
 
     const spaces = worker.spaces.filter(
-        space => space.configurationPath !== spaceConfigurationPath,
+        space => space.configurationPath !== spacePath,
     );
 
     const updatedWorker = {
@@ -78,7 +77,6 @@ const deregister = async (
                 await deregisterAction(
                     worker,
                     deregisteredSpace,
-                    spaceConfigurationPath,
                 );
                 return;
             }
@@ -99,7 +97,6 @@ const deregister = async (
         deregisterAction(
             worker,
             deregisteredSpace,
-            spaceConfigurationPath,
         );
     } catch (error) {
         console.log(error);
