@@ -61,10 +61,14 @@ const resolveSpaceConfigurationPath = async (
 
     const isDirectory = fsSynchronous.statSync(configurationPath).isDirectory();
 
+    const absolutePath = resolvePathToAbsolute(
+        configurationPath,
+    );
+
     if (isDirectory) {
         for (const defaultLocation of defaultLocations) {
             const locationPath = path.join(
-                configurationPath,
+                absolutePath,
                 defaultLocation,
             );
 
@@ -78,11 +82,7 @@ const resolveSpaceConfigurationPath = async (
         return;
     }
 
-    const resolvedPath = resolvePathToAbsolute(
-        configurationPath,
-    );
-
-    return resolvedPath;
+    return absolutePath;
 }
 
 

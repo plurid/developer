@@ -62,6 +62,15 @@ const register = async (
 
         const identifier = data.project + '//' + data.space;
 
+        const alreadyRegisteredSpace = worker.spaces.find(
+            space => space.configurationPath !== spaceConfigurationPath,
+        );
+
+        if (alreadyRegisteredSpace) {
+            console.log(`\n\tSpace '${identifier}' already registered.`);
+            return;
+        }
+
         const spacePath = path.join(
             path.dirname(filePath),
             data.root,
