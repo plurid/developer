@@ -1,5 +1,7 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/plurid/developer/master/about/identity/developer-logo.png" height="250px">
+    <a target="_blank" href="https://developer.plurid.cloud">
+        <img src="https://raw.githubusercontent.com/plurid/developer/master/about/identity/developer-logo.png" height="250px">
+    </a>
     <br />
     <br />
     <a target="_blank" href="https://github.com/plurid/developer/blob/master/LICENSE">
