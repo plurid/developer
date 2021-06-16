@@ -128,6 +128,7 @@ const generateWorker = async (
         };
         // #endregion public usage
     } catch (error) {
+        console.log(error);
         // #region error handle
         logger.log(
             generateWorkerLogs.errorEnd,
