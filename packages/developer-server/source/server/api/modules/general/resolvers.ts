@@ -8,6 +8,7 @@
     import owner from './owner/resolvers';
     import projects from './projects/resolvers';
     import develops from './develops/resolvers';
+    import workers from './workers/resolvers';
     // #endregion internal
 // #endregion imports
 
@@ -31,6 +32,7 @@ const resolvers = generateResolvers(
     owner,
     projects,
     develops,
+    workers,
 );
 // #endregion module
 
