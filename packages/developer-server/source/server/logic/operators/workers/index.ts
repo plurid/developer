@@ -33,6 +33,58 @@
 
 
 // #region module
+const generateWorkerConfigurationsFiles = async (
+    directory: string,
+) => {
+    const npmrcxPath = path.join(
+        directory,
+        '/configurations/.npmrcx',
+    );
+    const npmrcx = `//\${NPM_REGISTRY}/:_authToken="\${NPM_TOKEN}"
+registry=https://\${NPM_REGISTRY}/
+always-auth=true
+`;
+    await fs.writeFile(
+        npmrcxPath,
+        npmrcx,
+    );
+
+
+    const dockerfilePath = path.join(
+        directory,
+        '/configurations/Dockerfile',
+    );
+    const dockerfile = `FROM node:14.17-alpine
+
+ARG NPM_TOKEN
+ARG NPM_REGISTRY=registry.npmjs.org
+
+ENV NPM_TOKEN $NPM_TOKEN
+ENV NPM_REGISTRY $NPM_REGISTRY
+
+WORKDIR /app
+
+COPY . .
+
+RUN ( echo "cat <<EOF" ; cat ./configurations/.npmrcx ; echo EOF ) | sh > ./.npmrc
+
+RUN yarn install --production false --network-timeout 1000000
+
+CMD [ "yarn", "build"]
+`;
+    await fs.writeFile(
+        dockerfilePath,
+        dockerfile,
+    );
+
+
+    return [
+        npmrcxPath,
+        dockerfilePath,
+    ];
+}
+
+
 const generateWorkerFiles = async (
     namespace: string,
     id: string,
@@ -45,8 +97,7 @@ const generateWorkerFiles = async (
     );
     await fs.mkdir(workerPath);
 
-    // create package.json
-    const workerID = uuid.generate();
+
     const dependenciesText = Object
         .entries(dependencies)
         .map(([name, version]) => {
@@ -55,12 +106,11 @@ const generateWorkerFiles = async (
         .join(',\n');
 
     const packageJsonText = packageJson(
-        workerID,
+        id,
         dependenciesText,
         command,
     );
 
-    // store package.json
     const packageJsonPath = path.join(
         workerPath,
         `package.json`,
@@ -71,10 +121,16 @@ const generateWorkerFiles = async (
     );
 
 
+    const configurationsFiles = await generateWorkerConfigurationsFiles(
+        workerPath,
+    );
+
+
     return {
         workerPath,
         files: [
             packageJsonPath,
+            ...configurationsFiles,
         ],
     };
 }
@@ -99,6 +155,7 @@ const generateImageneForWorker = async (
     );
 
     const tag = `developer-imagene-${id}`;
+    const buildargs = {};
 
     await docker.buildImage(
         {
@@ -108,6 +165,7 @@ const generateImageneForWorker = async (
         {
             dockerfile: dockerfilePath,
             t: tag,
+            buildargs,
         },
     );
 
