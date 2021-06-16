@@ -25,8 +25,9 @@ export interface Worker {
     name: string;
     ownedBy: string;
 
-    packages: string[];
+    dependencies: Record<string, string>;
     script: string;
+    command: string;
     imagene: string;
 }
 

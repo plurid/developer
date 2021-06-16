@@ -1,6 +1,11 @@
 // #region imports
     // #region libraries
     import {
+        promises as fs,
+    } from 'fs';
+    import path from 'path';
+
+    import {
         uuid,
     } from '@plurid/plurid-functions';
     // #endregion libraries
@@ -10,6 +15,10 @@
     import {
         Worker,
     } from '~server/data/interfaces';
+
+    import {
+        workersPath,
+    } from '~server/data/constants';
 
     // import database from '~server/services/database';
 
@@ -25,11 +34,16 @@
 
 // #region module
 const generateWorkerFiles = async (
+    namespace: string,
+    id: string,
     dependencies: Record<string, string>,
     command: string,
 ) => {
-    // create namespaced directory
-
+    const workerPath = path.join(
+        workersPath,
+        `${namespace}/${id}`,
+    );
+    await fs.mkdir(workerPath);
 
     // create package.json
     const workerID = uuid.generate();
@@ -45,21 +59,37 @@ const generateWorkerFiles = async (
         dependenciesText,
         command,
     );
-    // store packageJsonText
 
+    // store package.json
+    const packageJsonPath = path.join(
+        workerPath,
+        `package.json`,
+    );
+    await fs.writeFile(
+        packageJsonPath,
+        packageJsonText,
+    );
 
-    // return filepath to the package.json
-    return [];
+    return [
+        packageJsonPath,
+    ];
 }
 
 
-const generateImageneForWorker = async () => {
+const generateImageneForWorker = async (
+    namespace: string,
+    dependencies: Record<string, string>,
+    command: string,
+) => {
+    const id = uuid.generate();
     const files = await generateWorkerFiles(
-        {},
-        '',
+        namespace,
+        id,
+        dependencies,
+        command,
     );
 
-    const tag = 'developer-imagene-' + uuid.generate();
+    const tag = 'developer-imagene-' + id;
 
     const imagene = await docker.buildImage(
         {
@@ -79,20 +109,26 @@ const generateImageneForWorker = async () => {
 const registerWorker = async (
     name: string,
     ownedBy: string,
-    packages: string[],
+    dependencies: Record<string, string>,
+    command: string,
     script: string,
 ) => {
     const id = uuid.generate();
 
-    const imagene = await generateImageneForWorker();
+    const imagene = await generateImageneForWorker(
+        ownedBy,
+        dependencies,
+        command,
+    );
 
     const worker: Worker = {
         id,
         name,
         ownedBy,
 
-        packages,
+        dependencies,
         script,
+        command,
         imagene,
     };
 
