@@ -58,7 +58,6 @@ const generateWorker = async (
             dependencies,
             script,
             command,
-            imagene,
             npmToken,
             npmRegistry,
         } = input;
