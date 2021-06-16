@@ -3,8 +3,8 @@
     import React from 'react';
 
     import {
-        PluridRoute,
-    } from '@plurid/plurid-data';
+        PluridReactRoute,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
@@ -21,19 +21,13 @@
 
 
 // #region module
-const indexRoute: PluridRoute = {
+const indexRoute: PluridReactRoute = {
     value: '/',
-    exterior: {
-        kind: 'react',
-        element: Home,
-    },
+    exterior: Home,
     planes: [
         {
             value: '/dashboard',
-            component: {
-                kind: 'react',
-                element: IndexPlane,
-            },
+            component: IndexPlane,
         },
     ],
     view: [
@@ -52,16 +46,13 @@ const indexRoute: PluridRoute = {
 }
 
 
-const notFoundRoute: PluridRoute = {
+const notFoundRoute: PluridReactRoute = {
     value: '/not-found',
-    exterior: {
-        kind: 'react',
-        element: () => (
-            <Head
-                title="not found · performer"
-            />
-        ),
-    },
+    exterior: () => (
+        <Head
+            title="not found · developer"
+        />
+    ),
     spaces: [
         {
             value: 'default',
@@ -74,10 +65,7 @@ const notFoundRoute: PluridRoute = {
                             planes: [
                                 {
                                     value: '/',
-                                    component: {
-                                        kind: 'react',
-                                        element: NotFoundPlane,
-                                    },
+                                    component: NotFoundPlane,
                                 },
                             ],
                         },
@@ -89,7 +77,7 @@ const notFoundRoute: PluridRoute = {
 };
 
 
-const routes: PluridRoute[] = [
+const routes: PluridReactRoute[] = [
     indexRoute,
     notFoundRoute,
 ];

@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
-    #delog-application {
+    #developer-application {
         height: 100%;
         overflow: auto;
     }

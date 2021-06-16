@@ -3,23 +3,27 @@
     import PluridServer, {
         PluridServerMiddleware,
         PluridServerService,
-        PluridServerServicesData,
         PluridServerPartialOptions,
         PluridServerTemplateConfiguration,
     } from '@plurid/plurid-react-server';
-
-    import helmet from '~kernel-services/helmet';
-
-    import reduxStore from '~kernel-services/state/store';
-    import apolloClient from '~kernel-services/graphql/client';
     // #endregion libraries
 
 
     // #region external
+    import helmet from '~kernel-services/helmet';
+
+    import reduxStore from '~kernel-services/state/store';
+    import reduxContext from '~kernel-services/state/context';
+    import apolloClient from '~kernel-services/graphql/client';
+
     import {
-        routes,
         shell,
-    } from '../shared';
+        routes,
+    } from '~shared/index';
+
+    import {
+        APPLICATION_ROOT,
+    } from '~shared/data/constants';
     // #endregion external
 
 
@@ -33,22 +37,29 @@
 
 
 // #region module
-// #region constants
 /** ENVIRONMENT */
 const watchMode = process.env.PLURID_WATCH_MODE === 'true';
 const isProduction = process.env.ENV_MODE === 'production';
 const buildDirectory = process.env.PLURID_BUILD_DIRECTORY || 'build';
-const port = process.env.PORT || 56965;
+const port = process.env.PORT || 63000;
 
-const applicationRoot = 'developer-application';
+
+
+/** CONSTANTS */
 const openAtStart = watchMode
     ? false
     : isProduction
         ? false
         : true;
-const debug = isProduction
-    ? 'info'
-    : 'error';
+
+const quiet = false;
+// const debug = isProduction
+//     ? 'info'
+//     : 'error';
+const debug = 'info';
+
+const usePTTP = false;
+
 
 
 /** Custom styles to be loaded into the template. */
@@ -65,22 +76,33 @@ const middleware: PluridServerMiddleware[] = [
 
 /** Services to be used in the application. */
 const services: PluridServerService[] = [
-    'Apollo',
-    'Redux',
+    /** uncomment to use services */
+    {
+        name: 'Apollo',
+        package: '@apollo/client',
+        provider: 'ApolloProvider',
+        properties: {
+            client: apolloClient,
+        },
+    },
+    {
+        name: 'Redux',
+        package: 'react-redux',
+        provider: 'Provider',
+        properties: {
+            store: reduxStore({}),
+            context: reduxContext,
+        },
+    },
 ];
 
 
-const servicesData: PluridServerServicesData = {
-    apolloClient,
-    reduxStore,
-    reduxStoreValue: {},
-};
-
 const options: PluridServerPartialOptions = {
-    serverName: 'Developer Server',
     buildDirectory,
     open: openAtStart,
+    quiet,
     debug,
+    serverName: 'Developer Server',
     ignore: [
         '/developer',
         '/download/*',
@@ -88,23 +110,24 @@ const options: PluridServerPartialOptions = {
 };
 
 const template: PluridServerTemplateConfiguration = {
-    root: applicationRoot,
+    root: APPLICATION_ROOT,
 };
-// #endregion constants
 
 
-// #region server
+
+/** SERVER */
+// generate server
 const developerServer = new PluridServer({
     helmet,
+    shell,
     routes,
     preserves,
-    shell,
     styles,
     middleware,
     services,
-    servicesData,
     options,
     template,
+    usePTTP,
 });
 
 
@@ -113,12 +136,8 @@ const developerSetup = () => {
         developerServer,
     );
 }
-// #endregion server
-// #endregion module
 
 
-
-// #region run
 /**
  * If the file is called directly, as in `node build/index.js`,
  * it will run the server.
@@ -131,7 +150,7 @@ if (require.main === module) {
 
     developerServer.start(port);
 }
-// #endregion run
+// #endregion module
 
 
 
