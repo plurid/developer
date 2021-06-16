@@ -66,10 +66,9 @@ const generateWorker = async (
         const data = {
             name,
             ownedBy: '',
-            dependencies,
+            dependencies: JSON.parse(dependencies),
             script,
             command,
-            imagene,
             npmToken,
             npmRegistry,
         };

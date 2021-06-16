@@ -34,7 +34,7 @@ export interface Worker {
 
 export type RegisterWorkerData = Pick<
     Worker,
-    'name' | 'ownedBy' | 'dependencies' | 'script' | 'command' | 'imagene'
+    'name' | 'ownedBy' | 'dependencies' | 'script' | 'command'
     | 'npmToken' | 'npmRegistry'
 >;
 
