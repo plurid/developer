@@ -59,7 +59,6 @@ export const inputs = gql`
         dependencies: String!
         script: String!
         command: String!
-        imagene: String!
         npmToken: String
         npmRegistry: String
     }
