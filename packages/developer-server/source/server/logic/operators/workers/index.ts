@@ -14,20 +14,57 @@
     // import database from '~server/services/database';
 
     import docker from '~server/logic/engine';
+
+    import {
+        packageJson,
+    } from '~server/logic/templates';
     // #endregion external
 // #endregion imports
 
 
 
 // #region module
+const generateWorkerFiles = async (
+    dependencies: Record<string, string>,
+    command: string,
+) => {
+    // create namespaced directory
+
+
+    // create package.json
+    const workerID = uuid.generate();
+    const dependenciesText = Object
+        .entries(dependencies)
+        .map(([name, version]) => {
+            return `"${name}": "${version}"`;
+        })
+        .join(',\n');
+
+    const packageJsonText = packageJson(
+        workerID,
+        dependenciesText,
+        command,
+    );
+    // store packageJsonText
+
+
+    // return filepath to the package.json
+    return [];
+}
+
+
 const generateImageneForWorker = async () => {
+    const files = await generateWorkerFiles(
+        {},
+        '',
+    );
+
     const tag = 'developer-imagene-' + uuid.generate();
 
     const imagene = await docker.buildImage(
         {
             context: '',
-            src: [
-            ],
+            src: files,
         },
         {
             dockerfile: '',

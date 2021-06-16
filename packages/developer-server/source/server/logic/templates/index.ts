@@ -1,5 +1,5 @@
 // #region module
-const packageJson = (
+export const packageJson = (
     id: string,
     dependencies: string,
     command: string,
