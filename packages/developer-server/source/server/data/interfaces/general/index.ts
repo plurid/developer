@@ -24,7 +24,6 @@ export interface Worker {
     id: string;
     name: string;
     ownedBy: string;
-
     dependencies: Record<string, string>;
     script: string;
     command: string;
