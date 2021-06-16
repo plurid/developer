@@ -54,6 +54,7 @@ const compressionPluginGzip = new CompressionPlugin({
 const processEnvironmentPlugin = new webpack.DefinePlugin({
     'process.env.ENV_MODE': JSON.stringify(process.env.ENV_MODE),
     'process.env.SC_DISABLE_SPEEDY': true, /** HACK: styled components not rendering in production */
+    'process.env.DEVELOPER_ENDPOINT_GRAPHQL': JSON.stringify(process.env.DEVELOPER_ENDPOINT_GRAPHQL || '/developer'),
 });
 
 
