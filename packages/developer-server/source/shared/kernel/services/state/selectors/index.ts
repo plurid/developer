@@ -9,6 +9,7 @@
 // #region module
 const selectors = {
     data: modules.data.selectors,
+    general: modules.general.selectors,
     themes: modules.themes.selectors,
     view: modules.view.selectors,
 };
