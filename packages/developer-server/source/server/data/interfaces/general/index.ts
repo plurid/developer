@@ -19,6 +19,18 @@ export interface Project {
     // sharedWith: ProjectSharer[];
 }
 
+
+export interface Worker {
+    id: string;
+    name: string;
+    ownedBy: string;
+
+    packages: string[];
+    script: string;
+    imagene: string;
+}
+
+
 export type ProjectEntityAccess =
     | 'CAN_READ'
     | 'CAN_WRITE';
