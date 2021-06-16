@@ -14,6 +14,7 @@
     // #region external
     import {
         Worker,
+        RegisterWorkerData,
     } from '~server/data/interfaces';
 
     import {
@@ -140,6 +141,10 @@ const generateImageneForWorker = async (
     namespace: string,
     dependencies: Record<string, string>,
     command: string,
+    environment: {
+        NPM_TOKEN: string | undefined;
+        NPM_REGISTRY: string | undefined;
+    },
 ) => {
     const dockerfilePath = '';
 
@@ -155,7 +160,13 @@ const generateImageneForWorker = async (
     );
 
     const tag = `developer-imagene-${id}`;
-    const buildargs = {};
+    const buildargs: Record<string, string> = {};
+    Object.entries(environment)
+        .map(([key, value]) => {
+            if (value) {
+                buildargs[key] = value;
+            }
+        });
 
     await docker.buildImage(
         {
@@ -174,18 +185,28 @@ const generateImageneForWorker = async (
 
 
 const registerWorker = async (
-    name: string,
-    ownedBy: string,
-    dependencies: Record<string, string>,
-    command: string,
-    script: string,
+    data: RegisterWorkerData,
 ) => {
+    const {
+        name,
+        ownedBy,
+        dependencies,
+        command,
+        script,
+        npmRegistry,
+        npmToken,
+    } = data;
+
     const id = uuid.generate();
 
     const imagene = await generateImageneForWorker(
         ownedBy,
         dependencies,
         command,
+        {
+            NPM_TOKEN: npmToken,
+            NPM_REGISTRY: npmRegistry,
+        },
     );
 
     const worker: Worker = {

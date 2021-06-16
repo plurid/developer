@@ -29,7 +29,15 @@ export interface Worker {
     script: string;
     command: string;
     imagene: string;
+    npmToken?: string;
+    npmRegistry?: string;
 }
+
+export type RegisterWorkerData = Pick<
+    Worker,
+    'name' | 'ownedBy' | 'dependencies' | 'script' | 'command' | 'imagene'
+    | 'npmToken' | 'npmRegistry'
+>;
 
 
 export type ProjectEntityAccess =
