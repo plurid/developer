@@ -70,9 +70,13 @@ const generateWorkerFiles = async (
         packageJsonText,
     );
 
-    return [
-        packageJsonPath,
-    ];
+
+    return {
+        workerPath,
+        files: [
+            packageJsonPath,
+        ],
+    };
 }
 
 
@@ -81,23 +85,28 @@ const generateImageneForWorker = async (
     dependencies: Record<string, string>,
     command: string,
 ) => {
+    const dockerfilePath = '';
+
     const id = uuid.generate();
-    const files = await generateWorkerFiles(
+    const {
+        workerPath,
+        files,
+    } = await generateWorkerFiles(
         namespace,
         id,
         dependencies,
         command,
     );
 
-    const tag = 'developer-imagene-' + id;
+    const tag = `developer-imagene-${id}`;
 
-    const imagene = await docker.buildImage(
+    await docker.buildImage(
         {
-            context: '',
+            context: workerPath,
             src: files,
         },
         {
-            dockerfile: '',
+            dockerfile: dockerfilePath,
             t: tag,
         },
     );
