@@ -74,6 +74,38 @@ export const OBLITERATE_NOTIFIER = gql`
 `;
 
 
+export const GENERATE_WORKER = gql`
+    mutation GenerateWorker($input: InputGenerateWorker!) {
+        generateWorker(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                id
+                name
+            }
+        }
+    }
+`;
+
+
+export const OBLITERATE_WORKER = gql`
+    mutation ObliterateWorker($input: InputValueString!) {
+        obliterateWorker(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+        }
+    }
+`;
+
+
 export const LOGIN = gql`
     mutation Login($input: InputLogin!) {
         login(input: $input) {

@@ -11,11 +11,13 @@
 // #region module
 const getProjects = (state: AppState) => state.data.projects;
 const getNotifiers = (state: AppState) => state.data.notifiers;
+const getWorkers = (state: AppState) => state.data.workers;
 
 
 const selectors = {
     getProjects,
     getNotifiers,
+    getWorkers,
 };
 // #endregion module
 

@@ -10,6 +10,7 @@
 const initialState: Types.State = {
     projects: [],
     notifiers: [],
+    workers: [],
 };
 // #endregion module
 

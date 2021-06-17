@@ -3,6 +3,7 @@
     import {
         Project,
         ClientNotifier,
+        ClientWorker,
     } from '~server/data/interfaces';
     // #endregion libraries
 // #endregion imports
@@ -12,7 +13,8 @@
 // #region module
 export type AddableEntityType =
     | 'project'
-    | 'notifier';
+    | 'notifier'
+    | 'worker';
 
 export const ADD_ENTITY = 'ADD_ENTITY';
 export interface AddEntityPayload {
@@ -27,7 +29,8 @@ export interface AddEntityAction {
 
 export type RemovableEntityType =
     | 'project'
-    | 'notifier';
+    | 'notifier'
+    | 'worker';
 
 export const REMOVE_ENTITY = 'REMOVE_ENTITY';
 export interface RemoveEntityPayload {
@@ -42,7 +45,8 @@ export interface RemoveEntityAction {
 
 export type AddableEntitiesType =
     | 'projects'
-    | 'notifiers';
+    | 'notifiers'
+    | 'workers';
 
 export const ADD_ENTITIES = 'ADD_ENTITIES';
 export interface AddEntitiesPayload {
@@ -57,7 +61,8 @@ export interface AddEntitiesAction {
 
 
 export type RemoveableEntitiesType =
-    | 'projects';
+    | 'projects'
+    | 'workers';
 
 export const REMOVE_ENTITIES = 'REMOVE_ENTITIES';
 export interface RemoveEntitiesPayload {
@@ -80,6 +85,7 @@ export interface ClearDataAction {
 export interface State {
     projects: Project[];
     notifiers: ClientNotifier[];
+    workers: ClientWorker[];
 }
 
 

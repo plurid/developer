@@ -32,6 +32,8 @@ export interface Worker {
     npmRegistry?: string;
 }
 
+export interface ClientWorker extends Worker {}
+
 export type RegisterWorkerData = Pick<
     Worker,
     'name' | 'ownedBy' | 'dependencies' | 'script' | 'command'
