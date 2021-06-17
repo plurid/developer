@@ -21,6 +21,7 @@
     // #region external
     import {
         Space,
+        DeveloperWorker,
     } from '~data/interfaces';
 
     import {
@@ -249,6 +250,7 @@ const uploadArchive = async (
     url: string,
     configuration: string,
     command: string,
+    token: string,
 ) => {
     const form = new FormData();
 
@@ -276,13 +278,22 @@ const uploadArchive = async (
         {
             method: 'POST',
             body: form.getBuffer(),
-            headers: form.getHeaders(),
+            headers: form.getHeaders({
+                Authorization: `Bearer ${token}`,
+            }),
         },
     );
 
     const data = await response.json();
 
     return data;
+}
+
+
+const getUploadToken = async (
+    worker: DeveloperWorker,
+) => {
+    return '';
 }
 // #endregion module
 
@@ -296,5 +307,6 @@ export {
     getSpaceData,
     packageSpace,
     uploadArchive,
+    getUploadToken,
 };
 // #endregion exports

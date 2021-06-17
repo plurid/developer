@@ -20,6 +20,7 @@
         getSpaceData,
         packageSpace,
         uploadArchive,
+        getUploadToken,
     } from '~services/logic/space';
     // #endregion external
 // #endregion imports
@@ -36,7 +37,6 @@ const build = async (
 ) => {
     try {
         const environmentData = await readEnvironment(environment);
-
         if (environment && !environmentData) {
             console.log(`\n\tcould not read environment file\n`);
 
@@ -47,7 +47,6 @@ const build = async (
             server,
             identonym,
         );
-
         if (!execute) {
             console.log(`\n\tcould not build, no developer connection\n`);
             return;
@@ -59,7 +58,6 @@ const build = async (
             server,
             identonym,
         );
-
         if (!spaceData) {
             console.log(`\n\tcould not build, no registered space '${name}'\n`);
             return;
@@ -70,12 +68,18 @@ const build = async (
             spaceData.worker.server,
             spaceData.worker.identonym,
         );
-
         if (!connection) {
             console.log('\n\tcould not build, no developer connection\n');
             return;
         }
 
+        const token = await getUploadToken(
+            spaceData.worker,
+        );
+        if (!token) {
+            console.log('\n\tcould not build, no upload token\n');
+            return;
+        }
 
         const archive = await packageSpace(spaceData);
         const uploadURL = spaceData.worker.server + '/upload';
@@ -89,6 +93,7 @@ const build = async (
             uploadURL,
             configuration,
             command,
+            token,
         );
 
         if (!upload.status) {
