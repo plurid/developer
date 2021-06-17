@@ -22,6 +22,7 @@
     import developerLogo from '../../assets/developer-logo.png';
 
     import Project from '~kernel-components/Project';
+    import Worker from '~kernel-components/Worker';
 
     import { AppState } from '~kernel-services/state/store';
     import selectors from '~kernel-services/state/selectors';
@@ -277,6 +278,21 @@ export const renderGeneralView = (
         //             cancel={() => setGeneralView('general')}
         //         />
         //     );
+        case 'generate-worker':
+            return (
+                <Worker
+                    theme={stateInteractionTheme}
+                    action={(worker) => {
+                        dispatchAddEntity({
+                            type: 'worker',
+                            data: worker,
+                        });
+
+                        setGeneralView('general');
+                    }}
+                    cancel={() => setGeneralView('general')}
+                />
+            );
         default:
             return (
                 <></>
