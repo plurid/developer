@@ -50,4 +50,25 @@ export const removeDuplicates = <T>(
         (obj, pos, arr) => arr.map(mapObj => mapObj[key]).indexOf(obj[key]) === pos
     );
 }
+
+
+export const jsonParse = (
+    data: string,
+) => {
+    if (!data) {
+        return;
+    }
+
+    try {
+        const parsedData = JSON.parse(data);
+
+        if (!!parsedData) {
+            return parsedData;
+        } else {
+            return;
+        }
+    } catch (error) {
+        return;
+    }
+}
 // #endregion module

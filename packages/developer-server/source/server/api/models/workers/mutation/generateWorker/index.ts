@@ -14,6 +14,7 @@
 
     import {
         generateMethodLogs,
+        jsonParse,
     } from '~server/utilities';
     // #endregion external
 // #endregion imports
@@ -62,10 +63,17 @@ const generateWorker = async (
             npmRegistry,
         } = input;
 
+        const parsedDependencies = jsonParse(dependencies);
+        if (!parsedDependencies) {
+            return {
+                status: false,
+            };
+        }
+
         const data = {
             name,
             ownedBy: '',
-            dependencies: JSON.parse(dependencies),
+            dependencies: parsedDependencies,
             script,
             command,
             npmToken,
