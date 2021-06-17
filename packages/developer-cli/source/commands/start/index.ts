@@ -26,13 +26,11 @@ const start = async (
             server,
             identonym,
         );
-
         if (!worker) {
             return;
         }
 
         const data = await serverStart();
-
         if (!data) {
             return;
         }
@@ -41,6 +39,9 @@ const start = async (
             pid,
             port,
         } = data;
+        if (!pid) {
+            return;
+        }
 
         await saveConnection(
             pid,
