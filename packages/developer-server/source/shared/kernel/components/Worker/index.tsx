@@ -2,6 +2,7 @@
     // #region libraries
     import React, {
         useState,
+        useEffect,
     } from 'react';
 
     import {
@@ -15,9 +16,9 @@
         ClientWorker,
     } from '~server/data/interfaces';
 
-    // import {
-    //     addEntityMutation,
-    // } from '~kernel-services/logic/mutations';
+    import {
+        addEntityMutation,
+    } from '~kernel-services/logic/mutations';
 
     import {
         GENERATE_WORKER,
@@ -30,6 +31,7 @@
     } from '~kernel-services/styled';
 
     import InputLine from '../InputLine';
+    import InputBox from '../InputBox';
     // #endregion external
 
 
@@ -98,26 +100,66 @@ const Worker: React.FC<WorkerProperties> = (
         workerName,
         setWorkerName,
     ] = useState('');
+
+    const [
+        workerDependencies,
+        setWorkerDependencies,
+    ] = useState('');
+
+    const [
+        workerScript,
+        setWorkerScript,
+    ] = useState('');
+
+    const [
+        workerCommand,
+        setWorkerCommand,
+    ] = useState('');
+
+    const [
+        workerNpmToken,
+        setWorkerNpmToken,
+    ] = useState('');
+
+    const [
+        workerNpmRegistry,
+        setWorkerNpmRegistry,
+    ] = useState('');
+
+    const [
+        validDependencies,
+        setValidDependencies,
+    ] = useState(false);
+
+    const [
+        validWorkerData,
+        setValidWorkerData,
+    ] = useState(false);
     // #endregion state
 
 
     // #region handlers
     const addWorker = async () => {
-        if (!workerName) {
+        if (!validWorkerData) {
             return;
         }
 
-        // const worker: IWorker | undefined = await addEntityMutation(
-        //     {
-        //         value: workerName,
-        //     },
-        //     GENERATE_WORKER,
-        //     'generateWorker',
-        // );
+        const worker: ClientWorker | undefined = await addEntityMutation(
+            {
+                name: workerName,
+                dependencies: workerDependencies,
+                script: workerScript,
+                command: workerCommand,
+                npmToken: workerNpmToken,
+                npmRegistry: workerNpmRegistry,
+            },
+            GENERATE_WORKER,
+            'generateWorker',
+        );
 
-        // if (worker) {
-        //     action(worker);
-        // }
+        if (worker) {
+            action(worker);
+        }
     }
 
     const handleEnter = (
@@ -128,6 +170,48 @@ const Worker: React.FC<WorkerProperties> = (
         }
     }
     // #endregion handlers
+
+
+    // #region effects
+    useEffect(() => {
+        if (
+            workerName
+            && workerScript
+            && workerCommand
+            && validDependencies
+        ) {
+            setValidWorkerData(true);
+        } else {
+            setValidWorkerData(false);
+        }
+    }, [
+        workerName,
+        workerScript,
+        workerCommand,
+        validDependencies,
+    ]);
+
+    useEffect(() => {
+        if (!workerDependencies) {
+            setValidDependencies(false);
+            return;
+        }
+
+        try {
+            const valid = JSON.parse(workerDependencies);
+
+            if (!!valid) {
+                setValidDependencies(true);
+            } else {
+                setValidDependencies(false);
+            }
+        } catch (error) {
+            setValidDependencies(false);
+        }
+    }, [
+        workerDependencies,
+    ]);
+    // #endregion effects
 
 
     // #region render
@@ -147,12 +231,52 @@ const Worker: React.FC<WorkerProperties> = (
                 atKeyDown={handleEnter}
             />
 
+            <InputBox
+                name="dependencies"
+                text={workerDependencies}
+                theme={theme}
+                atChange={(event) => setWorkerDependencies(event.target.value)}
+                asCode={true}
+            />
+
+            <InputBox
+                name="script"
+                text={workerScript}
+                theme={theme}
+                atChange={(event) => setWorkerScript(event.target.value)}
+                asCode={true}
+            />
+
+            <InputLine
+                name="command"
+                text={workerCommand}
+                theme={theme}
+                atChange={(event) => setWorkerCommand(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <InputLine
+                name="npm token"
+                text={workerNpmToken}
+                theme={theme}
+                atChange={(event) => setWorkerNpmToken(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
+            <InputLine
+                name="npm registry"
+                text={workerNpmRegistry}
+                theme={theme}
+                atChange={(event) => setWorkerNpmRegistry(event.target.value)}
+                atKeyDown={handleEnter}
+            />
+
             <div>
                 <StyledPluridPureButton
                     text="Generate Worker"
                     atClick={() => addWorker()}
                     level={2}
-                    disabled={!workerName}
+                    disabled={!validWorkerData}
                 />
             </div>
 

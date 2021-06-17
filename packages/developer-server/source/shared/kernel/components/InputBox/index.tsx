@@ -20,6 +20,7 @@ export interface InputBoxProperties {
     name: string;
     text: string;
     theme: any;
+    asCode?: boolean;
     atChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     atKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
     style?: React.CSSProperties;
@@ -32,6 +33,7 @@ const InputBox: React.FC<InputBoxProperties> = (
     const {
         text,
         name,
+        asCode,
         atChange,
         atKeyDown,
         theme,
@@ -53,6 +55,7 @@ const InputBox: React.FC<InputBoxProperties> = (
 
             <StyledTextBox
                 theme={theme}
+                asCode={asCode}
             >
                 <textarea
                     value={text}

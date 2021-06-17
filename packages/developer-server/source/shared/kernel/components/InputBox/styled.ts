@@ -27,6 +27,7 @@ export const StyledInputBoxText = styled.div`
 
 export interface IStyledTextBox {
     theme: Theme;
+    asCode?: boolean;
 }
 
 export const StyledTextBox = styled.div<IStyledTextBox>`
@@ -40,8 +41,19 @@ export const StyledTextBox = styled.div<IStyledTextBox>`
         font-size: 0.8rem;
         border-radius: 0.9rem;
         line-height: 1.5;
-        font-family: Ubuntu, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+        font-family: ${
+            ({
+                theme,
+                asCode,
+            }: IStyledTextBox) => {
+                if (asCode) {
+                    return theme.fontFamilyMonospace;
+                }
+
+                return theme.fontFamilySansSerif;
+            }
+        };
         color: ${
             ({
                 theme,
