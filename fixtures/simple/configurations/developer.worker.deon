@@ -1,0 +1,6 @@
+{
+    project developer-test-with-worker
+    space fixtures/simple
+    root ../
+    worker worker-test
+}
