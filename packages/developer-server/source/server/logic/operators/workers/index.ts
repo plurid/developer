@@ -21,7 +21,7 @@
         workersPath,
     } from '~server/data/constants';
 
-    // import database from '~server/services/database';
+    import database from '~server/services/database';
 
     import docker from '~server/logic/engine';
 
@@ -231,18 +231,17 @@ const registerWorker = async (
         id,
         name,
         ownedBy,
-
         dependencies,
         script,
         command,
         imagene,
     };
 
-    // await database.store(
-    //     'workers',
-    //     id,
-    //     worker,
-    // );
+    await database.store(
+        'workers',
+        id,
+        worker,
+    );
 
     return worker;
 }
@@ -252,12 +251,12 @@ const deregisterWorker = async (
     id: string,
 ) => {
     try {
-        // await database.obliterate(
-        //     'workers',
-        //     {
-        //         id,
-        //     },
-        // );
+        await database.obliterate(
+            'workers',
+            {
+                id,
+            },
+        );
     } catch (error) {
         return;
     }
