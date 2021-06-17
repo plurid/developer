@@ -55,7 +55,7 @@ const updateConfiguration = async (
 
         const connections = data.connections
             ? {
-                ...data.connections
+                ...data.connections,
             } : {
                 ...configuration.connections,
             };

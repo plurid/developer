@@ -4,7 +4,9 @@
         promises as fs,
     } from 'fs';
 
-    import url from 'url';
+    import {
+        URL,
+    } from 'url';
     // #endregion libraries
 // #endregion imports
 
@@ -26,12 +28,10 @@ const extractServerName = (
 const getServerURL = (
     endpoint: string,
 ) => {
-    const urlData = url.parse(endpoint);
-
     const {
         protocol,
         host,
-    } = urlData;
+    } = new URL(endpoint);
 
     const serverURL = protocol + '//' + host;
 
