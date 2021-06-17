@@ -1,6 +1,6 @@
 // #region imports
     // #region libraries
-    import {
+    import fsSync, {
         promises as fs,
     } from 'fs';
     import path from 'path';
@@ -34,6 +34,31 @@
 
 
 // #region module
+export const runInWorker = async (
+    imagene: string,
+    source: string,
+    script: string,
+) => {
+    // const writeStream = fsSync.createWriteStream('./stream.out');
+
+    await docker.run(
+        imagene,
+        [],
+        // writeStream,
+        process.stdout,
+        {
+            HostConfig: {
+                // AutoRemove: true,
+                Binds: [
+                    `${source}:/app/source`,
+                    `${script}:/app/script.js`,
+                ],
+            },
+        },
+    );
+}
+
+
 const generateWorkerConfigurationsFiles = async (
     directory: string,
 ) => {
