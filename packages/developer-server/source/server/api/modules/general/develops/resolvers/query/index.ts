@@ -1,6 +1,7 @@
 // #region imports
     // #region external
     import {
+        InputOf,
         Context,
     } from '~server/data/interfaces';
 
@@ -19,6 +20,14 @@ export default {
         __: any,
         context: Context,
     ) => Develops.Query.getDevelops(
+        context,
+    ),
+    getUploadToken: (
+        _: any,
+        { input }: InputOf<any>,
+        context: Context,
+    ) => Develops.Query.getUploadToken(
+        input,
         context,
     ),
 };

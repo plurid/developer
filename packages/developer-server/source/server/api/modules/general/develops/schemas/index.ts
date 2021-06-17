@@ -10,6 +10,7 @@
 export const queries = gql`
     extend type Query {
         getDevelops: ResponseDevelops!
+        getUploadToken(input: InputGetUploadToken!): ResponseUploadToken!
     }
 `;
 
@@ -38,6 +39,24 @@ export const types = gql`
         id: String!
         name: String!
     }
+
+
+    type ResponseUploadToken {
+        status: Boolean!
+        error: Error
+        data: UploadToken
+    }
+
+    type UploadToken {
+        token: String!
+    }
+`;
+
+
+export const inputs = gql`
+    input InputGetUploadToken {
+        id: String!
+    }
 `;
 // #endregion module
 
@@ -48,5 +67,6 @@ export default gql`
     ${queries}
     ${mutations}
     ${types}
+    ${inputs}
 `;
 // #endregion exports
