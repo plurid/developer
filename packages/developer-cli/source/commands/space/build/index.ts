@@ -75,6 +75,7 @@ const build = async (
 
         const token = await getUploadToken(
             spaceData.worker,
+            spaceData.space,
         );
         if (!token) {
             console.log('\n\tcould not build, no upload token\n');

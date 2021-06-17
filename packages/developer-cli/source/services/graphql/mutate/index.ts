@@ -24,6 +24,23 @@ const LOGIN = gql`
         }
     }
 `;
+
+
+const GET_UPLOAD_TOKEN = gql`
+    query GetUploadToken($input: InputGetUploadToken!) {
+        getUploadToken(input: $input) {
+            status
+            error {
+                type
+                path
+                message
+            }
+            data {
+                token
+            }
+        }
+    }
+`;
 // #endregion module
 
 
@@ -31,5 +48,6 @@ const LOGIN = gql`
 // #region exports
 export {
     LOGIN,
+    GET_UPLOAD_TOKEN,
 };
 // #endregion exports

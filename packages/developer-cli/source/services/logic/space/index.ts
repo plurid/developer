@@ -24,6 +24,12 @@
         DeveloperWorker,
     } from '~data/interfaces';
 
+    import client from '~services/graphql/client';
+
+    import {
+        GET_UPLOAD_TOKEN,
+    } from '~services/graphql/mutate';
+
     import {
         getWorker,
         fileExists,
@@ -292,8 +298,25 @@ const uploadArchive = async (
 
 const getUploadToken = async (
     worker: DeveloperWorker,
+    space: Space,
 ) => {
-    return '';
+    const developer = client(worker.api);
+
+    const query = await developer.query({
+        query: GET_UPLOAD_TOKEN,
+        variables: {
+            input: {
+                identifier: space.identifier,
+            },
+        },
+    });
+
+    const response = query.data.getUploadToken;
+    if (!response.status) {
+        return;
+    }
+
+    return response.data.token;
 }
 // #endregion module
 
