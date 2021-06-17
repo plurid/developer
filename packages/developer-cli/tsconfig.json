@@ -14,50 +14,50 @@
 
         "baseUrl": ".",
         "paths": {
-            "#cli/*": [
+            "~cli/*": [
                 "./source/cli/*"
             ],
-            "#commands/*": [
+            "~commands/*": [
                 "./source/commands/*"
             ],
-            "#data/*": [
+            "~data/*": [
                 "./source/data/*"
             ],
-            "#objects/*": [
+            "~objects/*": [
                 "./source/objects/*"
             ],
-            "#services/*": [
+            "~services/*": [
                 "./source/services/*"
             ],
 
-            "#client/*": [
+            "~client/*": [
                 "./source/objects/Dashboard/client/*"
             ],
-            "#server/*": [
+            "~server/*": [
                 "./source/objects/Dashboard/server/*"
             ],
-            "#kernel-assets/*": [
+            "~kernel-assets/*": [
                 "./source/objects/Dashboard/shared/kernel/assets/*"
             ],
-            "#kernel-components/*": [
+            "~kernel-components/*": [
                 "./source/objects/Dashboard/shared/kernel/components/*"
             ],
-            "#kernel-containers/*": [
+            "~kernel-containers/*": [
                 "./source/objects/Dashboard/shared/kernel/containers/*"
             ],
-            "#kernel-planes/*": [
+            "~kernel-planes/*": [
                 "./source/objects/Dashboard/shared/kernel/planes/*"
             ],
-            "#kernel-data/*": [
+            "~kernel-data/*": [
                 "./source/objects/Dashboard/shared/kernel/data/*"
             ],
-            "#kernel-services/*": [
+            "~kernel-services/*": [
                 "./source/objects/Dashboard/shared/kernel/services/*"
             ],
-            "#routes/*": [
+            "~routes/*": [
                 "./source/objects/Dashboard/shared/routes/*"
             ],
-            "#shell/*": [
+            "~shell/*": [
                 "./source/objects/Dashboard/shared/shell/*"
             ]
         },
