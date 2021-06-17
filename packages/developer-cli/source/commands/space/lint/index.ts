@@ -2,17 +2,17 @@
     // #region external
     import {
         checkExecutionContext,
-    } from '#services/logic/execution';
+    } from '~services/logic/execution';
 
     import {
         getConnection,
-    } from '#services/logic/connections';
+    } from '~services/logic/connections';
 
     import {
         getSpaceData,
         packageSpace,
         uploadArchive,
-    } from '#services/logic/space';
+    } from '~services/logic/space';
     // #endregion external
 // #endregion imports
 

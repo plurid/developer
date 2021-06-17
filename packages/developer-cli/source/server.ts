@@ -1,6 +1,6 @@
 // #region imports
     // #region internal
-    import Server from '#objects/Server';
+    import Server from '~objects/Server';
     // #endregion internal
 // #endregion imports
 

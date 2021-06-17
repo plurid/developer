@@ -3,16 +3,16 @@
     import {
         DeveloperWorker,
         Space,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         resolveSpaceConfigurationPath,
-    } from '#services/logic/space';
+    } from '~services/logic/space';
 
     import {
         getWorker,
         updateWorker,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

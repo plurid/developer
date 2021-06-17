@@ -2,15 +2,15 @@
     // #region external
     import {
         serverStart,
-    } from '#services/logic/server';
+    } from '~services/logic/server';
 
     import {
         saveConnection,
-    } from '#services/logic/connections';
+    } from '~services/logic/connections';
 
     import {
         getWorker,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

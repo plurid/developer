@@ -15,11 +15,11 @@
     // #region external
     import {
         DEVELOPER_COOKIE,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         updateWorker,
-    } from '#services/utilities/worker';
+    } from '~services/utilities/worker';
      // #endregion external
 // #endregion imports
 

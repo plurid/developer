@@ -2,15 +2,15 @@
     // #region external
     import {
         DEVELOPER_COOKIE,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         client,
-    } from '#services/graphql';
+    } from '~services/graphql';
 
     import {
         getWorker,
-    } from '#services/utilities/worker';
+    } from '~services/utilities/worker';
     // #endregion external
 // #endregion imports
 

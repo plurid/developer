@@ -8,13 +8,13 @@
     import {
         DeveloperWorker,
         DeveloperConnection,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         readConfiguration,
         updateConfiguration,
         getWorker,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

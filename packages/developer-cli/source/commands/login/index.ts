@@ -9,23 +9,23 @@
     // #region external
     import {
         DeveloperWorker,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         defaultDeveloperWorker,
-    } from '#data/constants';
+    } from '~data/constants';
 
-    import client from '#services/graphql/client';
+    import client from '~services/graphql/client';
     import {
         LOGIN,
-    } from '#services/graphql/mutate';
+    } from '~services/graphql/mutate';
 
     import {
         extractServerName,
 
         updateWorker,
         getServerURL,
-    } from '#services/utilities';
+    } from '~services/utilities';
 
 
     import startCommand from '../start';

@@ -3,16 +3,16 @@
     import {
         DeveloperConfiguration,
         DeveloperWorker,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         defaultDeveloperWorker,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         readConfiguration,
         writeConfiguration,
-    } from '#services/utilities/configuration';
+    } from '~services/utilities/configuration';
     // #endregion external
 // #endregion imports
 

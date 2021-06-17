@@ -31,7 +31,7 @@
     // #region external
     import {
         getSpaceData,
-    } from '#services/logic/space';
+    } from '~services/logic/space';
     // #endregion external
 
 

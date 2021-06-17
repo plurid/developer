@@ -3,16 +3,16 @@
     import {
         DeveloperWorker,
         DeveloperConnection,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         verifyConnections,
-    } from '#services/logic/connections';
+    } from '~services/logic/connections';
 
     import {
         readConfiguration,
         getWorkerByID,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

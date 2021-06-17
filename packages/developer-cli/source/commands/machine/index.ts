@@ -2,7 +2,7 @@
     // #region external
     import {
         updateConfiguration,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

@@ -10,7 +10,7 @@
     import {
         getConnection,
         removeConnection,
-    } from '#services/logic/connections';
+    } from '~services/logic/connections';
     // #endregion external
 // #endregion imports
 

@@ -13,16 +13,16 @@
     // #region external
     import {
         DeveloperConfiguration,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         defaultDeveloperConfiguration,
         developerConfigurationPath,
-    } from '#data/constants';
+    } from '~data/constants';
 
     import {
         fileExists,
-    } from '#services/utilities/general';
+    } from '~services/utilities/general';
     // #endregion external
 // #endregion imports
 

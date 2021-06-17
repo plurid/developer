@@ -13,7 +13,7 @@
     // #region external
     import {
         resolvePathToAbsolute,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

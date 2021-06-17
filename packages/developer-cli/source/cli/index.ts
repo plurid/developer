@@ -25,7 +25,7 @@
         watch,
         build,
         run,
-    } from '#commands/index';
+    } from '~commands/index';
     // #endregion external
 // #endregion imports
 

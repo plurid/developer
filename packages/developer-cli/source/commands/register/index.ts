@@ -8,20 +8,20 @@
     import {
         DeveloperWorker,
         Space,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         readConfiguration,
-    } from '#services/logic/configurations';
+    } from '~services/logic/configurations';
 
     import {
         resolveSpaceConfigurationPath,
-    } from '#services/logic/space';
+    } from '~services/logic/space';
 
     import {
         getWorker,
         updateWorker,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

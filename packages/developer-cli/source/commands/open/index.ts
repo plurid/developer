@@ -7,11 +7,11 @@
     // #region external
     import {
         DeveloperConnection,
-    } from '#data/interfaces';
+    } from '~data/interfaces';
 
     import {
         readConfiguration,
-    } from '#services/utilities';
+    } from '~services/utilities';
     // #endregion external
 // #endregion imports
 

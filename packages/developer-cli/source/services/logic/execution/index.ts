@@ -2,15 +2,15 @@
     // #region external
     import {
         verifyConnections,
-    } from '#services/logic/connections';
+    } from '~services/logic/connections';
 
     import {
         readConfiguration,
-    } from '#services/utilities/configuration';
+    } from '~services/utilities/configuration';
 
     import {
         getWorkerByID,
-    } from '#services/utilities/worker';
+    } from '~services/utilities/worker';
     // #endregion external
 // #endregion imports
 
