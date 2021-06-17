@@ -20,7 +20,9 @@
         Express,
     } from 'express';
 
-    import bodyparser from 'body-parser';
+    import {
+        json as jsonParser,
+    } from 'body-parser';
 
     import Zip from 'adm-zip';
     // #endregion libraries
@@ -176,7 +178,7 @@ class Server extends EventEmitter {
 
         this.application.post(
             '/poll',
-            bodyparser.json(),
+            jsonParser() as any,
             (
                 request,
                 response,
