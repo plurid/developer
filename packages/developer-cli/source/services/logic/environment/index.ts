@@ -47,28 +47,12 @@ const parseEnvironmentFile = (
 }
 
 
-const readDefaultEnvironment = async () => {
-    const environmentPath = path.join(
-        process.cwd(),
-        './configurations/developer.deon',
-    );
-
-    const fileData = await fs.readFile(environmentPath, 'utf-8');
-
-    const deon = new Deon();
-    const parsedData = await deon.parse(fileData);
-    return parsedData;
-}
-
-
 const readEnvironment = async (
     environment: string | undefined,
 ) => {
     try {
         if (!environment) {
-            const defaultEnvironment = await readDefaultEnvironment();
-
-            return defaultEnvironment;
+            return;
         }
 
         const environmentPath = path.isAbsolute(environment)
