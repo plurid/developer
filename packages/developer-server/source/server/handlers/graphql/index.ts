@@ -32,7 +32,7 @@
         schemas,
     } from '~server/api';
 
-    import loadData from '~server/logic/loader';
+    import loadData from '~server/logic/previous/loader';
 
     import defaultLogger from '~server/services/logger';
 

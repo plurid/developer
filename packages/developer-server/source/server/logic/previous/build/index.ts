@@ -11,11 +11,11 @@
 
     import {
         transpileTypescript,
-    } from '~server/logic/typescript';
+    } from '~server/logic/previous/typescript';
 
     import {
         archiveBuild,
-    } from '~server/logic/archive';
+    } from '~server/logic/previous/archive';
 
     import {
         registerDevelop,

@@ -12,7 +12,7 @@
         DeveloperConfiguration,
     } from '~server/data/interfaces';
 
-    import * as commands from '~server/logic/commands';
+    import * as commands from '~server/logic/previous/commands';
     // #endregion external
 // #endregion imports
 
