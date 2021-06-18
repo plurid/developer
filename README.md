@@ -87,6 +87,50 @@ docker build \
 
 
 
+## Tour
+
+```
+    OWNER
+    |
+    |-----------|
+    |           |
+    CLIENT --- SERVER
+
+
+the OWNER writes source code in a code SPACE running the developer CLIENT
+
+the OWNER sets up on the developer SERVER a WORKER
+
+the SERVER builds the WORKER imagene
+
+the WORKER provides a certain execution context
+
+the OWNER runs a command through the CLIENT, e.g. 'developer build'
+
+the CLIENT requests from the SERVER a TOKEN based on the SPACE and WORKER id
+
+the CLIENT uploads the source to the SERVER using the TOKEN
+
+the SERVER launches a JOB using as base the WORKER imagene
+
+the JOB installs the packages in the WORKER and creates an intermediary WORKLOAD imagene for future usage
+
+the JOB runs the COMMAND in the WORKLOAD imagene
+
+the JOB extracts the output if any
+
+the SERVER sends the JOB's output to the CLIENT
+```
+
+
+Benefits of using `developer`
+
++ a code SPACE has no more "devDependencies"
++ multiple code SPACEs can share the same WORKER imagene
++ faster commands execution by leveraging caching mechanisms
+
+
+
 ## Packages
 
 <a target="_blank" href="https://www.npmjs.com/package/@plurid/developer-cli">
