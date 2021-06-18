@@ -3,6 +3,7 @@
     import {
         InputOf,
         Context,
+        InputGetUploadToken,
     } from '~server/data/interfaces';
 
     import {
@@ -24,7 +25,7 @@ export default {
     ),
     getUploadToken: (
         _: any,
-        { input }: InputOf<any>,
+        { input }: InputOf<InputGetUploadToken>,
         context: Context,
     ) => Develops.Query.getUploadToken(
         input,

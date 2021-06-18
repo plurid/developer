@@ -15,4 +15,9 @@ export interface InputGenerateNotifier {
     type: string;
     data: string;
 }
+
+
+export interface InputGetUploadToken {
+    id: string;
+}
 // #endregion module

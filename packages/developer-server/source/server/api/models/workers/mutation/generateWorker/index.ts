@@ -5,10 +5,6 @@
     } from '~server/data/interfaces';
 
     import {
-        PRIVATE_USAGE,
-    } from '~server/data/constants';
-
-    import {
         registerWorker,
     } from '~server/logic/operators/workers';
 
@@ -33,7 +29,7 @@ const generateWorker = async (
     const {
         request,
 
-        // privateUsage,
+        privateUsage,
         privateOwnerIdentonym,
 
         // customLogicUsage,
@@ -83,7 +79,7 @@ const generateWorker = async (
 
 
         // #region private usage
-        if (PRIVATE_USAGE) {
+        if (privateUsage) {
             logger.log(
                 generateWorkerLogs.infoHandlePrivateUsage,
                 logLevels.trace,
@@ -136,7 +132,6 @@ const generateWorker = async (
         };
         // #endregion public usage
     } catch (error) {
-        console.log(error);
         // #region error handle
         logger.log(
             generateWorkerLogs.errorEnd,

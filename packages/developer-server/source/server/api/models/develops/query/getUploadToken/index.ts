@@ -1,6 +1,14 @@
 // #region imports
+    // #region imports
+    import {
+        uuid,
+    } from '@plurid/plurid-functions';
+    // #endregion imports
+
+
     // #region external
     import {
+        InputGetUploadToken,
         Context,
     } from '~server/data/interfaces';
 
@@ -13,11 +21,52 @@
 
 
 // #region module
+export const getUploadTokenLogs = generateMethodLogs('getUploadToken');
+
+
 const getUploadToken = async (
-    input: any,
+    input: InputGetUploadToken,
     context: Context,
 ) => {
+    // #region context unpack
+    const {
+        request,
 
+        privateUsage,
+        privateOwnerIdentonym,
+
+        customLogicUsage,
+
+        logger,
+        logLevels,
+    } = context;
+    // #endregion context unpack
+
+
+    try {
+        const {
+            id,
+        } = input;
+
+        const token = uuid.generate();
+
+        if (privateUsage) {
+            // check space by id
+        }
+
+        // assign token to space
+
+        return {
+            status: true,
+            data: {
+                token,
+            },
+        };
+    } catch (error) {
+        return {
+            status: false,
+        };
+    }
 }
 // #endregion module
 
